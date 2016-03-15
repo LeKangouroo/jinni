@@ -8,14 +8,14 @@ html(lang="fr-FR")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    script(src="js/boot.js?bust=@@CACHE_BUST")
     block title
       title Titre de la page
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
+    script(src="js/vendors.js?bust=@@CACHE_BUST")
+    script(src="js/main.js?bust=@@CACHE_BUST")
     block components
   body
     include ../includes/common/header.jade
     main#main
       block content
     include ../includes/common/footer.jade
-    script(src="js/main.js?bust=@@CACHE_BUST")

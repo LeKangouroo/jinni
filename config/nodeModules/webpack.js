@@ -15,8 +15,10 @@ var argv = require("../../gulp/modules/argv");
 const PROJECT_DIR = Path.resolve(__dirname, "../../");
 const PLUGINS = {
   development: [
+    new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" })
   ],
   distributable: [
+    new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
     new Webpack.optimize.UglifyJsPlugin()
   ]
 };
@@ -28,7 +30,7 @@ module.exports = {
   devtool: (argv.mode === "development") ? "inline-source-map" : null,
   entry: {
     main: Path.resolve(PROJECT_DIR, "src/js/main.js"),
-    boot: ["svg4everybody", "webcomponents.js"]
+    vendors: ["rlite-router", "svg4everybody", "vue", "webcomponents.js", "wolfy87-eventemitter"]
   },
   output: {
     filename: "[name].js",
