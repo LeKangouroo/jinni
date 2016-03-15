@@ -39,13 +39,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      /*
-       * Vendors
-       */
-      eventEmitter: Path.resolve(PROJECT_DIR, "src/vendors/eventEmitter/EventEmitter.min.js"),
-      rlite: Path.resolve(PROJECT_DIR, "src/vendors/rlite/rlite.min.js"),
-      svg4everybody: Path.resolve(PROJECT_DIR, "src/vendors/svg4everybody/dist/svg4everybody.min.js"),
-      vue: Path.resolve(PROJECT_DIR, "src/vendors/vue/dist/vue.min.js"),
 
       /*
        * Directories
