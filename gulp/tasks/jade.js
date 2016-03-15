@@ -42,9 +42,8 @@ Gulp.task("jade", function(callback) {
     .src(paths.relocate(config.common.paths.sources.jade.default))
     .pipe(Jade(config.nodeModules.jade))
       .on("error", onJadeError.bind(null, callback))
-    .pipe(Replace({
-      patterns: replace.patterns[argv.env]
-    }))
+    .pipe(Replace({ patterns: replace.patterns.common }))
+    .pipe(Replace({ patterns: replace.patterns[argv.env] }))
     .pipe(Gulp.dest(paths.relocate(destination)))
       .on("end", onTaskComplete.bind(null, callback));
 });

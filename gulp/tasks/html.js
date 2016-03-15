@@ -33,9 +33,8 @@ Gulp.task("html", function(callback) {
   destination = (argv.mode === "distributable") ? config.common.paths.builds.html[argv.mode][argv.env] : config.common.paths.builds.html[argv.mode];
   Gulp
     .src(paths.relocate(config.common.paths.sources.html.default))
-    .pipe(Replace({
-      patterns: replace.patterns[argv.env]
-    }))
+    .pipe(Replace({ patterns: replace.patterns.common }))
+    .pipe(Replace({ patterns: replace.patterns[argv.env] }))
     .pipe(Gulp.dest(paths.relocate(destination)))
       .on("end", onTaskComplete.bind(null, callback));
 });
