@@ -62,7 +62,7 @@ export default class Form
     }
     return data;
   }
-  getFields(hiddenFields = true) {
+  getFields(hiddenFields = true, asArray = false) {
     
     var els,
         fields,
@@ -71,14 +71,22 @@ export default class Form
         length,
         name;
     
-    fields = {};
+    fields = (asArray) ? [] : {};
     fieldNames = this.getFieldNames(hiddenFields);
     length = fieldNames.length;
     for (i = 0; i < length; i++)
     {
       name = fieldNames[i];
       els = this.el.querySelectorAll(`*[name="${name}"]`);
-      fields[name] = (els.length === 1) ? els[0] : els;
+      els = (els.length === 1) ? els[0] : els;
+      if (asArray)
+      {
+        fields.push(els);
+      }
+      else
+      {
+        fields[name] = els;
+      }
     }
     return fields;
   }
