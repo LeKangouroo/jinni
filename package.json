@@ -53,7 +53,9 @@
     "yargs": "3.31.0"
   },
   "scripts": {
-    "build": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --mode=distributable",
+    "build:all": "npm run clean -- --mode=distributable && npm run build:preprod && npm run build:prod",
+    "build:preprod": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=pre-production --mode=distributable",
+    "build:prod": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=production --mode=distributable",
     "clean": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js clean",
     "dev": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js dev"
   }
