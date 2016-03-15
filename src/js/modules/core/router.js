@@ -1,6 +1,6 @@
 /* globals Location: false */
 
-import Rlite from "rlite";
+import Rlite from "rlite-router";
 
 class RouterException extends Error
 {

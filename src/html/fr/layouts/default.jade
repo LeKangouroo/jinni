@@ -8,12 +8,9 @@ html(lang="fr-FR")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    script(src="vendors/webcomponentsjs/webcomponents.min.js?bust=@@CACHE_BUST")
-    script(src="vendors/svg4everybody/dist/svg4everybody.min.js?bust=@@CACHE_BUST")
-    script svg4everybody();
+    script(src="js/boot.js?bust=@@CACHE_BUST")
     block title
       title Titre de la page
-    link(rel="stylesheet", href="vendors/normalize-css/normalize.css?bust=@@CACHE_BUST")
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
     block components
   body
@@ -21,4 +18,4 @@ html(lang="fr-FR")
     main#main
       block content
     include ../includes/common/footer.jade
-    script(src="js/main.js")
+    script(src="js/main.js?bust=@@CACHE_BUST")

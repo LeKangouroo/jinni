@@ -26,7 +26,10 @@ const PLUGINS = {
  */
 module.exports = {
   devtool: (argv.mode === "development") ? "inline-source-map" : null,
-  entry: Path.resolve(PROJECT_DIR, "src/js/main.js"),
+  entry: {
+    main: Path.resolve(PROJECT_DIR, "src/js/main.js"),
+    boot: ["svg4everybody", "webcomponents.js"]
+  },
   output: {
     filename: "[name].js",
     chunkFilename: "[id].js"

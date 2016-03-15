@@ -1,4 +1,4 @@
-import EventEmitter from "eventEmitter";
+import EventEmitter from "wolfy87-eventemitter";
 
 var ee = new EventEmitter();
 
