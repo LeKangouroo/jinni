@@ -37,6 +37,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, exclude: /(node_modules|vendors)/, loader: "babel-loader"},
+      { test: /\.json$/, exclude: /(node_modules|vendors)/, loader: "json-loader"},
       { test: /\.html$/, exclude: /(node_modules|vendors)/, loader: "html-loader?attrs=false"}
     ]
   },
