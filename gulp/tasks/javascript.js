@@ -50,7 +50,7 @@ Gulp.task("javascript-build", function(callback) {
   var destination;
 
   destination = (argv.mode === "distributable") ? config.common.paths.builds.js[argv.mode][argv.env] : config.common.paths.builds.js[argv.mode];
-  return WebpackStream(config.nodeModules.webpack, Webpack)
+  return WebpackStream(config.nodeModules.webpack(), Webpack)
       .on("error", onTaskError.bind(null, callback))
     .pipe(Replace({ patterns: replace.patterns.common }))
       .on("error", onTaskError.bind(null, callback))
