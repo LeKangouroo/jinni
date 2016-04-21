@@ -22,6 +22,7 @@ export function init()
 }
 export function destroy()
 {
+  view.$destroy();
   Events.emit("section:destroyed");
   console.log("home section destroyed");
 }
