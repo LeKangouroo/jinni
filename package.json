@@ -24,6 +24,7 @@
     "colors": "1.1.2",
     "del": "2.2.0",
     "errno": "0.1.4",
+    "glob": "7.0.3",
     "gulp": "3.9.0",
     "gulp-imagemin": "2.4.0",
     "gulp-jade": "1.1.0",
