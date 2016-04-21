@@ -55,7 +55,7 @@ module.exports = function() {
   var entries;
 
   entries = getEntries(PROJECT_DIR + "/" + paths.sources.js.default);
-  entries.vendors = ["rlite-router", "svg4everybody", "vue", "webcomponents.js", "wolfy87-eventemitter"];
+  entries.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
 
   return {
     devtool: (argv.mode === "development") ? "inline-source-map" : null,

@@ -1,12 +1,5 @@
 {
   "sources": {
-    "components": {
-      "includeBaseDir": "tmp/components",
-      "js": "src/components/**/*.js",
-      "html": "src/components/**/*.html",
-      "sass": "src/components/**/*.scss",
-      "watch": "src/components/**/*"
-    },
     "html": {
       "default": "src/html/fr/*.html",
       "watch": "src/html/**/*.html"
@@ -31,13 +24,6 @@
     "svg": "src/assets/images/icons/svg/*.svg"
   },
   "builds": {
-    "components": {
-      "development": "tmp/components",
-      "distributable": {
-        "pre-production": "dist/pre-production/components",
-        "production": "dist/production/components"
-      }
-    },
     "css": {
       "development": "tmp/css",
       "distributable": {

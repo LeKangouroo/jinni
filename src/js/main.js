@@ -2,7 +2,6 @@
  * Dependencies
  */
 import "babel-polyfill";
-import "webcomponents.js";
 import Events from "modules/core/events.js";
 import SVG4Everybody from "svg4everybody";
 import Vue from "vue";

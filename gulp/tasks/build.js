@@ -14,5 +14,5 @@ var argv = require("../modules/argv");
  */
 Gulp.task("build", function(callback) {
 
-  return RunSequence(["sass", "svg", "html", "jade", "javascript", "static", "components", "images"], callback);
+  return RunSequence(["sass", "svg", "html", "jade", "javascript", "static", "images"], callback);
 });

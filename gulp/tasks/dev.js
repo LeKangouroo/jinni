@@ -16,7 +16,7 @@ var paths = require("../modules/paths");
  */
 Gulp.task("dev", function(callback) {
 
-  RunSequence("clean", ["sass", "svg", "html", "jade", "javascript", "api", "components"], "livereload", function() {
+  RunSequence("clean", ["sass", "svg", "html", "jade", "javascript", "api"], "livereload", function() {
 
     Watch(paths.relocate(config.common.paths.sources.html.watch), function() {
       RunSequence("html");
@@ -32,9 +32,6 @@ Gulp.task("dev", function(callback) {
     });
     Watch(paths.relocate(config.common.paths.sources.svg), function() {
       RunSequence("svg");
-    });
-    Watch(paths.relocate(config.common.paths.sources.components.watch), function() {
-      RunSequence("components");
     });
     callback();
   });
