@@ -1,7 +1,5 @@
-include ../../common/includes/mixins.jade
-
 doctype html
-html(lang="fr-FR")
+html
   head
     //- NOTE: uncomment the line below for internationalized pages
     //- base(href="../")
@@ -15,7 +13,5 @@ html(lang="fr-FR")
     script(src="js/main.js?bust=@@CACHE_BUST")
     block components
   body
-    include ../includes/common/header.jade
     main#main
       block content
-    include ../includes/common/footer.jade
