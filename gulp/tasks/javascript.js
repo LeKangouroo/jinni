@@ -65,6 +65,5 @@ Gulp.task("javascript-lint", function(callback) {
     .pipe(JSHint(config.nodeModules.jshint))
       .on("error", onTaskError.bind(null, callback))
     .pipe(JSHint.reporter(JSHintStylish))
-    .pipe(JSHint.reporter("fail"))
       .on("error", onTaskError.bind(null, callback));
 });
