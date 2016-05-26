@@ -16,13 +16,13 @@ export function init()
   var currentSection;
   
   currentSection = null;
-  Events.on("section:load", function(route) {
+  Events.on("section:load", function(data) {
     
     if (currentSection !== null)
     {
       currentSection.destroy();
     }
-    switch (route.name)
+    switch (data.route.name)
     {
       case "home":
         currentSection = homeSection;
@@ -31,6 +31,6 @@ export function init()
         currentSection = homeSection;
         break;
     }
-    currentSection.init();
+    currentSection.init(data);
   });
 }

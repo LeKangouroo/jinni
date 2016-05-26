@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
       Events.on("router:update", (route) => {
 
         this.currentSection = route.name;
-        Events.emit("section:load", route);
+        Events.emit("section:load", { route: route });
       });
 
       router.init();
