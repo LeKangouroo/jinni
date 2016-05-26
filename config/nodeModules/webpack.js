@@ -23,7 +23,7 @@ const PLUGINS = {
   ],
   distributable: [
     new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
-    new Webpack.optimize.UglifyJsPlugin()
+    new Webpack.optimize.UglifyJsPlugin({ exclude: /(vendors.js)/ })
   ]
 };
 
