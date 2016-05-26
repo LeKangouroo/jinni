@@ -65,7 +65,6 @@
     "source": [
       "!src/**/*.{jpg,png,gif}",
       "!src/assets/images/icons{,/**}",
-      "!src/vendors/{bourbon,neat}{,/**}",
       "src/assets/**",
       "src/vendors/**"
     ],
