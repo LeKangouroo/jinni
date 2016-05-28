@@ -35,12 +35,15 @@ function onTaskComplete(callback)
  */
 Gulp.task("jade", function(callback) {
 
-  var destination;
+  var cfg,
+      destination;
 
+  cfg = config.nodeModules.jade;
+  cfg.locals = { BUILD_MODE: argv.mode };
   destination = (argv.mode === "distributable") ? config.common.paths.builds.html[argv.mode][argv.env] : config.common.paths.builds.html[argv.mode];
   Gulp
     .src(paths.relocate(config.common.paths.sources.jade.default))
-    .pipe(Jade(config.nodeModules.jade))
+    .pipe(Jade(cfg))
       .on("error", onJadeError.bind(null, callback))
     .pipe(Replace({ patterns: replace.patterns.common }))
     .pipe(Replace({ patterns: replace.patterns[argv.env] }))

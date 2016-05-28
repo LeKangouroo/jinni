@@ -18,9 +18,7 @@ const PROJECT_DIR = Path.resolve(__dirname, "../../");
 
 const PLUGINS = {
 
-  development: [
-    new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" })
-  ],
+  development: [],
   distributable: [
     new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
     new Webpack.optimize.UglifyJsPlugin({ exclude: /(vendors.js)/ })
@@ -55,8 +53,10 @@ module.exports = function() {
   var entries;
 
   entries = getEntries(PROJECT_DIR + "/" + paths.sources.js.default);
-  entries.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
-
+  if (argv.mode === "distributable")
+  {
+    entries.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
+  }
   return {
     devtool: (argv.mode === "development") ? "inline-source-map" : null,
     entry: entries,
