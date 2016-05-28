@@ -1,7 +1,7 @@
 /*
  * Dependencies
  */
-import "babel-polyfill";
+import "core/polyfills";
 import Events from "modules/core/events.js";
 import SVG4Everybody from "svg4everybody";
 import Vue from "vue";
