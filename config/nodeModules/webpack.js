@@ -93,6 +93,6 @@ module.exports = function() {
         sections: PROJECT_DIR + "/src/sections"
       }
     },
-    plugins: PLUGINS[argv.env]
+    plugins: PLUGINS[argv.mode]
   };
 };
