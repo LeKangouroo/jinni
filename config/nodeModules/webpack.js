@@ -16,15 +16,6 @@ var paths = require("../../config/common/paths.json");
  */
 const PROJECT_DIR = Path.resolve(__dirname, "../../");
 
-const PLUGINS = {
-
-  development: [],
-  distributable: [
-    new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
-    new Webpack.optimize.UglifyJsPlugin()
-  ]
-};
-
 /*
  * Functions
  */
@@ -50,16 +41,10 @@ function getEntries(globPath)
  */
 module.exports = function() {
 
-  var entries;
+  var config;
 
-  entries = getEntries(PROJECT_DIR + "/" + paths.sources.js.default);
-  if (argv.mode === "distributable")
-  {
-    entries.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
-  }
-  return {
-    devtool: (argv.mode === "development") ? "inline-source-map" : null,
-    entry: entries,
+  config = {
+    entry: getEntries(PROJECT_DIR + "/" + paths.sources.js.default),
     output: {
       filename: "[name].js"
     },
@@ -92,7 +77,24 @@ module.exports = function() {
         modules:  PROJECT_DIR + "/src/js/modules",
         sections: PROJECT_DIR + "/src/sections"
       }
-    },
-    plugins: PLUGINS[argv.mode]
+    }
   };
+  if (argv.mode === "distributable")
+  {
+    config.devtool = null;
+    config.entry.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
+    config.module.loaders.push({
+      test: /\.js$/,
+      loader: "strip-loader?strip[]=console.log"
+    });
+    config.plugins = [
+      new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
+      new Webpack.optimize.UglifyJsPlugin()
+    ];
+  }
+  else
+  {
+    config.devtool = "inline-source-map";
+  }
+  return config;
 };
