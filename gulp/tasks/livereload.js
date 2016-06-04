@@ -26,6 +26,5 @@ Gulp.task("livereload", function(callback) {
   cfg.server.baseDir = cfg.server.baseDir.map(function(path) {
     return paths.relocate(path);
   });
-  BrowserSync.init(cfg);
-  callback();
+  BrowserSync.init(cfg, callback);
 });

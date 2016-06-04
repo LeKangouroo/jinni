@@ -1,6 +1,7 @@
 /*
  * Node Dependencies
  */
+var Colors = require("colors/safe");
 var Gulp = require("gulp");
 var RunSequence = require("run-sequence").use(Gulp);
 var Watch = require("gulp-watch");
@@ -34,5 +35,6 @@ Gulp.task("dev", function(callback) {
       RunSequence("svg");
     });
     callback();
+    console.log("👍  " + Colors.bold.green("Everything looks good. You're ready to go!"));
   });
 });
