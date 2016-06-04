@@ -8,6 +8,7 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     block title
       title Titre de la page
+    include ../includes/common/metas.jade
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
     if BUILD_MODE === "distributable"
       script(src="js/vendors.js?bust=@@CACHE_BUST")

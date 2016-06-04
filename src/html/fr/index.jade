@@ -1,5 +1,9 @@
 extends layouts/default.jade
 
+block metasVariables
+  - metas.og._isEnabled = false;
+  - metas.twitter._isEnabled = false;
+
 block title
   title [@@ENV] Accueil
 
