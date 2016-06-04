@@ -2,3 +2,6 @@ node_modules
 tmp
 npm-debug.log
 ./*.zip
+
+# DON'T YOU EVER REMOVE THIS LINE, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
+config/tasks/ftp.json

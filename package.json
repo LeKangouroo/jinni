@@ -49,6 +49,7 @@
     "run-sequence": "1.1.5",
     "strip-loader": "0.1.2",
     "svg4everybody": "2.0.3",
+    "vinyl-ftp": "0.4.5",
     "vue": "1.0.17",
     "webpack": "2.0.6-beta",
     "webpack-stream": "3.1.0",
@@ -59,6 +60,7 @@
     "build:preprod": "npm run clean -- --mode=distributable && node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=pre-production --mode=distributable",
     "build:prod": "npm run clean -- --mode=distributable && node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=production --mode=distributable",
     "clean": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js clean",
+    "deploy": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js ftp",
     "dev": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js dev",
     "zip": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js zip"
   }

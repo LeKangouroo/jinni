@@ -1,0 +1,8 @@
+{
+  "username": "",
+  "password": "",
+  "host": "",
+  "port": 21,
+  "localRoot": "dist",
+  "remoteRoot": "/path/to/remote/dir"
+}
