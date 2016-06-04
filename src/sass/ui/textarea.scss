@@ -1,0 +1,89 @@
+/**
+ * HOW TO USE:
+ * ===========================================================
+ *
+ *
+ * Example 1: Simple text area
+ * -----------------------------------------------------------
+ *
+<div class="textarea">
+  <label class="textarea-label">
+    <span class="textarea-ui">
+      <textarea class="textarea-ui-input" placeholder="Message"></textarea>
+    </span>
+  </label>
+</div>
+ *
+ *
+ * Example 2: Text area with label
+ * -----------------------------------------------------------
+ *
+<div class="textarea">
+  <label class="textarea-label">
+    <span class="textarea-label-text">Informations complémentaires</span>
+    <span class="textarea-ui">
+      <textarea class="textarea-ui-input" placeholder="ex : Pensez à prendre du monoï :)"></textarea>
+    </span>
+  </label>
+</div>
+ *
+ */
+
+.textarea
+{
+  display: block;
+  width:   100%;
+
+  *
+  {
+    box-sizing: border-box;
+  }
+}
+.textarea.is-invalid
+{
+  .textarea-ui-input
+  {
+    border: 1px solid $color-error;
+  }
+  .textarea-ui-input:focus
+  {
+    box-shadow: 0 0 10px $color-error;
+    outline:    none;
+  }
+}
+.textarea-label
+{
+  display: block;
+  width:   100%;
+}
+.textarea-label-text
+{
+  color:         #000000;
+  display:       block;
+  font-size:     1rem;
+  margin-bottom: 6px;
+  width:         100%;
+}
+.textarea-ui
+{
+  display:  block;
+  position: relative;
+}
+.textarea-ui-input
+{
+  appearance: none;
+  background: #FFFFFF;
+  border:     none;
+  color:      #000000;
+  display:    block;
+  font-size:  1rem;
+  min-height: 200px;
+  padding:    12px 15px;
+  resize:     vertical;
+  width:      100%;
+
+  &::placeholder
+  {
+    color: #AAAAAA;
+  }
+}

@@ -1,0 +1,59 @@
+/**
+ * HOW TO USE:
+ * ===========================================================
+ *
+<label class="checkbox">
+  <input class="checkbox-input" type="checkbox">
+  <span class="checkbox-ui"></span>
+</label>
+ */
+
+.checkbox
+{
+  cursor:  pointer;
+  display: inline-block;
+  height:  34px;
+  width:   66px;
+}
+.checkbox-input
+{
+  display: none;
+}
+.checkbox-input:checked
+{
+  & + .checkbox-ui
+  {
+    background: #000000;
+
+    &::after
+    {
+      transform: translateX(32px);
+    }
+  }
+}
+.checkbox-ui
+{
+  background:    #FFFFFF;
+  border-radius: 17px;
+  box-shadow:    inset 0 0 2px rgba(#000, 0.5);
+  display:       block;
+  height:        100%;
+  position:      relative;
+  transition:    all 0.3s ease;
+  width:         100%;
+
+  &::after
+  {
+    background:    #FFFFFF;
+    border-radius: 50%;
+    box-shadow:    0 0 4px rgba(#000000, 0.6);
+    content:       "";
+    display:       block;
+    height:        28px;
+    position:      absolute;
+      left:        3px;
+      top:         3px;
+    transition:    all 0.3s ease;
+    width:         28px;
+  }
+}
