@@ -85,6 +85,7 @@ module.exports = function() {
     config.entry.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
     config.module.loaders.push({
       test: /\.js$/,
+      exclude: /(node_modules)/,
       loader: "strip-loader?strip[]=console.log"
     });
     config.plugins = [
