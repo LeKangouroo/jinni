@@ -35,6 +35,7 @@
     "gulp-sass": "2.1.1",
     "gulp-svg-sprite": "1.2.16",
     "gulp-watch": "4.3.5",
+    "gulp-zip": "3.2.0",
     "html-loader": "0.4.0",
     "imagemin-jpeg-recompress": "4.3.0",
     "imagemin-pngquant": "4.2.0",
@@ -58,6 +59,7 @@
     "build:preprod": "npm run clean -- --mode=distributable && node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=pre-production --mode=distributable",
     "build:prod": "npm run clean -- --mode=distributable && node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=production --mode=distributable",
     "clean": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js clean",
-    "dev": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js dev"
+    "dev": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js dev",
+    "zip": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js zip"
   }
 }
