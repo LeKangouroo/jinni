@@ -32,38 +32,23 @@
   "builds": {
     "css": {
       "development": "tmp/css",
-      "distributable": {
-        "pre-production": "dist/pre-production/css",
-        "production": "dist/production/css"
-      }
+      "distributable": "dist/css"
     },
     "html": {
       "development": "tmp",
-      "distributable": {
-        "pre-production": "dist/pre-production",
-        "production": "dist/production"
-      }
+      "distributable": "dist"
     },
     "images": {
       "development": "tmp",
-      "distributable": {
-        "pre-production": "dist/pre-production",
-        "production": "dist/production"
-      }
+      "distributable": "dist"
     },
     "js": {
       "development": "tmp/js",
-      "distributable": {
-        "pre-production": "dist/pre-production/js",
-        "production": "dist/production/js"
-      }
+      "distributable": "dist/js"
     },
     "svg": {
       "development": "tmp/assets/images/sprites",
-      "distributable": {
-        "pre-production": "dist/pre-production/assets/images/sprites",
-        "production": "dist/production/assets/images/sprites"
-      }
+      "distributable": "dist/assets/images/sprites"
     }
   },
   "static": {
@@ -74,9 +59,6 @@
       "src/assets/**",
       "src/vendors/**"
     ],
-    "destination": {
-      "pre-production": "dist/pre-production",
-      "production": "dist/production"
-    }
+    "destination": "dist"
   }
 }

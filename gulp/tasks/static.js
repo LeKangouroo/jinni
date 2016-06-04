@@ -6,7 +6,6 @@ var Gulp = require("gulp");
 /*
  * Modules
  */
-var argv = require("../modules/argv");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
 
@@ -24,5 +23,5 @@ Gulp.task("static", function() {
   source = paths.relocate(config.common.paths.static.source);
   return Gulp
     .src(source, options)
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.static.destination[argv.env])));
+    .pipe(Gulp.dest(paths.relocate(config.common.paths.static.destination)));
 });

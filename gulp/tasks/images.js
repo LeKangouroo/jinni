@@ -18,9 +18,6 @@ var paths = require("../modules/paths");
  */
 Gulp.task("images", function() {
 
-  var destination;
-
-  destination = (argv.mode === "distributable") ? config.common.paths.builds.images[argv.mode][argv.env] : config.common.paths.builds.images[argv.mode];
   return Gulp
     .src(paths.relocate(config.common.paths.sources.images))
     .pipe(Imagemin({
@@ -29,5 +26,5 @@ Gulp.task("images", function() {
         ImageminJPEGRecompress(config.nodeModules.imageminJPEGRecompress)
       ]
     }))
-    .pipe(Gulp.dest(paths.relocate(destination)));
+    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.images[argv.mode])));
 });

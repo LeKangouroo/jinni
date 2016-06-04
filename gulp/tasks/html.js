@@ -28,13 +28,10 @@ function onTaskComplete(callback)
  */
 Gulp.task("html", function(callback) {
 
-  var destination;
-
-  destination = (argv.mode === "distributable") ? config.common.paths.builds.html[argv.mode][argv.env] : config.common.paths.builds.html[argv.mode];
   Gulp
     .src(paths.relocate(config.common.paths.sources.html.default))
     .pipe(Replace({ patterns: replace.patterns.common }))
     .pipe(Replace({ patterns: replace.patterns[argv.env] }))
-    .pipe(Gulp.dest(paths.relocate(destination)))
+    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
       .on("end", onTaskComplete.bind(null, callback));
 });
