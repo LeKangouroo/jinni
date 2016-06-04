@@ -11,34 +11,34 @@ module.exports = {
         replacement: Date.now()
       }
     ],
-    "development": [      
-      {
-        match: "API_BASE_URL",
-        replacement: "http://localhost:3080"
-      },
+    "development": [
       {
         match: "ENV",
         replacement: "DEV"
+      },
+      {
+        match: "HTTP_ROOT_DIR",
+        replacement: ""
       }
     ],
     "pre-production": [
       {
-        match: "API_BASE_URL",
-        replacement: "http://localhost:3080"
-      },
-      {
         match: "ENV",
         replacement: "PRE-PRODUCTION"
+      },
+      {
+        match: "HTTP_ROOT_DIR",
+        replacement: ""
       }
     ],
     "production": [
       {
-        match: "API_BASE_URL",
-        replacement: "http://localhost:3080"
-      },
-      {
         match: "ENV",
         replacement: "PRODUCTION"
+      },
+      {
+        match: "HTTP_ROOT_DIR",
+        replacement: ""
       }
     ]
   }
