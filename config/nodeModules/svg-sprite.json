@@ -1,5 +1,5 @@
 {
-  "log": "verbose",
+  "log": null,
   "mode": {
     "symbol": {
       "dest": ".",
