@@ -5,13 +5,6 @@ var Colors = require("colors/safe");
 var VinylFTP = require("vinyl-ftp");
 var Gulp = require("gulp");
 
-
-/*
- * Configuration
- */
-var config = require("../../config/tasks/ftp.json");
-
-
 /*
  * Modules
  */
@@ -40,9 +33,11 @@ function onTaskComplete(callback)
  */
 Gulp.task("ftp", function(callback) {
 
-  var connection,
+  var config,
+      connection,
       source;
 
+  config = require("../../config/tasks/ftp.json");
   connection = new VinylFTP({
     host: config.host,
     user: config.username,
