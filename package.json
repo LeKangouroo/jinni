@@ -2,6 +2,10 @@
   "name": "front-end-boilerplate",
   "version": "0.0.1",
   "description": "A boilerplate for front end projects",
+  "engines": {
+    "node": "4.x"
+  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itadakimas/front-end-boilerplate.git"
