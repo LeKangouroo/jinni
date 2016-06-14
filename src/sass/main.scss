@@ -6,6 +6,9 @@
 @import "vendors/bourbon";
 @import "vendors/neat";
 
+// Mixins
+@import "mixins/cover";
+
 // Base
 @import "base/breakpoints";
 @import "base/fonts";
