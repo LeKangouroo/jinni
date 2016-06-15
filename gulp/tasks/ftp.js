@@ -1,7 +1,6 @@
 /*
  * Dependencies
  */
-var Colors = require("colors/safe");
 var VinylFTP = require("vinyl-ftp");
 var Gulp = require("gulp");
 
@@ -9,24 +8,7 @@ var Gulp = require("gulp");
  * Modules
  */
 var paths = require("../modules/paths");
-
-
-/*
- * Internal functions
- */
-function onTaskError(callback, err)
-{
-  console.log(Colors.red.underline('"ftp" task failed!'));
-  console.log(err.name + ": " + err.message);
-  callback(err);
-}
-function onTaskComplete(callback)
-{
-  console.log(Colors.green.underline('"ftp" task completed successfully!'));
-  global.browserSync.reload();
-  callback();
-}
-
+var tasks = require("../modules/tasks");
 
 /*
  * Task
@@ -47,10 +29,10 @@ Gulp.task("ftp", function(callback) {
   source = paths.relocate(config.localRoot);
   Gulp
     .src(source + "/**", { base: source, buffer: false })
-    .on("error", onTaskError.bind(null, callback))
+      .on("error", tasks.error.bind(null, "ftp", callback))
     .pipe(connection.newer(config.remoteRoot))
-    .on("error", onTaskError.bind(null, callback))
+      .on("error", tasks.error.bind(null, "ftp", callback))
     .pipe(connection.dest(config.remoteRoot))
-    .on("error", onTaskError.bind(null, callback))
-    .on("end", onTaskComplete.bind(null, callback));
+      .on("error", tasks.error.bind(null, "ftp", callback))
+      .on("end", tasks.success.bind(null, "ftp", callback));
 });

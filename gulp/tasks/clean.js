@@ -1,7 +1,6 @@
 /*
  * Node Dependencies
  */
-var Colors = require("colors");
 var Del = require("del");
 var Errno = require("errno");
 var Gulp = require("gulp");
@@ -10,6 +9,7 @@ var Gulp = require("gulp");
  * Modules
  */
 var argv = require("../modules/argv");
+var c = require("../modules/console");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
 
@@ -18,19 +18,20 @@ var paths = require("../modules/paths");
  */
 function onCleanError(callback, err)
 {
-  console.log(Colors.red.underline('"clean" task failed!'));
-  console.log("\t- Path: " + err.path);
-  console.log("\t- Cause: " + Errno.code[err.code].description);
+  c.error('"clean" task failed!');
+  c.log("\t- Path: " + err.path);
+  c.log("\t- Cause: " + Errno.code[err.code].description);
+  c.trace(err);
   callback(err);
 }
 function onCleanSuccess(callback, deletedItems)
 {
-  console.log(Colors.green.underline('"clean" task completed successfully!'));
+  c.success('"clean" task completed successfully!');
   if (deletedItems.length > 0)
   {
-    console.log(Colors.blue("\nDeleted items:"));
+    c.info("Deleted items:");
     deletedItems.forEach(function(filePath){
-      console.log("\t- " + filePath);
+      c.log(filePath);
     });
   }
   callback();

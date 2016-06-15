@@ -1,7 +1,6 @@
 /*
  * Dependencies
  */
-var Colors = require("colors/safe");
 var Gulp = require("gulp");
 var JSONFile = require("jsonfile");
 var Package = require("../../package.json");
@@ -11,6 +10,7 @@ var RunSequence = require("run-sequence");
  * Modules
  */
 var argv = require("../modules/argv");
+var c = require("../modules/console");
 var paths = require("../modules/paths");
 
 /*
@@ -33,12 +33,12 @@ Gulp.task("build", function(callback) {
 
       if (err)
       {
-        console.log("❗  " + Colors.bold.red("Couldn't write the following file: ") + buildDataFile);
-        console.log(err);
+        c.error("❗  Couldn't write the following file: " + buildDataFile);
+        c.trace(err);
       }
       else
       {
-        console.log("👍  " + Colors.bold.green("Completed successfully! Your build is available in the following directory: ") + paths.relocate("dist"));
+        c.success("👍  Completed successfully! Your build is available in the following directory: " + paths.relocate("dist"));
       }
       callback();
     });

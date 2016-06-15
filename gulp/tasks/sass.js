@@ -2,7 +2,6 @@
  * Node Dependencies
  */
 var AutoPrefixer = require("autoprefixer");
-var Colors = require("colors/safe");
 var Gulp = require("gulp");
 var PostCSS = require("gulp-postcss");
 var Sass = require("gulp-sass");
@@ -13,21 +12,7 @@ var Sass = require("gulp-sass");
 var argv = require("../modules/argv");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
-
-/*
- * Internal functions
- */
-function onSassError(callback, err)
-{
-  console.log(Colors.red.underline('"sass" task failed!'));
-  console.log("\t- Cause: " + err.message);
-  callback(err);
-}
-function onTaskComplete(callback)
-{
-  console.log(Colors.green.underline('"sass" task completed successfully!'));
-  callback();
-}
+var tasks = require("../modules/tasks.js");
 
 /*
  * Task
@@ -36,13 +21,12 @@ Gulp.task("sass", function(callback) {
 
   Gulp
     .src(paths.relocate(config.common.paths.sources.sass.default))
+      .on("error", tasks.error.bind(null, "sass", callback))
     .pipe(Sass(config.nodeModules.sass[argv.mode]))
-    .on("error", onSassError.bind(null, callback))
-    .pipe(PostCSS([
-      AutoPrefixer(config.nodeModules.autoPrefixer)
-    ]))
-    .on("error", onSassError.bind(null, callback))
+      .on("error", tasks.error.bind(null, "sass", callback))
+    .pipe(PostCSS([ AutoPrefixer(config.nodeModules.autoPrefixer) ]))
+      .on("error", tasks.error.bind(null, "sass", callback))
     .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.css[argv.mode])))
-    .on("end", onTaskComplete.bind(null, callback))
+      .on("end", tasks.success.bind(null, "sass", callback))
     .pipe(global.browserSync.stream());
 });

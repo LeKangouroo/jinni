@@ -1,7 +1,6 @@
 /*
  * Node Dependencies
  */
-var Colors = require("colors/safe");
 var Gulp = require("gulp");
 var RunSequence = require("run-sequence").use(Gulp);
 var Watch = require("gulp-watch");
@@ -9,6 +8,7 @@ var Watch = require("gulp-watch");
 /*
  * Modules
  */
+var c = require("../modules/console");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
 
@@ -35,6 +35,6 @@ Gulp.task("dev", function(callback) {
       RunSequence("svg");
     });
     callback();
-    console.log("👍  " + Colors.bold.green("Everything looks good. You're ready to go!"));
+    c.success("👍  Everything looks good. You're ready to go!");
   });
 });

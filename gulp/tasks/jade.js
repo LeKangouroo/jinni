@@ -1,7 +1,6 @@
 /*
  * Node Dependencies
  */
-var Colors = require("colors");
 var Gulp = require("gulp");
 var Jade = require("gulp-jade");
 var Replace = require("gulp-replace-task");
@@ -13,22 +12,7 @@ var argv = require("../modules/argv");
 var config = require("../modules/config");
 var replace = require("../modules/replace");
 var paths = require("../modules/paths");
-
-/*
- * Internal functions
- */
-function onJadeError(callback, err)
-{
-  console.log(Colors.red.underline('"jade" task failed!'));
-  console.log(err.message);
-  callback(err);
-}
-function onTaskComplete(callback)
-{
-  console.log(Colors.green.underline('"jade" task completed successfully!'));
-  global.browserSync.reload();
-  callback();
-}
+var tasks = require("../modules/tasks");
 
 /*
  * Task
@@ -41,10 +25,14 @@ Gulp.task("jade", function(callback) {
   cfg.locals = { BUILD_MODE: argv.mode };
   Gulp
     .src(paths.relocate(config.common.paths.sources.jade.default))
+      .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Jade(cfg))
-      .on("error", onJadeError.bind(null, callback))
+      .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Replace({ patterns: replace.patterns.common }))
+      .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Replace({ patterns: replace.patterns[argv.env] }))
+      .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
-      .on("end", onTaskComplete.bind(null, callback));
+      .on("error", tasks.error.bind(null, "jade", callback))
+      .on("end", tasks.success.bind(null, "jade", callback));
 });
