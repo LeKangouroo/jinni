@@ -53,7 +53,8 @@ module.exports = function() {
         {
           test:    /\.js$/,
           exclude: /(node_modules)/,
-          loader:  "babel-loader"
+          loader:  "babel-loader",
+          query:   { cacheDirectory: PROJECT_DIR + "/tmp/_babel" }
         },
         {
           test:    /\.json$/,
@@ -81,7 +82,7 @@ module.exports = function() {
   };
   if (argv.mode === "distributable")
   {
-    config.devtool = null;
+    config.devtool = "#source-map";
     config.entry.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
     config.module.loaders.push({
       test: /\.js$/,
@@ -95,7 +96,10 @@ module.exports = function() {
   }
   else
   {
-    config.devtool = "inline-source-map";
+    config.devtool = "#eval-cheap-module-source-map";
+    config.plugins = [
+      new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" })
+    ];
   }
   return config;
 };
