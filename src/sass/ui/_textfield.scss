@@ -1,0 +1,176 @@
+/**
+ * HOW TO USE
+ * ================================================
+
+* Normal textfield
+
+<label class="textfield">
+  <input type="text" class="textfield-input">
+  <span class="textfield-label">test</span>
+</label>
+
+* Floating textfield
+
+<label class="textfield textfield--floating">
+  <input type="text" class="textfield-input">
+  <span class="textfield-label">test</span>
+</label>
+
+* Textfield with icon
+
+<label class="textfield textfield--icon">
+  <input type="text" class="textfield-input">
+  <span class="textfield-label">test</span>
+  <span class="textfield-icon textfield-icon--fill">
+    <svg>
+      <use xlink:href="assets/images/sprites/sprite.svg#email"></use>
+    </svg>
+  </span>
+</label>
+
+* Invalid textfield
+
+<label class="textfield">
+  <input type="text" class="textfield-input is-invalid">
+  <span class="textfield-label">test</span>
+</label>
+
+* Invalid textfield with error message
+
+<label class="textfield">
+  <input type="text" class="textfield-input is-invalid">
+  <span class="textfield-label">test</span>
+  <span class="textfield-error is-visible">ceci est un message d'erreur</span>
+</label>
+*/
+
+.textfield
+{
+  display:          flex;
+    flex-direction: column;
+  position: relative;
+}
+.textfield--floating
+{
+  .textfield-label
+  {
+    transform:        perspective(1px) translate3d(15px, 35px, 0);
+    transform-origin: 0 0;
+  }
+  &.is-floating
+  {
+    .textfield-label
+    {
+      transform: perspective(1px) scale(0.9) translate3d(0, 0, 0);
+    }
+  }
+  .textfield-input:focus
+  {
+    & + .textfield-label
+    {
+      transform: perspective(1px) scale(0.9) translate3d(0, 0, 0);
+    }
+  }
+}
+.textfield--icon
+{
+  .textfield-input
+  {
+    padding-right: 45px;
+  }
+}
+.textfield-input
+{
+  appearance: none;
+  background: #FFFFFF;
+  border:     1px solid $color-grey-30pc;
+  box-sizing: content-box;
+  color:      #000000;
+  display:    block;
+  font-size:  1rem;
+  height:     16px;
+  order:      2;
+  padding:    12px 15px;
+  text-align: inherit;
+  transition: all 0.3s ease;
+
+  &::placeholder
+  {
+    color: #AAAAAA;
+  }
+}
+.textfield-input:focus
+{
+  border-color: $color-black;
+  
+  & ~ .textfield-label
+  {
+    color: $color-black;
+  }
+  & ~ .textfield-icon--fill
+  {
+    fill: $color-black;
+  }
+  & ~ .textfield-icon--stroke
+  {
+    stroke: $color-black;
+  }
+}
+.textfield-input:invalid, .textfield-input.is-invalid
+{
+  border-color: $color-error;
+  
+  & + .textfield-label
+  {
+    color: $color-error;
+  }
+  &:focus
+  {
+    box-shadow: 0 0 3px rgba($color-error, 0.5);
+  }
+}
+.textfield-label
+{
+  color:         $color-grey-30pc;
+  display:       block;
+  margin-bottom: 6px;
+  order:         1;
+  transition:    all 0.3s ease;
+}
+.textfield-error
+{
+  display: none;
+}
+.textfield-error.is-visible
+{
+  color:      $color-error;
+  display:    block;
+  font-size:  0.8em;
+  margin-top: 2px;
+  order:      3;
+}
+.textfield-icon
+{
+  display:  block;
+  height:   18px;
+  position: absolute;
+    right:  15px;
+    bottom: 12px;
+  width:    18px;
+  
+  svg
+  {
+    display:    block;
+    transition: all 0.3s ease;
+    height:     100%;
+    width:      100%;
+  }
+}
+.textfield-icon--fill
+{
+  fill: $color-grey-30pc;
+}
+.textfield-icon--stroke
+{
+  stroke: $color-grey-30pc;
+}

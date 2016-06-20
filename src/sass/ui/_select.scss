@@ -1,0 +1,121 @@
+/**
+ * HOW TO USE:
+ * ===========================================================
+
+* Normal select
+
+<label class="select">
+  <select class="select-input">
+    <option value="" disabled selected>Sélectionnez un élément</option>
+    <option value="val1">Item 1</option>
+    <option value="val2">Item 2</option>
+    <option value="val3">Item 3</option>
+  </select>
+  <span class="select-label">test</span>
+</label>
+
+* Invalid select
+
+<label class="select">
+  <select class="select-input is-invalid">
+    <option value="" disabled selected>Sélectionnez un élément</option>
+    <option value="val1">Item 1</option>
+    <option value="val2">Item 2</option>
+    <option value="val3">Item 3</option>
+  </select>
+  <span class="select-label">test</span>
+</label>
+
+* Invalid select with error message
+
+<label class="select">
+  <select class="select-input is-invalid">
+    <option value="" disabled selected>Sélectionnez un élément</option>
+    <option value="val1">Item 1</option>
+    <option value="val2">Item 2</option>
+    <option value="val3">Item 3</option>
+  </select>
+  <span class="select-label">test</span>
+  <span class="select-error is-visible">ceci est un message d'erreur</span>
+</label>
+*/
+
+.select
+{
+  display:          flex;
+    flex-direction: column;
+  position:         relative;
+  
+  &::before
+  {
+    @include triangle(12px 6px, gray, down);
+
+    content:   "";
+    display:   block;
+    position:  absolute;
+      bottom:  12px;
+      right:   12px;
+      z-index: 1;
+    transform: translateY(-50%);
+  }
+}
+.select-input
+{
+  appearance:    none;
+  background:    transparent;
+  border:        1px solid $color-grey-30pc;
+  border-radius: 0;
+  box-sizing:    content-box;
+  color:         $color-black;
+  display:       block;
+  font-size:     1rem;
+  height:        16px;
+  order:         2;
+  outline:       none;
+  padding:       12px 36px 12px 12px;
+  position:      relative;
+    z-index:     2;
+  transition:    all 0.3s ease;
+}
+.select-input:focus
+{
+  border-color: $color-black;
+  
+  & ~ .select-label
+  {
+    color: $color-black;
+  }
+}
+.select-input:invalid, .select-input.is-invalid
+{
+  border-color: $color-error;
+  
+  & + .select-label
+  {
+    color: $color-error;
+  }
+  &:focus
+  {
+    box-shadow: 0 0 3px rgba($color-error, 0.5);
+  }
+}
+.select-label
+{
+  color:         $color-grey-30pc;
+  display:       block;
+  margin-bottom: 6px;
+  order:         1;
+  transition:    all 0.3s ease;
+}
+.select-error
+{
+  display: none;
+}
+.select-error.is-visible
+{
+  color:      $color-error;
+  display:    block;
+  font-size:  0.8em;
+  margin-top: 2px;
+  order:      3;
+}

@@ -13,7 +13,10 @@
         "!src/html/_jade{,/**}",
         "src/html/**/*.jade"
       ],
-      "watch": "src/html/**/*.jade"
+      "watch": [
+        "src/html/**/*.jade",
+        "src/html/_jade/**/*"
+      ]
     },
     "js": {
       "default": "src/js/*.js",
