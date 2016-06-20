@@ -1,0 +1,125 @@
+/**
+ * HOW TO USE
+ * ================================================
+
+* Normal textarea
+
+<label class="textarea">
+  <textarea class="textarea-input"></textarea>
+  <span class="textarea-label">test</span>
+</label>
+
+* Floating textarea
+
+<label class="textarea textarea--floating">
+  <textarea class="textarea-input"></textarea>
+  <span class="textarea-label">test</span>
+</label>
+
+* Invalid textarea
+
+<label class="textarea">
+  <textarea class="textarea-input is-invalid"></textarea>
+  <span class="textarea-label">test</span>
+</label>
+
+* Invalid textarea with error message
+
+<label class="textarea">
+  <textarea class="textarea-input is-invalid"></textarea>
+  <span class="textarea-label">test</span>
+  <span class="textarea-error is-visible">ceci est un message d'erreur</span>
+</label>
+*/
+
+.textarea
+{
+  display:          flex;
+    flex-direction: column;
+  position: relative;
+}
+.textarea--floating
+{
+  .textarea-label
+  {
+    transform:        perspective(1px) translate3d(15px, 35px, 0);
+    transform-origin: 0 0;
+  }
+  &.is-floating
+  {
+    .textarea-label
+    {
+      transform: perspective(1px) scale(0.9) translate3d(0, 0, 0);
+    }
+  }
+  .textarea-input:focus
+  {
+    & + .textarea-label
+    {
+      transform: perspective(1px) scale(0.9) translate3d(0, 0, 0);
+    }
+  }
+}
+.textarea-input
+{
+  appearance: none;
+  background: #FFFFFF;
+  border:     1px solid $color-grey-30pc;
+  box-sizing: content-box;
+  color:      #000000;
+  display:    block;
+  font-size:  1rem;
+  min-height: 200px;
+  order:      2;
+  padding:    12px 15px;
+  resize:     vertical;
+  text-align: inherit;
+  transition: border 0.3s ease;
+
+  &::placeholder
+  {
+    color: #AAAAAA;
+  }
+}
+.textarea-input:focus
+{
+  border-color: $color-black;
+  
+  & ~ .textarea-label
+  {
+    color: $color-black;
+  }
+}
+.textarea-input:invalid, .textarea-input.is-invalid
+{
+  border-color: $color-error;
+  
+  & + .textarea-label
+  {
+    color: $color-error;
+  }
+  &:focus
+  {
+    box-shadow: 0 0 3px rgba($color-error, 0.5);
+  }
+}
+.textarea-label
+{
+  color:         $color-grey-30pc;
+  display:       block;
+  margin-bottom: 6px;
+  order:         1;
+  transition:    all 0.3s ease;
+}
+.textarea-error
+{
+  display: none;
+}
+.textarea-error.is-visible
+{
+  color:      $color-error;
+  display:    block;
+  font-size:  0.8em;
+  margin-top: 2px;
+  order:      3;
+}
