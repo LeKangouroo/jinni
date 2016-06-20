@@ -14,6 +14,15 @@ var paths = require("../modules/paths");
 var tasks = require("../modules/tasks");
 
 /*
+ * Internal Functions
+ */
+function onTaskComplete(gulpCallback)
+{
+  global.browserSync.reload();
+  gulpCallback();
+}
+
+/*
  * Task
  */
 Gulp.task("html", function(callback) {
@@ -27,5 +36,5 @@ Gulp.task("html", function(callback) {
       .on("error", tasks.error.bind(null, "html", callback))
     .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
       .on("error", tasks.error.bind(null, "html", callback))
-      .on("end", tasks.success.bind(null, "html", callback));
+      .on("end", tasks.success.bind(null, "html", onTaskComplete.bind(null, callback)));
 });
