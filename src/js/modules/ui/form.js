@@ -11,7 +11,7 @@ export class FormException extends Error
 export default class Form
 {
   constructor(element) {
-    
+
     if (element instanceof HTMLFormElement === false)
     {
       throw new FormException("element is not an instance of HTMLFormElement");
@@ -19,13 +19,13 @@ export default class Form
     this.el = element;
   }
   getData() {
-    
+
     var data,
         el,
         isCheckedInputFound,
         fields,
         name;
-    
+
     data = {};
     fields = this.getFields();
     for (name in fields)
@@ -63,14 +63,14 @@ export default class Form
     return data;
   }
   getFields(hiddenFields = true, asArray = false) {
-    
+
     var els,
         fields,
         fieldNames,
         i,
         length,
         name;
-    
+
     fields = (asArray) ? [] : {};
     fieldNames = this.getFieldNames(hiddenFields);
     length = fieldNames.length;
@@ -91,13 +91,13 @@ export default class Form
     return fields;
   }
   getFieldNames(hiddenFields = true) {
-    
+
     var f,
         elements,
         fieldNames,
         i,
         length;
-    
+
     elements = this.el.querySelectorAll("*[name]");
     length = elements.length;
     fieldNames = [];
@@ -115,8 +115,21 @@ export default class Form
     }
     return fieldNames;
   }
+  trimValues() {
+
+    var formFields;
+
+    formFields = this.getFields(false, true);
+    formFields.forEach((f) => {
+
+      if (typeof f.value === "string")
+      {
+        f.value = f.value.trim();
+      }
+    });
+  }
   _isHiddenInput(field) {
-    
+
     return (field instanceof HTMLInputElement && field.type === "hidden");
   }
 }
