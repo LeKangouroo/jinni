@@ -1,0 +1,90 @@
+/**
+ * HOW TO USE
+ * ================================================
+
+* Normal radio
+
+<label class="radio">
+  <input class="radio-input" type="radio">
+  <span class="radio-ui"></span>
+  <span class="radio-label">label text</span>
+</label>
+
+* Invalid radio
+
+<label class="radio">
+  <input class="radio-input is-invalid" type="radio">
+  <span class="radio-ui"></span>
+  <span class="radio-label">label text</span>
+</label>
+*/
+
+.radio
+{
+  display:       inline-flex;
+    align-items: center;
+}
+.radio-input
+{
+  display: none;
+}
+.radio-input:checked
+{
+  & ~ .radio-ui
+  {
+    &::after
+    {
+      opacity:    1;
+      visibility: visible;
+    }
+  }
+}
+.radio-input:invalid, .radio-input.is-invalid
+{
+  & ~ .radio-ui
+  {
+    border-color: $color-error;
+    
+    &::after
+    {
+      background: $color-error;
+    }
+  }
+  & ~ .radio-label
+  {
+    color: $color-error;
+  }
+}
+.radio-ui
+{
+  background:    #FFFFFF;
+  border:        1px solid $color-black;
+  border-radius: 50%;
+  box-sizing:    content-box;
+  display:       block;
+  height:        20px;
+  position:      relative;
+  transition:    all 0.3s ease;
+  width:         20px;
+
+  &::after
+  {
+    background:    #000000;
+    border-radius: 50%;
+    content:       "";
+    display:       block;
+    height:        70%;
+    opacity:       0;
+    position:      absolute;
+      left:        50%;
+      top:         50%;
+    transform:     translateX(-50%) translateY(-50%);
+    transition:    all 0.3s ease;
+    visibility:    hidden;
+    width:         70%;
+  }
+}
+.radio-label
+{
+  margin-left: 6px;
+}
