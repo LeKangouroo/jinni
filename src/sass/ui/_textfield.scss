@@ -57,6 +57,13 @@
     transform:        perspective(1px) translate3d(15px, 35px, 0);
     transform-origin: 0 0;
   }
+  &.is-floating
+  {
+    .textfield-label
+    {
+      transform: perspective(1px) scale(0.9) translate3d(0, 0, 0);
+    }
+  }
   .textfield-input:focus
   {
     & + .textfield-label
