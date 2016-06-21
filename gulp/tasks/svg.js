@@ -9,24 +9,17 @@ var SvgSprite = require("gulp-svg-sprite");
  * Modules
  */
 var argv = require("../modules/argv");
-var c = require("../modules/console");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
+var tasks = require("../modules/tasks");
 
 /*
  * Internal functions
  */
-function onSvgSpriteError(callback, err)
-{
-  c.error('"svg" task failed: ' + err.message);
-  c.warning("Maybe an SVG file is not correctly formatted. Try to debug them using a web browser (i.e. Google Chrome)");
-  callback(err);
-}
 function onTaskComplete(callback)
 {
-  c.success('"svg" task completed successfully!');
+  tasks.success("svg", callback);
   global.browserSync.reload();
-  callback();
 }
 
 /*
@@ -45,7 +38,8 @@ Gulp.task("svg", function(callback) {
   Gulp
     .src(sources)
     .pipe(SvgSprite(config.nodeModules.svgSprite))
-      .on("error", onSvgSpriteError.bind(null, callback))
+      .on("error", tasks.error.bind(null, "svg", callback))
     .pipe(Gulp.dest(destination))
+      .on("error", tasks.error.bind(null, "svg", callback))
       .on("end", onTaskComplete.bind(null, callback));
 });
