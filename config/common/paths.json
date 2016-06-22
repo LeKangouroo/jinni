@@ -30,7 +30,11 @@
         "default": "src/sass/*.scss",
         "watch": "src/**/*.scss"
     },
-    "svg": "src/assets/images/icons/svg/*.svg"
+    "svg": "src/assets/images/icons/svg/*.svg",
+    "todos": [
+      "!src/vendors/**",
+      "src/**/*.{js,html,jade,scss,sass}"
+    ]
   },
   "builds": {
     "css": {
@@ -52,6 +56,10 @@
     "svg": {
       "development": "tmp/assets/images/sprites",
       "distributable": "dist/assets/images/sprites"
+    },
+    "todos": {
+      "development": "tmp",
+      "distributable": "dist"
     }
   },
   "static": {
