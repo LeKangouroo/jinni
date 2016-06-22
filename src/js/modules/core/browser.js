@@ -37,6 +37,15 @@ const DEVICES = [
   }
 ];
 
+export class BrowserException extends Error
+{
+  constructor(message)
+  {
+    super(message);
+    this.name = "BrowserException";
+  }
+}
+
 export default class Browser
 {
   static getCurrentDevice()
@@ -53,5 +62,29 @@ export default class Browser
       }
     }
     return device;
+  }
+  static getCurrentPosition()
+  {
+    return new Promise(function(resolve, reject) {
+      
+      if (window.navigator && window.navigator.geolocation)
+      {
+        window.navigator.geolocation.getCurrentPosition(
+          function(position)
+          {
+            resolve(position);
+          },
+          function(err)
+          {
+            reject(new BrowserException("error during geolocation process"));
+            console.error(err);
+          }
+        );
+      }
+      else
+      {
+        reject(new BrowserException("geolocation is not supported in this browser"));
+      }
+    });
   }
 }
