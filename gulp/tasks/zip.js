@@ -2,7 +2,8 @@
  * Dependencies
  */
 var Gulp = require("gulp");
-var Zip = require("gulp-zip");
+var Gzip = require("gulp-gzip");
+var Tar = require("gulp-tar");
 
 /*
  * Modules
@@ -19,11 +20,13 @@ Gulp.task("zip", function(callback) {
       filename;
 
   buildData = require(paths.relocate("dist/build.json"));
-  filename = `${buildData.name}_${buildData.env}_${buildData.date}.zip`;
+  filename = `${buildData.name}_${buildData.env}_${buildData.date}.tar`;
   Gulp
-    .src(paths.relocate("dist"))
+    .src(paths.relocate("dist/**"))
       .on("error", tasks.error.bind(null, "zip", callback))
-    .pipe(Zip(filename))
+    .pipe(Tar(filename))
+      .on("error", tasks.error.bind(null, "zip", callback))
+    .pipe(Gzip())
       .on("error", tasks.error.bind(null, "zip", callback))
     .pipe(Gulp.dest(paths.relocate("./")))
       .on("error", tasks.error.bind(null, "zip", callback))
