@@ -18,7 +18,7 @@ var paths = require("../modules/paths");
  */
 Gulp.task("build", function(callback) {
 
-  return RunSequence(["sass", "svg", "html", "jade", "javascript", "static", "images", "todos"], function() {
+  return RunSequence("clean", ["sass", "svg", "html", "jade", "javascript", "static", "images", "todos"], function() {
 
     var buildData,
         buildDataFile;
