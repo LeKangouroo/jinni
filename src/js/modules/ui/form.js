@@ -1,3 +1,10 @@
+import _assign from "lodash/assign";
+import FormValidator from "./form-validator";
+
+const DEFAULT_OPTIONS = {
+  validation: false
+};
+
 export class FormException extends Error
 {
   constructor(message)
@@ -9,13 +16,15 @@ export class FormException extends Error
 
 export default class Form
 {
-  constructor(element) {
+  constructor(element, options) {
 
     if (element instanceof HTMLFormElement === false)
     {
       throw new FormException("element is not an instance of HTMLFormElement");
     }
     this.el = element;
+    this.options = (options) ? _assign(DEFAULT_OPTIONS, options) : DEFAULT_OPTIONS;
+    this.validator = (this.options.validation) ? new FormValidator(this, this.options.validation) : null;
   }
   getData() {
 
@@ -126,6 +135,14 @@ export default class Form
         f.value = f.value.trim();
       }
     });
+  }
+  validate() {
+    
+    if (this.validator === null)
+    {
+      throw new FormException("validation not enabled in this form");
+    }
+    return this.validator.validate();
   }
   _isHiddenInput(field) {
 
