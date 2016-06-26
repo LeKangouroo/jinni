@@ -3,7 +3,7 @@ export class FormException extends Error
   constructor(message)
   {
     super(message);
-    this.name = "FormsException";
+    this.name = "FormException";
   }
 }
 
