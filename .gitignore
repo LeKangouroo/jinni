@@ -5,5 +5,6 @@ npm-debug.log
 *.tar.gz
 .idea
 
-# DON'T YOU EVER REMOVE THIS LINE, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
+# DON'T YOU EVER REMOVE THESE LINES, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
+config/tasks/email.json
 config/tasks/ftp.json

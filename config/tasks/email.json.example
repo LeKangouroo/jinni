@@ -1,0 +1,21 @@
+{
+  "server": {
+    "protocol": "smtps",
+    "address": "smtp.example.com"
+  },
+  "credentials": {
+    "username": "email@example.com",
+    "password": "123456"
+  },
+  "message": {
+    "sender": "email@example.com",
+    "recipients": [
+      "a@example.com"
+    ],
+    "subject": "Subject",
+    "template": "gulp/templates/email.html",
+    "data": {
+      "key": "value"
+    }
+  }
+}
