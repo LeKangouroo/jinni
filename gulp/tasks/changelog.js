@@ -16,10 +16,7 @@ var tasks = require("../modules/tasks");
  */
 Gulp.task("changelog", function(callback) {
 
-  var options;
-
-  options = { start: argv.start, end: argv.end || "HEAD" };
-  git.changelog(options).then(
+  git.changelog({ start: argv.start, end: argv.end || "HEAD" }).then(
     function(outputString) {
 
       c.raw("\n\n\nCHANGELOG (" + new Date().toUTCString() + "):\n");

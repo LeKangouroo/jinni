@@ -24,6 +24,7 @@ module.exports = {
     return new Promise(function(resolve, reject) {
       
       var cmd,
+          format,
           opts;
       
       if (!options.start)
@@ -32,7 +33,16 @@ module.exports = {
         return;
       }
       opts = _assign({}, CHANGELOG_DEFAULT_OPTIONS, options);
-      cmd = 'git log --pretty="format:%aN: %s (commit #%h)" --reverse ' + opts.start + '..' + opts.end;
+      switch (options.format)
+      {
+        case "html":
+          format = "<li>%aN: %s (commit #%h)</li>";
+          break;
+        default:
+          format = "%aN: %s (commit #%h)";
+          break;
+      }
+      cmd = 'git log --pretty="format:' + format + '" --reverse ' + opts.start + '..' + opts.end;
       Exec(cmd, function(err, stdout) {
         
         if (err)

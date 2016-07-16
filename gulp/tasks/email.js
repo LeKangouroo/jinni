@@ -9,6 +9,8 @@ var Nodemailer = require("nodemailer");
 /*
  * Modules
  */
+var argv = require("../modules/argv");
+var git = require("../modules/git");
 var paths = require("../modules/paths");
 var tasks = require("../modules/tasks");
 
@@ -18,6 +20,7 @@ var tasks = require("../modules/tasks");
 Gulp.task("email", function(callback) {
 
   var config,
+      data,
       mailOptions,
       template,
       transportData,
@@ -35,21 +38,32 @@ Gulp.task("email", function(callback) {
   ];
   transporter = Nodemailer.createTransport(transportData.join(""));
   template = _template(Fs.readFileSync(paths.relocate(config.message.template)));
-  mailOptions = {
-    from: config.message.sender,
-    to: config.message.recipients.join(","),
-    subject: config.message.subject,
-    html: template(config.message.data)
-  };
-  transporter.sendMail(mailOptions, function(error) {
-    
-    if (error)
-    {
-      tasks.error("email", callback, error);
+  data = config.message.data;
+  git.changelog({ start: argv.start, end: argv.end || "HEAD", format: "html" }).then(
+    function(outputString) {
+
+      data.changelog = outputString;
+      mailOptions = {
+        from: config.message.sender,
+        to: config.message.recipients.join(","),
+        subject: config.message.subject,
+        html: template(data)
+      };
+      transporter.sendMail(mailOptions, function(error) {
+        
+        if (error)
+        {
+          tasks.error("email", callback, error);
+        }
+        else
+        {
+          tasks.success("email", callback);
+        }
+      });
+    },
+    function(err) {
+      
+      tasks.error.call(null, "email", callback, err);
     }
-    else
-    {
-      tasks.success("email", callback);
-    }
-  });
+  );
 });
