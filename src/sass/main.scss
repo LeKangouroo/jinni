@@ -1,20 +1,7 @@
-// Variables
-@import "base/variables";
-
-// Vendors
-@import "vendors/normalize";
-@import "vendors/bourbon";
-@import "vendors/neat";
-
-// Mixins
-@import "mixins/cover";
-
-// Base
-@import "base/breakpoints";
-@import "base/fonts";
-@import "base/html";
-
-// UI Elements
+// Global styles
+@import "mixins/mixins";
+@import "base/base";
+@import "vendors/vendors";
 @import "ui/ui";
 
 // Sections
