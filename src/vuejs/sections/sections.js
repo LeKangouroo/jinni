@@ -6,7 +6,7 @@ import Events from "modules/core/events.js";
 /*
  * Sections
  */
-import * as homeSection from "sections/home/home.js";
+import * as homeSection from "./home/home.js";
 
 /*
  * Exports

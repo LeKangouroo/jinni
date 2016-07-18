@@ -74,9 +74,9 @@ module.exports = function() {
         /*
          * Directories
          */
-        core:     PROJECT_DIR + "/src/js/core",
-        modules:  PROJECT_DIR + "/src/js/modules",
-        sections: PROJECT_DIR + "/src/sections"
+        core: PROJECT_DIR + "/src/js/core",
+        modules: PROJECT_DIR + "/src/js/modules",
+        vuejs: PROJECT_DIR + "/src/vuejs"
       }
     }
   };

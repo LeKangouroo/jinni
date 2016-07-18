@@ -21,9 +21,9 @@
     "js": {
       "default": "src/js/*.js",
       "watch": [
-        "!src/sections/**/*.scss",
+        "!src/vuejs/**/*.scss",
         "src/js/**/*.js",
-        "src/sections/**"
+        "src/vuejs/**"
       ]
     },
     "sass": {
