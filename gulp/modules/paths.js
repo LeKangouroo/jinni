@@ -8,15 +8,10 @@ var Path = require("path");
  */
 function relocate(path)
 {
-  var isExcluded,
-      relocatedPath;
+  var relocatedPath;
 
-  isExcluded = false;
+  // note: if path is excluded
   if (path.charAt(0) === '!')
-  {
-    isExcluded = true;
-  }
-  if (isExcluded)
   {
     relocatedPath = "!" + Path.resolve("../", path.substring(1));
   }
