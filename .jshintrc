@@ -3,10 +3,6 @@
   "devel": true,
   "eqeqeq": true,
   "esnext": true,
-  "globals": {
-    "Polymer": false,
-    "System": false
-  },
   "node": true,
   "strict": false,
   "undef": true,
