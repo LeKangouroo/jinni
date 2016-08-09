@@ -27,9 +27,6 @@ export default class Request
       }
       this.xhr.onreadystatechange = () => {
 
-        var error;
-
-        error = false;
         if (this.xhr.readyState === 4)
         {
           if (this.xhr.status >= 400 || this.xhr.status === 0)

@@ -10,10 +10,8 @@ import * as sections from "vuejs/sections/sections.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  var mainView;
-
   SVG4Everybody();
-  mainView = new Vue({
+  new Vue({
 
     el: "body",
     data: {
