@@ -38,34 +38,37 @@ export default class Form
     fields = this.getFields();
     for (name in fields)
     {
-      el = fields[name];
-      isCheckedInputFound = false;
-      if (el instanceof NodeList) // NOTE: multiple elements have the same "name" attribute
+      if (fields.hasOwnProperty(name))
       {
-        if (el[0] instanceof HTMLInputElement)
+        el = fields[name];
+        isCheckedInputFound = false;
+        if (el instanceof NodeList) // NOTE: multiple elements have the same "name" attribute
         {
-          if (["checkbox", "radio"].indexOf(el[0].type) > -1) // NOTE: case 1 => radio and checkbox inputs
+          if (el[0] instanceof HTMLInputElement)
           {
-            for (let item of el) // NOTE: loops through inputs to find the selected item
+            if (["checkbox", "radio"].indexOf(el[0].type) > -1) // NOTE: case 1 => radio and checkbox inputs
             {
-              if (item.checked)
+              for (let item of el) // NOTE: loops through inputs to find the selected item
               {
-                el = item;
-                isCheckedInputFound = true;
-                break;
+                if (item.checked)
+                {
+                  el = item;
+                  isCheckedInputFound = true;
+                  break;
+                }
               }
             }
+            data[name] = (isCheckedInputFound) ? el.value : undefined;
           }
-          data[name] = (isCheckedInputFound) ? el.value : undefined;
         }
-      }
-      else if (el instanceof HTMLInputElement && ["checkbox", "radio"].indexOf(el.type) > -1)
-      {
-        data[name] = el.checked;
-      }
-      else
-      {
-        data[name] = el.value;
+        else if (el instanceof HTMLInputElement && ["checkbox", "radio"].indexOf(el.type) > -1)
+        {
+          data[name] = el.checked;
+        }
+        else
+        {
+          data[name] = el.value;
+        }
       }
     }
     return data;
