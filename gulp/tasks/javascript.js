@@ -15,7 +15,6 @@ var WebpackStream = require("webpack-stream");
 var argv = require("../modules/argv");
 var config = require("../modules/config");
 var paths = require("../modules/paths");
-var replace = require("../modules/replace");
 var tasks = require("../modules/tasks");
 
 /*
@@ -33,9 +32,9 @@ Gulp.task("javascript-build", function(callback) {
 
   return WebpackStream(config.nodeModules.webpack(), Webpack)
       .on("error", tasks.error.bind(null, "javascript", callback))
-    .pipe(Replace({ patterns: replace.patterns.common }))
+    .pipe(Replace({ patterns: config.common.replacements.patterns.common }))
       .on("error", tasks.error.bind(null, "javascript", callback))
-    .pipe(Replace({ patterns: replace.patterns[argv.env] }))
+    .pipe(Replace({ patterns: config.common.replacements.patterns[argv.env] }))
       .on("error", tasks.error.bind(null, "javascript", callback))
     .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.js[argv.mode])))
       .on("error", tasks.error.bind(null, "javascript", callback));

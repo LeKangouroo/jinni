@@ -10,7 +10,6 @@ var Replace = require("gulp-replace-task");
  */
 var argv = require("../modules/argv");
 var config = require("../modules/config");
-var replace = require("../modules/replace");
 var paths = require("../modules/paths");
 var tasks = require("../modules/tasks");
 
@@ -37,9 +36,9 @@ Gulp.task("jade", function(callback) {
       .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Jade(cfg))
       .on("error", tasks.error.bind(null, "jade", callback))
-    .pipe(Replace({ patterns: replace.patterns.common }))
+    .pipe(Replace({ patterns: config.common.replacements.patterns.common }))
       .on("error", tasks.error.bind(null, "jade", callback))
-    .pipe(Replace({ patterns: replace.patterns[argv.env] }))
+    .pipe(Replace({ patterns: config.common.replacements.patterns[argv.env] }))
       .on("error", tasks.error.bind(null, "jade", callback))
     .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
       .on("error", tasks.error.bind(null, "jade", callback))

@@ -1,6 +1,7 @@
 module.exports = {
   common: {
-    paths: require("../../config/common/paths.json")
+    paths: require("../../config/common/paths.json"),
+    replacements: require('../../config/common/replacements')
   },
   nodeModules: {
     autoPrefixer: require("../../config/nodeModules/auto-prefixer.json"),
