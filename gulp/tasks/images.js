@@ -24,8 +24,8 @@ Gulp.task("images", function(callback) {
       .on("error", tasks.error.bind(null, "images", callback))
     .pipe(Imagemin({
       use: [
-        ImageminPNGQuant(config.nodeModules.imageminPNGQuant),
-        ImageminJPEGRecompress(config.nodeModules.imageminJPEGRecompress)
+        ImageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
+        ImageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
       ]
     }))
       .on("error", tasks.error.bind(null, "images", callback))
