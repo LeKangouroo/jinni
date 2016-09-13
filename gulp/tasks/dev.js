@@ -9,7 +9,7 @@ var Watch = require("gulp-watch");
  * Modules
  */
 var c = require("../modules/console");
-var config = require("../modules/config");
+var config = require("../../config/config");
 var paths = require("../modules/paths");
 
 /*

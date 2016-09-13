@@ -7,7 +7,7 @@ var JSONServer = require("json-server");
 /*
  * Modules
  */
-var config = require("../modules/config");
+var config = require("../../config/config");
 
 /*
  * Tasks

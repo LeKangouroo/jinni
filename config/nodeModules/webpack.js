@@ -9,7 +9,7 @@ var Webpack = require("webpack");
  * Modules
  */
 var argv  = require("../../gulp/modules/argv");
-var paths = require("../../config/common/paths.json");
+var paths = require("../common/paths.json");
 
 /*
  * Constants

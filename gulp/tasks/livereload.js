@@ -12,7 +12,7 @@ global.browserSync = BrowserSync;
 /*
  * Modules
  */
-var config = require("../modules/config");
+var config = require("../../config/config");
 var paths = require("../modules/paths");
 
 /*

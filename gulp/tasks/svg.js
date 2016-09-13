@@ -9,7 +9,7 @@ var SvgSprite = require("gulp-svg-sprite");
  * Modules
  */
 var argv = require("../modules/argv");
-var config = require("../modules/config");
+var config = require("../../config/config");
 var paths = require("../modules/paths");
 var tasks = require("../modules/tasks");
 

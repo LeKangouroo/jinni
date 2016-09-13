@@ -6,7 +6,7 @@ var Gulp = require("gulp");
 /*
  * Modules
  */
-var config = require("../modules/config");
+var config = require("../../config/config");
 var paths = require("../modules/paths");
 var tasks = require("../modules/tasks");
 
