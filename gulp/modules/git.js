@@ -18,15 +18,15 @@ var CHANGELOG_DEFAULT_OPTIONS = {
  * Module
  */
 module.exports = {
-  
+
   changelog: function(options) {
-    
+
     return new Promise(function(resolve, reject) {
-      
+
       var cmd,
           format,
           opts;
-      
+
       if (!options.start)
       {
         reject(new Error("missing start commit ID (use npm run chlg -- --start=<commit-id>)"));
@@ -42,9 +42,9 @@ module.exports = {
           format = "%aN: %s (commit #%h)";
           break;
       }
-      cmd = 'git log --pretty="format:' + format + '" --reverse ' + opts.start + '..' + opts.end;
+      cmd = 'git log --first-parent --pretty="format:' + format + '" --reverse ' + opts.start + '..' + opts.end;
       Exec(cmd, function(err, stdout) {
-        
+
         if (err)
         {
           reject(err);
