@@ -68,15 +68,15 @@
     "yargs": "3.31.0"
   },
   "scripts": {
-    "build:preprod": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=pre-production --mode=distributable",
-    "build:prod": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js build --env=production --mode=distributable",
-    "chlg": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js changelog",
-    "clean": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js clean",
+    "build:preprod": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js build --env=pre-production --mode=distributable",
+    "build:prod": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js build --env=production --mode=distributable",
+    "chlg": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js changelog",
+    "clean": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js clean",
     "fclean": "npm run clean -- --mode=distributable",
-    "deploy": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js ftp",
-    "dev": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js dev",
-    "email": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js email",
-    "todos": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js todos",
-    "zip": "node_modules/gulp/bin/gulp.js --gulpfile gulp/gulpfile.js zip"
+    "deploy": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js ftp",
+    "dev": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js dev",
+    "email": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js email",
+    "todos": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js todos",
+    "zip": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.js zip"
   }
 }
