@@ -8,7 +8,7 @@ var Webpack = require("webpack");
 /*
  * Modules
  */
-var argv  = require("../../gulp/modules/argv");
+var argv  = require("../../taskrunner/modules/argv");
 var paths = require("../common/paths.json");
 
 /*
