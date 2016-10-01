@@ -1,5 +1,8 @@
 {
+  "name": "REPLACED_USING_WIZARD",
+  "description": "REPLACED_USING_WIZARD",
   "version": "0.0.1",
+  "author": "REPLACED_USING_WIZARD",
   "engines": {
     "node": "4.x"
   },
