@@ -3,11 +3,12 @@ var inquirer = require('inquirer');
 var logger = require('../modules/logger');
 var ncp = require('ncp').ncp;
 var path = require('path');
-var pkg = require('../templates/package.json');
 
 var ascii,
     boilerplateDir,
-    cwd;
+    cwd,
+    pkg,
+    pkgPath;
 
 ascii = fs.readFileSync(path.resolve(__dirname, '../assets/text/ascii.txt'), { encoding: 'utf8' });
 boilerplateDir = path.resolve(__dirname, '../../boilerplate');
@@ -48,9 +49,11 @@ inquirer.prompt([
     // NOTE: some files are ignored during module packaging. so we need to rename them manually
     fs.renameSync(path.resolve(cwd, './gitignore'), path.resolve(cwd, './.gitignore'));
     fs.renameSync(path.resolve(cwd, './npmrc'), path.resolve(cwd, './.npmrc'));
+    pkgPath = path.resolve(cwd, './package.json');
+    pkg = require(pkgPath);
     pkg.name = answers.projectName;
     pkg.description = answers.projectDescription;
     pkg.author = answers.author;
-    fs.writeFileSync(path.resolve(cwd, './package.json'), JSON.stringify(pkg, null, 2));
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
   });
 });
