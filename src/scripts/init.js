@@ -1,13 +1,16 @@
+var chalk = require('chalk');
 var fs = require('fs');
 var inquirer = require('inquirer');
 var logger = require('../modules/logger');
 var ncp = require('ncp').ncp;
 var path = require('path');
+var packageNameValidator = require('validate-npm-package-name');
 
 var ascii,
     boilerplateDir,
     cwd,
     pkg,
+    pkgNameValidation,
     pkgPath;
 
 ascii = fs.readFileSync(path.resolve(__dirname, '../assets/text/ascii.txt'), { encoding: 'utf8' });
@@ -20,7 +23,19 @@ inquirer.prompt([
     type: 'input',
     name: 'projectName',
     message: 'Project name:',
-    validate: (value) => (typeof value === 'string' && value.trim().length > 0),
+    validate: (value) => {
+
+      if (typeof value === 'string' && value.trim().length > 0)
+      {
+        pkgNameValidation = packageNameValidator(value);
+        if (pkgNameValidation.validForNewPackages)
+        {
+          return true;
+        }
+        pkgNameValidation.errors.forEach((err) => logger.log('\n' + chalk.red(err)));
+      }
+      return false;
+    },
     filter: (value) => value.trim()
   },
   {
