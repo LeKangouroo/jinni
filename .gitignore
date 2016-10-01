@@ -4,6 +4,7 @@ tmp
 npm-debug.log
 *.tar.gz
 .idea
+dist
 
 # DON'T YOU EVER REMOVE THESE LINES, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
 config/tasks/email.json
