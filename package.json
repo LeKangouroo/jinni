@@ -1,0 +1,26 @@
+{
+  "name": "samantha",
+  "version": "1.0.0",
+  "description": "A boilerplate generator for front end projects",
+  "keywords": [
+    "front",
+    "end",
+    "stack",
+    "boilerplate",
+    "generator",
+    "samantha"
+  ],
+  "license": "MIT",
+  "author": "Itadakimas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://itadakimas@github.com/itadakimas/samantha.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itadakimas/samantha/issues"
+  },
+  "homepage": "https://github.com/itadakimas/samantha#readme",
+  "bin": {
+    "sam": "cli.js"
+  }
+}
