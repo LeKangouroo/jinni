@@ -1,3 +1,9 @@
+# What is Jinni?
+
+![Dessin animé Aladdin](http://i.giphy.com/tpTOw6sljB2U.gif)
+
+Jinni is a boilerplate generator for front end projects.
+
 # Dependencies
 
 * [NodeJS](https://nodejs.org) (v4.x LTS)
@@ -5,53 +11,15 @@
 # Installation
 
 ```
-npm install
+npm install -g jinni
 ```
 
-# Available commands
+# Getting started
 
-To start development mode:
-
-```
-npm run dev
-```
-
-To build the distributable version:
+To create a new project in the current working directory, you can use the following command:
 
 ```
-npm run build:preprod
-npm run build:prod
+jin init
 ```
 
-To deploy dist on an FTP server (after npm run build)
-duplicate config/tasks/ftp.json.example and remove .example extension then:
-
-```
-npm run deploy
-```
-
-To remove build files
-
-```
-npm run clean # removes tmp/ directory
-npm run fclean # removes tmp/ and dist/ directories
-```
-
-To create a tarball (.tar.gz) of the dist/ directory
-
-```
-npm run zip
-
-
-```
-To get Git changelog
-
-```
-npm run chlg -- --start=<commit-id>
-```
-
-To generate todo based on comments in the code
-
-```
-npm run todos # creates a TODO.md file in tmp/ directory
-```
+Follow the instructions, then read the README in the current directory for more details.
