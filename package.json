@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/itadakimas/samantha#readme",
   "bin": {
-    "sam": "cli.js"
+    "sam": "./bin/cli.js"
+  },
+  "dependencies": {
+    "yargs": "6.0.0"
   }
 }
