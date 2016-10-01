@@ -1,9 +1,17 @@
 var fs = require('fs');
 var inquirer = require('inquirer');
 var logger = require('../modules/logger');
+var ncp = require('ncp').ncp;
 var path = require('path');
-var ascii = fs.readFileSync(path.resolve(__dirname, '../assets/text/ascii.txt'), { encoding: 'utf8' });
+var pkg = require('../templates/package.json');
 
+var ascii,
+    boilerplateDir,
+    cwd;
+
+ascii = fs.readFileSync(path.resolve(__dirname, '../assets/text/ascii.txt'), { encoding: 'utf8' });
+boilerplateDir = path.resolve(__dirname, '../../boilerplate');
+cwd = process.cwd();
 logger.log(ascii);
 logger.log("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.");
 inquirer.prompt([
@@ -30,6 +38,19 @@ inquirer.prompt([
   }
 ]).then((answers) => {
 
-  console.log('processing answers');
-  console.log(answers);
+  ncp(boilerplateDir, cwd, { stopOnErr: true }, (err) => {
+
+    if (err)
+    {
+      logger.trace(err);
+      process.exit(1);
+    }
+    // NOTE: some files are ignored during module packaging. so we need to rename them manually
+    fs.renameSync(path.resolve(cwd, './gitignore'), path.resolve(cwd, './.gitignore'));
+    fs.renameSync(path.resolve(cwd, './npmrc'), path.resolve(cwd, './.npmrc'));
+    pkg.name = answers.projectName;
+    pkg.description = answers.projectDescription;
+    pkg.author = answers.author;
+    fs.writeFileSync(path.resolve(cwd, './package.json'), JSON.stringify(pkg, null, 2));
+  });
 });
