@@ -1,7 +1,6 @@
-var yargs = require("yargs");
+import yargs from 'yargs';
 
-// adds usage
-yargs = yargs
+const argv = yargs
     .locale("en")
     .usage("Usage: $0 <command> [options]")
     .command("build", "Builds distributable sources.")
@@ -12,12 +11,9 @@ yargs = yargs
     .alias("h", "help")
     .describe("env", "Sets current environment. Available values:\n\t- development\n\t- pre-production\n\t- production")
     .describe("mode", "Sets task mode. Available values:\n\t- development\n\t- distributable")
-    .nargs("mode", 1);
-
-// sets default values
-yargs = yargs
+    .nargs("mode", 1)
     .default("env", "development")
-    .default("mode", "development");
+    .default("mode", "development")
+    .argv;
 
-// exports command args
-module.exports = yargs.argv;
+export default argv;
