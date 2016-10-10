@@ -1,24 +1,13 @@
-/*
- * Node Dependencies
- */
-var Gulp = require("gulp");
-var JSONServer = require("json-server");
+import config from '../../config/config';
+import gulp from 'gulp';
+import jsonServer from 'json-server';
 
-/*
- * Modules
- */
-var config = require("../../config/config");
+gulp.task('api', callback => {
 
-/*
- * Tasks
- */
-Gulp.task("api", function(callback) {
+  const server = jsonServer.create();
 
-  var server;
-
-  server = JSONServer.create();
-  server.use(JSONServer.defaults());
-  server.use(JSONServer.router(config.nodeModules.jsonServer.db));
+  server.use(jsonServer.defaults());
+  server.use(jsonServer.router(config.nodeModules.jsonServer.db));
   server.listen(config.tasks.api.port);
   callback();
 });

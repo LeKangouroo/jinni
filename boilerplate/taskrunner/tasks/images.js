@@ -1,35 +1,23 @@
-/*
- * Node Dependencies
- */
-var Gulp = require("gulp");
-var Imagemin = require("gulp-imagemin");
-var ImageminPNGQuant = require("imagemin-pngquant");
-var ImageminJPEGRecompress = require("imagemin-jpeg-recompress");
+import argv from '../modules/argv';
+import config from '../../config/config';
+import gulp from 'gulp';
+import imagemin from 'imagemin';
+import imageminJPEGRecompress from 'imagemin-jpeg-recompress';
+import imageminPNGQuant from 'imagemin-pngquant';
+import paths from '../modules/paths';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task("images", (callback) => {
 
-/*
- * Tasks
- */
-Gulp.task("images", function(callback) {
+  const src = paths.relocate(config.common.paths.sources.images);
+  const dest = paths.relocate(config.common.paths.builds.images[argv.mode]);
 
-  Gulp
-    .src(paths.relocate(config.common.paths.sources.images))
-      .on("error", tasks.error.bind(null, "images", callback))
-    .pipe(Imagemin({
-      use: [
-        ImageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
-        ImageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
-      ]
-    }))
-      .on("error", tasks.error.bind(null, "images", callback))
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.images[argv.mode])))
-      .on("error", tasks.error.bind(null, "images", callback))
-      .on("end", tasks.success.bind(null, "images", callback));
+  imagemin(src, dest, {
+    plugins: [
+      imageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
+      imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
+    ]
+  })
+  .then(() => tasks.success('images', callback))
+  .catch((err) => tasks.error('images', callback, err));
 });

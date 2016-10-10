@@ -1,44 +1,31 @@
-/*
- * Dependencies
- */
-var Gulp = require("gulp");
-var JSONFile = require("jsonfile");
-var Package = require("../../package.json");
-var RunSequence = require("run-sequence");
+import argv from '../modules/argv';
+import gulp from 'gulp';
+import jsonFile from 'jsonfile';
+import logger from '../modules/logger';
+import paths from '../modules/paths';
+import pkg from '../../package.json';
+import runSequence from 'run-sequence';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var c = require("../modules/console");
-var paths = require("../modules/paths");
+gulp.task('build', (callback) => {
 
-/*
- * Task
- */
-Gulp.task("build", function(callback) {
+  return runSequence('clean', ['sass', 'svg', 'html', 'jade', 'javascript', 'static', 'images', 'todos'], () => {
 
-  return RunSequence("clean", ["sass", "svg", "html", "jade", "javascript", "static", "images", "todos"], function() {
-
-    var buildData,
-        buildDataFile;
-
-    buildData = {
+    const buildData = {
       date: new Date().toISOString(),
-      env:  argv.env,
-      name: Package.name
+      env: argv.env,
+      name: pkg.name
     };
-    buildDataFile = paths.relocate("dist/build.json");
-    JSONFile.writeFile(buildDataFile, buildData, function(err) {
+    const buildDataFile = paths.relocate('dist/build.json');
+    jsonFile.writeFile(buildDataFile, buildData, (err) => {
 
       if (err)
       {
-        c.error("❗  Couldn't write the following file: " + buildDataFile);
-        c.trace(err);
+        logger.error(`❗  Couldn't write the following file: ${buildDataFile}`);
+        logger.trace(err);
       }
       else
       {
-        c.success("👍  Completed successfully! Your build is available in the following directory: " + paths.relocate("dist"));
+        logger.success(`👍  Completed successfully! Your build is available in the following directory: ${paths.relocate('dist')}`);
       }
       callback();
     });
