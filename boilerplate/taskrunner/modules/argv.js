@@ -10,8 +10,8 @@ yargs = yargs
     .demand(1)
     .help("h")
     .alias("h", "help")
-    .describe("env", "Sets current environment. Available\240values:\n\t-\240development\n\t-\240pre-production\n\t-\240production")
-    .describe("mode", "Sets task mode. Available\240values:\n\t-\240development\n\t-\240distributable")
+    .describe("env", "Sets current environment. Available values:\n\t- development\n\t- pre-production\n\t- production")
+    .describe("mode", "Sets task mode. Available values:\n\t- development\n\t- distributable")
     .nargs("mode", 1);
 
 // sets default values
