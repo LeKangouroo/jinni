@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "author": "REPLACED_USING_WIZARD",
   "engines": {
-    "node": "4.x"
+    "node": "6.7.*"
   },
   "private": true,
   "dependencies": {
