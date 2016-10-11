@@ -1,27 +1,25 @@
-/*
- * Modules
- */
-var c = require("../modules/console");
-var notifications = require("../modules/notifications");
+import logger from './logger';
+import notifications from './notifications';
 
-module.exports = {
-  
-  error: function(taskName, callback, err) {
-    
-    var message,
-        title;
-        
-    message = err.message;
-    title = '"'+ taskName +'" task failed';
-    c.error(title + ": " + message);
-    notifications.notify({title: title, message: message, icon: taskName});
-    // NOTE: uncomment the line below to debug the error
-    // c.trace(err);
-    return process.exit(1);
-  },
-  success: function(taskName, callback) {
-    
-    c.success('"'+ taskName +'" completed successfully!');
-    callback();
-  }
+export const error = (taskName, callback, err) => {
+
+  const message = err.message;
+  const title = `"${taskName}" task failed`;
+
+  logger.error(`${title}: ${message}`);
+  notifications.notify({title: title, message: message, icon: taskName});
+  // NOTE: uncomment the line below to debug the error
+  // logger.trace(err);
+  return process.exit(1);
+};
+
+export const success = (taskName, callback) => {
+
+  logger.success(`"${taskName}" task completed successfully!`);
+  callback();
+};
+
+export default {
+  error,
+  success
 };

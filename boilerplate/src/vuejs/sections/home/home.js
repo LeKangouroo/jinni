@@ -10,14 +10,13 @@ var view;
 export function init(data)
 {
   view = new Vue({
-    replace: false,
     el: "#main",
-    ready: function() {
+    template: template,
+    mounted: function() {
 
       console.log("data", data);
       Events.emit("section:loaded");
-    },
-    template: template
+    }
   });
 }
 export function destroy()

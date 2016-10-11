@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
   SVG4Everybody();
   new Vue({
 
-    el: "body",
+    el: "#app",
     data: {
       currentSection: null,
       isLoading: true
     },
-    ready: function() {
+    mounted: function() {
 
       sections.init();
 

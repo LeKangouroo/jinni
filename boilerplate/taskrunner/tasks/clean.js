@@ -1,52 +1,37 @@
-/*
- * Node Dependencies
- */
-var Del = require("del");
-var Errno = require("errno");
-var Gulp = require("gulp");
+import argv from '../modules/argv';
+import config from '../../config/config';
+import del from 'del';
+import errno from 'errno';
+import gulp from 'gulp';
+import logger from '../modules/logger';
+import paths from '../modules/paths';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var c = require("../modules/console");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
+const onError = (err, callback) => {
 
-/*
- * Internal functions
- */
-function onCleanError(callback, err)
-{
-  c.error('"clean" task failed!');
-  c.log("\t- Path: " + err.path);
-  c.log("\t- Cause: " + Errno.code[err.code].description);
-  c.trace(err);
+  logger.error('"clean" task failed!');
+  logger.log(`\t- Path: ${ err.path }`);
+  logger.log(`\t- Cause: ${ errno.code[err.code].description }`);
+  logger.trace(err);
   callback(err);
-}
-function onCleanSuccess(callback, deletedItems)
-{
-  c.success('"clean" task completed successfully!');
+};
+
+const onSuccess = (deletedItems, callback) => {
+
+  logger.success('"clean" task completed successfully!');
   if (deletedItems.length > 0)
   {
-    c.info("Deleted items:");
-    deletedItems.forEach(function(filePath){
-      c.log(filePath);
-    });
+    logger.info("Deleted items:");
+    deletedItems.forEach((filePath) => logger.log(filePath));
   }
   callback();
-}
+};
 
-/*
- * Task
- */
-Gulp.task("clean", function(callback) {
+gulp.task('clean', (callback) => {
 
-  var targets = paths.relocate(config.tasks.clean.paths[argv.mode]);
-  var options = {force: true};
+  const targets = paths.relocate(config.tasks.clean.paths[argv.mode]);
+  const options = {force: true};
 
-  Del(targets, options).then(
-    onCleanSuccess.bind(null, callback),
-    onCleanError.bind(null, callback)
-  );
+  del(targets, options)
+    .then((deletedItems) => onSuccess(deletedItems, callback))
+    .catch((err) => onError(err, callback));
 });

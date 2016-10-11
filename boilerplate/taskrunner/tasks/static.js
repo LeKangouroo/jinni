@@ -1,31 +1,18 @@
-/*
- * Node Dependencies
- */
-var Gulp = require("gulp");
+import gulp from 'gulp';
+import config from '../../config/config';
+import paths from '../modules/paths';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task('static', (callback) => {
 
-/*
- * Tasks
- */
-Gulp.task("static", function(callback) {
-
-  var options,
-      source;
-
-  options = {
+  const options = {
     base: paths.relocate(config.common.paths.static.base)
   };
-  source = paths.relocate(config.common.paths.static.source);
-  Gulp
+  const source = paths.relocate(config.common.paths.static.source);
+  gulp
     .src(source, options)
-      .on("error", tasks.error.bind(null, "static", callback))
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.static.destination)))
-      .on("error", tasks.error.bind(null, "static", callback))
-      .on("end", tasks.success.bind(null, "static", callback));
+      .on('error', (err) => tasks.error('static', callback, err))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.static.destination)))
+      .on('error', (err) => tasks.error('static', callback, err))
+      .on('end', () => tasks.success('static', callback));
 });

@@ -1,6 +1,6 @@
 # Dependencies
 
-* [NodeJS](https://nodejs.org) (v4.x LTS)
+* [NodeJS](https://nodejs.org) (v6.7.x LTS)
 
 # Installation
 

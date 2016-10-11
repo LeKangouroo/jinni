@@ -10,7 +10,7 @@ module.exports = {
       PNGQuant: require("./nodeModules/imagemin/pngquant.json"),
       JPEGRecompress: require("./nodeModules/imagemin/jpeg-recompress.json")
     },
-    jade: require("./nodeModules/jade.json"),
+    pug: require("./nodeModules/pug.json"),
     jshint: require("./nodeModules/jshint.json"),
     jsonServer: {
       db: require("./nodeModules/json-server/db.json")

@@ -76,7 +76,10 @@ module.exports = function() {
          */
         core: PROJECT_DIR + "/src/js/core",
         modules: PROJECT_DIR + "/src/js/modules",
-        vuejs: PROJECT_DIR + "/src/vuejs"
+        vuejs: PROJECT_DIR + "/src/vuejs",
+
+        // TODO: remove this line when VueJS code architecture has been updated
+        vue: 'vue/dist/vue.js'
       }
     }
   };

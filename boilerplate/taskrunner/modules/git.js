@@ -1,59 +1,49 @@
-/*
- * Dependencies
- */
-var _assign = require("lodash/assign");
-var Exec = require("child_process").exec;
+import assign from 'lodash/assign';
+import { exec } from 'child_process';
 
-
-/*
- * Constants
- */
-var CHANGELOG_DEFAULT_OPTIONS = {
+const CHANGELOG_DEFAULT_OPTIONS = {
   start: null,
-  end: "HEAD"
+  end: 'HEAD'
 };
 
+export const changelog = (options) => {
 
-/*
- * Module
- */
-module.exports = {
+  return new Promise((resolve, reject) => {
 
-  changelog: function(options) {
+    let cmd,
+        format,
+        opts;
 
-    return new Promise(function(resolve, reject) {
+    if (!options.start)
+    {
+      reject(new Error('missing start commit ID (use npm run chlg -- --start=<commit-id>)'));
+      return;
+    }
+    opts = assign({}, CHANGELOG_DEFAULT_OPTIONS, options);
+    switch (options.format)
+    {
+      case 'html':
+        format = '<li>%aN: %s (commit #%h)</li>';
+        break;
+      default:
+        format = '%aN: %s (commit #%h)';
+        break;
+    }
+    cmd = `git log --first-parent --pretty="format:${format}" --reverse ${opts.start}..${opts.end}`;
+    exec(cmd, (err, stdout) => {
 
-      var cmd,
-          format,
-          opts;
-
-      if (!options.start)
+      if (err)
       {
-        reject(new Error("missing start commit ID (use npm run chlg -- --start=<commit-id>)"));
-        return;
+        reject(err);
       }
-      opts = _assign({}, CHANGELOG_DEFAULT_OPTIONS, options);
-      switch (options.format)
+      else
       {
-        case "html":
-          format = "<li>%aN: %s (commit #%h)</li>";
-          break;
-        default:
-          format = "%aN: %s (commit #%h)";
-          break;
+        resolve(stdout);
       }
-      cmd = 'git log --first-parent --pretty="format:' + format + '" --reverse ' + opts.start + '..' + opts.end;
-      Exec(cmd, function(err, stdout) {
-
-        if (err)
-        {
-          reject(err);
-        }
-        else
-        {
-          resolve(stdout);
-        }
-      });
     });
-  }
+  });
+};
+
+export default {
+  changelog
 };

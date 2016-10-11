@@ -1,43 +1,34 @@
-/*
- * Node Dependencies
- */
-var Path = require("path");
+import isString from 'lodash/isString';
+import path from 'path';
 
-/*
- * Internal functions
- */
-function relocate(path)
-{
-  var relocatedPath;
+const relocateGlob = (glob) => {
 
-  // note: if path is excluded
-  if (path.charAt(0) === '!')
+  if (!isString(glob))
   {
-    relocatedPath = "!" + Path.resolve("../", path.substring(1));
+    throw new TypeError(`invalid glob value: ${glob}`);
   }
-  else
+
+  // NOTE: if path is excluded
+  if (glob.charAt(0) === '!')
   {
-    relocatedPath = Path.resolve("../", path);
+    return "!" + path.resolve("../", glob.substring(1));
   }
-  return relocatedPath;
-}
+  return path.resolve("../", glob);
+};
 
-module.exports = {
+export const relocate = (value) => {
 
-  relocate: function(p) {
-
-    if (typeof p === "string")
-    {
-      return relocate(p);
-    }
-    else if (p instanceof Array)
-    {
-      return p.map(function(item) {
-
-        return relocate(item);
-
-      }, this);
-    }
-    throw new Error("unexpected param type");
+  if (isString(value))
+  {
+    return relocateGlob(value);
   }
+  else if (value instanceof Array)
+  {
+    return value.map((glob) => relocateGlob(glob));
+  }
+  throw new TypeError('unexpected value type');
+};
+
+export default {
+  relocate
 };

@@ -1,32 +1,22 @@
-/*
- * Node Dependencies
- */
-var AutoPrefixer = require("autoprefixer");
-var Gulp = require("gulp");
-var PostCSS = require("gulp-postcss");
-var Sass = require("gulp-sass");
+import argv from '../modules/argv';
+import autoPrefixer from 'autoprefixer';
+import config from '../../config/config';
+import gulp from 'gulp';
+import paths from '../modules/paths';
+import postCSS from 'gulp-postcss';
+import sass from 'gulp-sass';
+import tasks from '../modules/tasks.js';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks.js");
+gulp.task('sass', (callback) => {
 
-/*
- * Task
- */
-Gulp.task("sass", function(callback) {
-
-  Gulp
+  gulp
     .src(paths.relocate(config.common.paths.sources.sass.default))
-      .on("error", tasks.error.bind(null, "sass", callback))
-    .pipe(Sass(config.nodeModules.sass[argv.mode]))
-      .on("error", tasks.error.bind(null, "sass", callback))
-    .pipe(PostCSS([ AutoPrefixer(config.nodeModules.autoPrefixer) ]))
-      .on("error", tasks.error.bind(null, "sass", callback))
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.css[argv.mode])))
-      .on("end", tasks.success.bind(null, "sass", callback))
+      .on('error', (err) => tasks.error('sass', callback, err))
+    .pipe(sass(config.nodeModules.sass[argv.mode]))
+      .on('error', (err) => tasks.error('sass', callback, err))
+    .pipe(postCSS([ autoPrefixer(config.nodeModules.autoPrefixer) ]))
+      .on('error', (err) => tasks.error('sass', callback, err))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.builds.css[argv.mode])))
+      .on('end', () => tasks.success('sass', callback))
     .pipe(global.browserSync.stream());
 });
