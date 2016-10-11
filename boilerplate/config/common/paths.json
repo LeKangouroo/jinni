@@ -2,20 +2,20 @@
   "sources": {
     "html": {
       "default": [
-        "!src/html/_jade{,/**}",
+        "!src/html/_pug{,/**}",
         "src/html/**/*.html"
       ],
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
-    "jade": {
+    "pug": {
       "default": [
-        "!src/html/_jade{,/**}",
-        "src/html/**/*.jade"
+        "!src/html/_pug{,/**}",
+        "src/html/**/*.pug"
       ],
       "watch": [
-        "src/html/**/*.jade",
-        "src/html/_jade/**/*"
+        "src/html/**/*.pug",
+        "src/html/_pug/**/*"
       ]
     },
     "js": {
@@ -33,7 +33,7 @@
     "svg": "src/assets/images/icons/svg/*.svg",
     "todos": [
       "!src/vendors/**",
-      "src/**/*.{js,html,jade,scss,sass}"
+      "src/**/*.{js,html,pug,scss,sass}"
     ]
   },
   "builds": {

@@ -8,7 +8,7 @@ import runSequence from 'run-sequence';
 
 gulp.task('build', (callback) => {
 
-  return runSequence('clean', ['sass', 'svg', 'html', 'jade', 'javascript', 'static', 'images', 'todos'], () => {
+  return runSequence('clean', ['sass', 'svg', 'html', 'pug', 'javascript', 'static', 'images', 'todos'], () => {
 
     const buildData = {
       date: new Date().toISOString(),

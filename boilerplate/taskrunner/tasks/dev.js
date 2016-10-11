@@ -8,10 +8,10 @@ import watch from 'gulp-watch';
 runSequence.use(gulp);
 gulp.task('dev', (callback) => {
 
-  runSequence('clean', ['sass', 'svg', 'html', 'jade', 'javascript', 'api'], 'livereload', () => {
+  runSequence('clean', ['sass', 'svg', 'html', 'pug', 'javascript', 'api'], 'livereload', () => {
 
     watch(paths.relocate(config.common.paths.sources.html.watch), () => runSequence('html'));
-    watch(paths.relocate(config.common.paths.sources.jade.watch), () => runSequence('jade'));
+    watch(paths.relocate(config.common.paths.sources.pug.watch), () => runSequence('pug'));
     watch(paths.relocate(config.common.paths.sources.js.watch), () => runSequence('javascript'));
     watch(paths.relocate(config.common.paths.sources.sass.watch), () => runSequence('sass'));
     watch(paths.relocate(config.common.paths.sources.svg), () => runSequence('svg'));
