@@ -18,6 +18,8 @@ gulp.task("images", (callback) => {
       imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
     ]
   })
-  .then(() => tasks.success('images', callback))
-  .catch((err) => tasks.error('images', callback, err));
+  .then(
+    () => tasks.success('images', callback),
+    (err) => tasks.error('images', callback, err)
+  );
 });

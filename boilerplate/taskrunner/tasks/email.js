@@ -1,69 +1,50 @@
-/*
- * Node Dependencies
- */
-var _template = require("lodash/template");
-var Fs = require("fs");
-var Gulp = require("gulp");
-var Nodemailer = require("nodemailer");
+import argv from '../modules/argv';
+import fs from 'fs';
+import git from '../modules/git';
+import gulp from 'gulp';
+import nodemailer from 'nodemailer';
+import paths from '../modules/paths';
+import tasks from '../modules/tasks';
+import template from 'lodash/template';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var git = require("../modules/git");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task('email', (callback) => {
 
-/*
- * Tasks
- */
-Gulp.task("email", function(callback) {
-
-  var config,
-      data,
-      mailOptions,
-      template,
-      transportData,
-      transporter;
-
-  config = require(paths.relocate("config/tasks/email.json"));
-  transportData = [
+  const config = require(paths.relocate('config/tasks/email.json'));
+  const transportData = [
     config.server.protocol,
-    "://",
+    '://',
     config.credentials.username,
-    ":",
+    ':',
     config.credentials.password,
-    "@",
+    '@',
     config.server.address
   ];
-  transporter = Nodemailer.createTransport(transportData.join(""));
-  template = _template(Fs.readFileSync(paths.relocate(config.message.template)));
-  data = config.message.data;
-  git.changelog({ start: argv.start, end: argv.end || "HEAD", format: "html" }).then(
-    function(outputString) {
+  const transporter = nodemailer.createTransport(transportData.join(''));
+  const template = template(fs.readFileSync(paths.relocate(config.message.template)));
+  const data = config.message.data;
+
+  git.changelog({ start: argv.start, end: argv.end || 'HEAD', format: 'html' }).then(
+    (outputString) => {
 
       data.changelog = outputString;
-      mailOptions = {
+      const mailOptions = {
         from: config.message.sender,
-        to: config.message.recipients.join(","),
+        to: config.message.recipients.join(','),
         subject: config.message.subject,
         html: template(data)
       };
-      transporter.sendMail(mailOptions, function(error) {
+      transporter.sendMail(mailOptions, (error) => {
         
         if (error)
         {
-          tasks.error("email", callback, error);
+          tasks.error('email', callback, error);
         }
         else
         {
-          tasks.success("email", callback);
+          tasks.success('email', callback);
         }
       });
     },
-    function(err) {
-      
-      tasks.error.call(null, "email", callback, err);
-    }
+    (err) => tasks.error('email', callback, err)
   );
 });

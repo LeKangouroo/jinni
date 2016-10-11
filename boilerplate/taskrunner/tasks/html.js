@@ -1,39 +1,26 @@
-/*
- * Node Dependencies
- */
-var Gulp = require("gulp");
-var Replace = require("gulp-replace-task");
+import argv from '../modules/argv';
+import config from '../../config/config';
+import gulp from 'gulp';
+import paths from '../modules/paths';
+import replace from 'gulp-replace-task';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+const onComplete = (callback) => {
 
-/*
- * Internal Functions
- */
-function onTaskComplete(gulpCallback)
-{
   global.browserSync.reload();
-  gulpCallback();
-}
+  callback();
+};
 
-/*
- * Task
- */
-Gulp.task("html", function(callback) {
+gulp.task('html', (callback) => {
 
-  Gulp
+  gulp
     .src(paths.relocate(config.common.paths.sources.html.default))
-      .on("error", tasks.error.bind(null, "html", callback))
-    .pipe(Replace({ patterns: config.common.replacements.patterns.common }))
-      .on("error", tasks.error.bind(null, "html", callback))
-    .pipe(Replace({ patterns: config.common.replacements.patterns[argv.env] }))
-      .on("error", tasks.error.bind(null, "html", callback))
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
-      .on("error", tasks.error.bind(null, "html", callback))
-      .on("end", tasks.success.bind(null, "html", onTaskComplete.bind(null, callback)));
+      .on('error', (err) => tasks.error('html', callback, err))
+    .pipe(replace({ patterns: config.common.replacements.patterns.common }))
+      .on('error', (err) => tasks.error('html', callback, err))
+    .pipe(replace({ patterns: config.common.replacements.patterns[argv.env] }))
+      .on('error', (err) => tasks.error('html', callback, err))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
+      .on('error', (err) => tasks.error('html', callback, err))
+      .on('end', () => tasks.success('html', onComplete.bind(null, callback)));
 });

@@ -1,38 +1,24 @@
-/*
- * Dependencies
- */
-var VinylFTP = require("vinyl-ftp");
-var Gulp = require("gulp");
+import ftp from 'vinyl-ftp';
+import gulp from 'gulp';
+import paths from '../modules/paths';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task('ftp', (callback) => {
 
-/*
- * Task
- */
-Gulp.task("ftp", function(callback) {
-
-  var config,
-      connection,
-      source;
-
-  config = require("../../config/tasks/ftp.json");
-  connection = new VinylFTP({
+  const config = require('../../config/tasks/ftp.json');
+  const connection = new ftp({
     host: config.host,
     user: config.username,
     pass: config.password,
     log: console.log
   });
-  source = paths.relocate(config.localRoot);
-  Gulp
-    .src(source + "/**", { base: source, buffer: false })
-      .on("error", tasks.error.bind(null, "ftp", callback))
+  const source = paths.relocate(config.localRoot);
+  gulp
+    .src(source + '/**', { base: source, buffer: false })
+      .on('error', tasks.error.bind(null, 'ftp', callback))
     .pipe(connection.newer(config.remoteRoot))
-      .on("error", tasks.error.bind(null, "ftp", callback))
+      .on('error', tasks.error.bind(null, 'ftp', callback))
     .pipe(connection.dest(config.remoteRoot))
-      .on("error", tasks.error.bind(null, "ftp", callback))
-      .on("end", tasks.success.bind(null, "ftp", callback));
+      .on('error', tasks.error.bind(null, 'ftp', callback))
+      .on('end', tasks.success.bind(null, 'ftp', callback));
 });
