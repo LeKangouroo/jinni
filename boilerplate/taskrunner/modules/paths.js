@@ -9,7 +9,7 @@ const relocateGlob = (glob) => {
   }
 
   // NOTE: if path is excluded
-  if (path.charAt(0) === '!')
+  if (glob.charAt(0) === '!')
   {
     return "!" + path.resolve("../", glob.substring(1));
   }

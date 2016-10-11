@@ -2,7 +2,7 @@ import config from '../../config/config';
 import gulp from 'gulp';
 import jsonServer from 'json-server';
 
-gulp.task('api', callback => {
+gulp.task('api', (callback) => {
 
   const server = jsonServer.create();
 

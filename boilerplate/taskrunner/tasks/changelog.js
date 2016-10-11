@@ -1,30 +1,17 @@
-/*
- * Node Dependencies
- */
-var Gulp = require("gulp");
+import argv from '../modules/argv';
+import logger from '../modules/logger';
+import git from '../modules/git';
+import gulp from 'gulp';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var c = require("../modules/console");
-var git = require("../modules/git");
-var tasks = require("../modules/tasks");
+gulp.task('changelog', (callback) => {
 
-/*
- * Tasks
- */
-Gulp.task("changelog", function(callback) {
+  git.changelog({ start: argv.start, end: argv.end || 'HEAD' }).then(
+    (outputString) => {
 
-  git.changelog({ start: argv.start, end: argv.end || "HEAD" }).then(
-    function(outputString) {
-
-      c.raw("\n\n\nCHANGELOG (" + new Date().toUTCString() + "):\n");
-      c.raw(outputString);
+      logger.raw(`\n\n\nCHANGELOG (${ new Date().toUTCString() }):\n`);
+      logger.raw(outputString);
     },
-    function(err) {
-      
-      tasks.error.call(null, "changelog", callback, err);
-    }
+    (err) => tasks.error('changelog', callback, err)
   );
 });
