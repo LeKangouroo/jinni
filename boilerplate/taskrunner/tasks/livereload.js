@@ -1,30 +1,16 @@
-/*
- * Node Dependencies
- */
-var BrowserSync = require("browser-sync").create();
-var Gulp = require("gulp");
+import browserSync from 'browser-sync';
+import config from '../../config/config';
+import gulp from 'gulp';
+import paths from '../modules/paths';
 
-/*
- * Globals
- */
-global.browserSync = BrowserSync;
+const b = browserSync.create();
 
-/*
- * Modules
- */
-var config = require("../../config/config");
-var paths = require("../modules/paths");
+global.browserSync = b;
 
-/*
- * Task
- */
-Gulp.task("livereload", function(callback) {
+gulp.task('livereload', (callback) => {
 
-  var cfg;
+  const cfg = config.nodeModules.browserSync;
 
-  cfg = config.nodeModules.browserSync;
-  cfg.server.baseDir = cfg.server.baseDir.map(function(path) {
-    return paths.relocate(path);
-  });
-  BrowserSync.init(cfg, callback);
+  cfg.server.baseDir = cfg.server.baseDir.map((path) => paths.relocate(path));
+  b.init(cfg, callback);
 });

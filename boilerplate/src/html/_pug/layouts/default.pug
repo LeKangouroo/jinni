@@ -6,10 +6,11 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     block title
       title Titre de la page
-    include ../includes/common/metas.jade
+    include ../includes/common/metas
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
     script(src="js/vendors.js?bust=@@CACHE_BUST")
     script(src="js/main.js?bust=@@CACHE_BUST")
   body
-    main#main
-      block content
+    div#app
+      main#main
+        block content
