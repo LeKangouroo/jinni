@@ -12,7 +12,7 @@ gulp.task("images", (callback) => {
   const src = paths.relocate(config.common.paths.sources.images);
   const dest = paths.relocate(config.common.paths.builds.images[argv.mode]);
 
-  imagemin(src, dest, {
+  imagemin([src], dest, {
     plugins: [
       imageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
       imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)

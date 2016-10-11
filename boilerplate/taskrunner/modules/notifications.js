@@ -12,9 +12,8 @@ const DEFAULT_OPTIONS = {
 
 export const notify = (options) => {
 
-  let icon;
+  const icon = paths.relocate(`taskrunner/assets/images/notifications/${options.icon}.png`);
 
-  icon = paths.relocate(`gulp/assets/images/notifications/${options.icon}.png`);
   try
   {
     fs.accessSync(icon, fs.F_OK);
@@ -22,7 +21,8 @@ export const notify = (options) => {
   }
   catch (e)
   {
-    logger.error(e);
+    options.icon = null;
+    //logger.error(e);
   }
   notifier.notify(assign({}, DEFAULT_OPTIONS, options), (err) => {
 

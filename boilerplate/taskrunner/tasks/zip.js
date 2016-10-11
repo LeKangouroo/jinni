@@ -1,34 +1,22 @@
-/*
- * Dependencies
- */
-var Gulp = require("gulp");
-var Gzip = require("gulp-gzip");
-var Tar = require("gulp-tar");
+import gulp from 'gulp';
+import gzip from 'gulp-gzip';
+import paths from '../modules/paths';
+import tar from 'gulp-tar';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task('zip', (callback) => {
 
-/*
- * Task
- */
-Gulp.task("zip", function(callback) {
+  const buildData = require(paths.relocate('dist/build.json'));
+  const filename = `${buildData.name}_${buildData.env}_${buildData.date}.tar`;
 
-  var buildData,
-      filename;
-
-  buildData = require(paths.relocate("dist/build.json"));
-  filename = `${buildData.name}_${buildData.env}_${buildData.date}.tar`;
-  Gulp
-    .src(paths.relocate("dist/**"))
-      .on("error", tasks.error.bind(null, "zip", callback))
-    .pipe(Tar(filename))
-      .on("error", tasks.error.bind(null, "zip", callback))
-    .pipe(Gzip())
-      .on("error", tasks.error.bind(null, "zip", callback))
-    .pipe(Gulp.dest(paths.relocate("./")))
-      .on("error", tasks.error.bind(null, "zip", callback))
-      .on("end", tasks.success.bind(null, "zip", callback));
+  gulp
+    .src(paths.relocate('dist/**'))
+      .on('error', (err) => tasks.error('zip', callback, err))
+    .pipe(tar(filename))
+      .on('error', (err) => tasks.error('zip', callback, err))
+    .pipe(gzip())
+      .on('error', (err) => tasks.error('zip', callback, err))
+    .pipe(gulp.dest(paths.relocate('./')))
+      .on('error', (err) => tasks.error('zip', callback, err))
+      .on('end', () => tasks.success('zip', callback));
 });

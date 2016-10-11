@@ -1,45 +1,29 @@
-/*
- * Node Dependencies
- */
-var Del = require("del");
-var Gulp = require("gulp");
-var SvgSprite = require("gulp-svg-sprite");
+import argv from '../modules/argv';
+import config from '../../config/config';
+import del from 'del';
+import gulp from 'gulp';
+import paths from '../modules/paths';
+import svgSprite from 'gulp-svg-sprite';
+import tasks from '../modules/tasks';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+const onComplete = (callback) => {
 
-/*
- * Internal functions
- */
-function onTaskComplete(callback)
-{
-  tasks.success("svg", callback);
+  tasks.success('svg', callback);
   global.browserSync.reload();
-}
+};
 
-/*
- * Task
- */
-Gulp.task("svg", function(callback) {
+gulp.task('svg', (callback) => {
 
-  var destination,
-      output,
-      sources;
+  const destination = paths.relocate(config.common.paths.builds.svg[argv.mode]);
+  const output = destination + '/' + config.nodeModules.svgSprite.mode.symbol.sprite;
+  const sources = paths.relocate(config.common.paths.sources.svg);
 
-  destination = paths.relocate(config.common.paths.builds.svg[argv.mode]);
-  output = destination + "/" + config.nodeModules.svgSprite.mode.symbol.sprite;
-  sources = paths.relocate(config.common.paths.sources.svg);
-  Del.sync(output, {force: true});
-  Gulp
+  del.sync(output, {force: true});
+  gulp
     .src(sources)
-    .pipe(SvgSprite(config.nodeModules.svgSprite))
-      .on("error", tasks.error.bind(null, "svg", callback))
-    .pipe(Gulp.dest(destination))
-      .on("error", tasks.error.bind(null, "svg", callback))
-      .on("end", onTaskComplete.bind(null, callback));
+    .pipe(svgSprite(config.nodeModules.svgSprite))
+      .on('error', (err) => tasks.error('svg', callback))
+    .pipe(gulp.dest(destination))
+      .on('error', (err) => tasks.error('svg', callback))
+      .on('end', () => onComplete(callback));
 });

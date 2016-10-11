@@ -1,28 +1,18 @@
-/*
- * Dependencies
- */
-var Gulp = require("gulp");
-var Todo = require("gulp-todo");
+import argv from '../modules/argv';
+import config from '../../config/config';
+import gulp from 'gulp';
+import paths from '../modules/paths';
+import tasks from '../modules/tasks';
+import todo from 'gulp-todo';
 
-/*
- * Modules
- */
-var argv = require("../modules/argv");
-var config = require("../../config/config");
-var paths = require("../modules/paths");
-var tasks = require("../modules/tasks");
+gulp.task('todos', (callback) => {
 
-/*
- * Task
- */
-Gulp.task("todos", function(callback) {
-
-  Gulp
+  gulp
     .src(paths.relocate(config.common.paths.sources.todos))
-      .on("error", tasks.error.bind(null, "todos", callback))
-    .pipe(Todo({fileName: "TODO.md"}))
-      .on("error", tasks.error.bind(null, "todos", callback))
-    .pipe(Gulp.dest(paths.relocate(config.common.paths.builds.todos[argv.mode])))
-      .on("error", tasks.error.bind(null, "todos", callback))
-      .on("end", tasks.success.bind(null, "todos", callback));
+      .on('error', (err) => tasks.error('todos', callback, err))
+    .pipe(todo({fileName: 'TODO.md'}))
+      .on('error', (err) => tasks.error('todos', callback, err))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.builds.todos[argv.mode])))
+      .on('error', (err) => tasks.error('todos', callback, err))
+      .on('end', () => tasks.success('todos', callback));
 });
