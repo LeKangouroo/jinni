@@ -1,6 +1,6 @@
-// Global styles
+@import "variables/variables";
+@import "vendors/vendors";
 @import "mixins/mixins";
 @import "base/base";
-@import "vendors/vendors";
 @import "ui/ui";
 @import "vuejs/vuejs";

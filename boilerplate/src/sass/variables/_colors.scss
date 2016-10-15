@@ -1,0 +1,16 @@
+/*
+ * Greyscales palette
+ */
+$color-black:     #000000;
+$color-grey-5pc:  darken(#FFFFFF, 5%);
+$color-grey-15pc: darken(#FFFFFF, 15%);
+$color-grey-30pc: darken(#FFFFFF, 30%);
+$color-grey-50pc: darken(#FFFFFF, 50%);
+$color-grey-70pc: darken(#FFFFFF, 70%);
+$color-white:     #FFFFFF;
+
+/*
+ * Semantic palette
+ */
+$color-error: #CD0000;
+$color-success: #007C09;
