@@ -21,7 +21,7 @@
 
 .radio
 {
-  display:       inline-flex;
+  display: inline-flex;
     align-items: center;
 }
 .radio-input
@@ -34,7 +34,7 @@
   {
     &::after
     {
-      opacity:    1;
+      opacity: 1;
       visibility: visible;
     }
   }
@@ -44,7 +44,7 @@
   & ~ .radio-ui
   {
     border-color: $color-error;
-    
+
     &::after
     {
       background: $color-error;
@@ -57,31 +57,35 @@
 }
 .radio-ui
 {
-  background:    #FFFFFF;
-  border:        1px solid $color-black;
+  background: #FFFFFF;
+  border: 1px solid $color-black;
   border-radius: 50%;
-  box-sizing:    content-box;
-  display:       block;
-  height:        20px;
-  position:      relative;
-  transition:    all 0.3s ease;
-  width:         20px;
+  box-sizing: content-box;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 20px;
+  width: 20px;
+
+  position: relative;
+  transition: all 0.3s ease;
 
   &::after
   {
-    background:    #000000;
+    background: #000000;
     border-radius: 50%;
-    content:       "";
-    display:       block;
-    height:        70%;
-    opacity:       0;
-    position:      absolute;
-      left:        50%;
-      top:         50%;
-    transform:     translateX(-50%) translateY(-50%);
-    transition:    all 0.3s ease;
-    visibility:    hidden;
-    width:         70%;
+    content: "";
+    display: block;
+    height: 70%;
+    opacity: 0;
+    visibility: hidden;
+    width: 70%;
+
+    position: absolute;
+      left: 50%;
+      top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: all 0.3s ease;
   }
 }
 .radio-label
