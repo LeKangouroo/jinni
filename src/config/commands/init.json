@@ -1,0 +1,77 @@
+{
+  "common": {
+
+    "paths": {
+
+      "renamings": [
+        {
+          "oldPath": "gitignore",
+          "newPath": ".gitignore"
+        },
+        {
+          "oldPath": "npmrc",
+          "newPath": ".npmrc"
+        }
+      ]
+    }
+  },
+  "classic": {
+
+    "nodeModules": {
+
+      "deletions": [
+        "rlite-router",
+        "vue"
+      ]
+    },
+
+    "paths": {
+
+      "deletions": [
+        "src/js/core/router.js",
+        "src/js/main-spa.js",
+        "src/sass/main-spa.scss",
+        "src/sass/vuejs/**",
+        "src/vuejs/**"
+      ],
+
+      "renamings": [
+        {
+          "oldPath": "src/js/main-classic.js",
+          "newPath": "src/js/main.js"
+        },
+        {
+          "oldPath": "src/sass/main-classic.scss",
+          "newPath": "src/sass/main.scss"
+        }
+      ]
+    }
+  },
+
+  "spa": {
+
+    "nodeModules": {
+
+      "deletions": []
+    },
+
+    "paths": {
+
+      "deletions": [
+        "src/js/main-classic.js",
+        "src/sass/main-classic.scss"
+      ],
+
+      "renamings": [
+        {
+          "oldPath": "src/js/main-spa.js",
+          "newPath": "src/js/main.js"
+        },
+        {
+          "oldPath": "src/sass/main-spa.scss",
+          "newPath": "src/sass/main.scss"
+        }
+      ]
+    }
+  }
+}
