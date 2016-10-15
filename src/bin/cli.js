@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var argv = require('../usages/default').argv;
+const usage = require('../usages/default');
+const argv = usage.argv;
+const cmd = argv._[0];
+const script = `../scripts/${cmd}`;
 
-var cmd = argv._[0];
-
-require('../scripts/' + cmd);
+require(script);

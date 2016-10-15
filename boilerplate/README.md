@@ -2,11 +2,6 @@
 
 * [NodeJS](https://nodejs.org) (v6.7.x LTS)
 
-# Installation
-
-```
-npm install
-```
 
 # Available commands
 
