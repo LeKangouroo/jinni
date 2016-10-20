@@ -16,7 +16,7 @@ gulp.task('pug', (callback) => {
 
   const cfg = config.nodeModules.pug;
 
-  cfg.locals = { BUILD_MODE: argv.mode };
+  cfg.locals = { BUILD_MODE: argv.mode, ENV: argv.env };
   gulp.src(paths.relocate(config.common.paths.sources.pug.default))
       .on('error', (err) => tasks.error('pug', callback, err))
     .pipe(pug(cfg))
