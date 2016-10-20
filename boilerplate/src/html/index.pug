@@ -8,4 +8,4 @@ block title
   title [@@ENV] Accueil
 
 block content
-  | default content
+  component(:is='currentSection')
