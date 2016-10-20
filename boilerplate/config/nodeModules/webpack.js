@@ -65,6 +65,11 @@ module.exports = function() {
           test:    /\.html$/,
           exclude: /(node_modules)/,
           loader:  "html-loader?attrs=false"
+        },
+        {
+          test:    /\.vue$/,
+          exclude: /(node_modules)/,
+          loader:  "vue-loader"
         }
       ]
     },
