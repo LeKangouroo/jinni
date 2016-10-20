@@ -1,42 +1,39 @@
-/*
- * Dependencies
- */
-import "core/polyfills";
-import Events from "modules/core/events.js";
-import SVG4Everybody from "svg4everybody";
-import Vue from "vue";
-import * as router from "core/router.js";
-import * as sections from "vuejs/sections/sections.js";
+import 'core/polyfills';
+import * as router from 'core/router.js';
+import events from 'modules/core/events.js';
+import homeSection from 'vuejs/sections/home/home.vue';
+import SVG4Everybody from 'svg4everybody';
+import Vue from 'vue';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
 
   SVG4Everybody();
   new Vue({
 
-    el: "#app",
+    el: '#app',
     data: {
       currentSection: null,
       isLoading: true
     },
-    mounted: function() {
+    components: {
+      homeSection
+    },
+    mounted() {
 
-      sections.init();
-
-      Events.on("section:destroyed", () => {
+      events.on('section:destroyed', () => {
 
         this.isLoading = true;
       });
 
-      Events.on("section:loaded", () => {
+      events.on('section:loaded', () => {
 
         this.isLoading = false;
         SVG4Everybody();
       });
 
-      Events.on("router:update", (route) => {
+      events.on('router:update', (route) => {
 
-        this.currentSection = route.name;
-        Events.emit("section:load", { route: route });
+        this.currentSection = `${route.name}-section`;
       });
 
       router.init();
