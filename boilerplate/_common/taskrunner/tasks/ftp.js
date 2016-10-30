@@ -1,3 +1,4 @@
+import argv from '../modules/argv';
 import ftp from 'vinyl-ftp';
 import gulp from 'gulp';
 import paths from '../modules/paths';
@@ -5,7 +6,7 @@ import tasks from '../modules/tasks';
 
 gulp.task('ftp', (callback) => {
 
-  const config = require('../../config/tasks/ftp.json');
+  const config = require('../../config/tasks/ftp.json')[argv.env];
   const connection = new ftp({
     host: config.host,
     user: config.username,
