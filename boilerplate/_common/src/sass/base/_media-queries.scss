@@ -106,3 +106,10 @@ $mq-list:
     @content;
   }
 }
+@mixin print
+{
+  @media print
+  {
+    @content;
+  }
+}
