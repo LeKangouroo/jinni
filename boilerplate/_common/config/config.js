@@ -1,27 +1,38 @@
-module.exports = {
+import api from './tasks/api.json';
+import autoPrefixer from './nodeModules/auto-prefixer.json';
+import browserSync from './nodeModules/browser-sync.json';
+import clean from './tasks/clean.json';
+import JPEGRecompress from './nodeModules/imagemin/jpeg-recompress.json';
+import jshint from './nodeModules/jshint.json';
+import jsonServerDB from './nodeModules/json-server/db.json';
+import paths from './common/paths.json';
+import PNGQuant from './nodeModules/imagemin/pngquant.json';
+import pug from './nodeModules/pug.json';
+import replacements from './common/replacements';
+import sass from './nodeModules/sass.json';
+import svgSprite from './nodeModules/svg-sprite.json';
+import versioning from './common/versioning.json';
+import webpack from './nodeModules/webpack';
+
+export default {
   common: {
-    paths: require("./common/paths.json"),
-    replacements: require('./common/replacements'),
-    versioning: require('./common/versioning.json')
+    paths,
+    replacements,
+    versioning
   },
   nodeModules: {
-    autoPrefixer: require("./nodeModules/auto-prefixer.json"),
-    browserSync: require("./nodeModules/browser-sync.json"),
-    imagemin: {
-      PNGQuant: require("./nodeModules/imagemin/pngquant.json"),
-      JPEGRecompress: require("./nodeModules/imagemin/jpeg-recompress.json")
-    },
-    pug: require("./nodeModules/pug.json"),
-    jshint: require("./nodeModules/jshint.json"),
-    jsonServer: {
-      db: require("./nodeModules/json-server/db.json")
-    },
-    sass: require("./nodeModules/sass.json"),
-    svgSprite: require("./nodeModules/svg-sprite.json"),
-    webpack: require("./nodeModules/webpack.js")
+    autoPrefixer,
+    browserSync,
+    imagemin: { PNGQuant, JPEGRecompress },
+    pug,
+    jshint,
+    jsonServer: { db: jsonServerDB },
+    sass,
+    svgSprite,
+    webpack
   },
   tasks: {
-    api: require("./tasks/api.json"),
-    clean: require("./tasks/clean.json")
+    api,
+    clean
   }
 };

@@ -1,75 +1,72 @@
 /*
  * Dependencies
  */
-var Glob    = require("glob");
-var Path    = require("path");
-var Webpack = require("webpack");
-
-/*
- * Modules
- */
-var argv  = require("../../taskrunner/modules/argv");
-var paths = require("../common/paths.json");
+import argv  from '../../taskrunner/modules/argv';
+import glob from 'glob';
+import path from 'path';
+import paths from '../common/paths.json';
+import webpack from 'webpack';
 
 /*
  * Constants
  */
-const PROJECT_DIR = Path.resolve(__dirname, "../../");
+const PROJECT_DIR = path.resolve(__dirname, '../../');
+const WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG = {
+  name: 'common',
+  minChunks: (module) => isVendor(module),
+  filename: 'common.js'
+};
 
 /*
  * Functions
  */
-function getEntries(globPath)
-{
-  var entries,
-      entry,
-      files,
-      i;
+const isVendor = (module) => {
 
-  files = Glob.sync(globPath);
-  entries = {};
-  for (i = 0; i < files.length; i++)
+  return module.resource && module.resource.indexOf('node_modules') > -1;
+};
+
+const getEntries = (globPath) => {
+
+  const files = glob.sync(globPath);
+  const entries = {};
+
+  for (let i = 0; i < files.length; i++)
   {
-    entry = files[i];
-    entries[Path.basename(entry, Path.extname(entry))] = entry;
+    let entry = files[i];
+    entries[path.basename(entry, path.extname(entry))] = entry;
   }
   return entries;
-}
+};
 
-/*
- * Webpack configuration
- */
-module.exports = function() {
+const getConfiguration = () => {
 
-  var config;
-
-  config = {
-    entry: getEntries(PROJECT_DIR + "/" + paths.sources.js.default),
+  const config = {
+    entry: getEntries(PROJECT_DIR + '/' + paths.sources.js.default),
     output: {
-      filename: "[name].js"
+      filename: '[name].js'
     },
     module: {
       loaders: [
         {
           test:    /\.js$/,
           exclude: /(node_modules)/,
-          loader:  "babel-loader",
-          query:   { cacheDirectory: PROJECT_DIR + "/tmp/_babel" }
+          loader:  'babel-loader',
+          query:   { cacheDirectory: PROJECT_DIR + '/tmp/_babel' }
         },
         {
           test:    /\.json$/,
           exclude: /(node_modules)/,
-          loader:  "json-loader"
+          loader:  'json-loader'
         },
         {
           test:    /\.html$/,
           exclude: /(node_modules)/,
-          loader:  "html-loader?attrs=false"
+          loader:  'html-loader?attrs=false'
         },
         {
           test:    /\.vue$/,
           exclude: /(node_modules)/,
-          loader:  "vue-loader"
+          loader:  'vue-loader'
         }
       ]
     },
@@ -79,35 +76,34 @@ module.exports = function() {
         /*
          * Directories
          */
-        core: PROJECT_DIR + "/src/js/core",
-        modules: PROJECT_DIR + "/src/js/modules",
-        vuejs: PROJECT_DIR + "/src/vuejs",
+        core: PROJECT_DIR + '/src/js/core',
+        modules: PROJECT_DIR + '/src/js/modules',
+        vuejs: PROJECT_DIR + '/src/vuejs',
 
         // TODO: remove this line when VueJS code architecture has been updated
         vue: 'vue/dist/vue.js'
       }
     }
   };
-  if (argv.mode === "distributable")
+  if (argv.mode === 'distributable')
   {
-    config.devtool = "#source-map";
-    config.entry.vendors = ["rlite-router", "svg4everybody", "vue", "wolfy87-eventemitter"];
     config.module.loaders.push({
       test: /\.js$/,
       exclude: /(node_modules)/,
-      loader: "strip-loader?strip[]=console.log"
+      loader: 'strip-loader?strip[]=console.log'
     });
     config.plugins = [
-      new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" }),
-      new Webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.CommonsChunkPlugin(WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG),
+      new webpack.optimize.UglifyJsPlugin()
     ];
   }
   else
   {
-    config.devtool = "#eval-cheap-module-source-map";
     config.plugins = [
-      new Webpack.optimize.CommonsChunkPlugin({ name: "vendors", filename: "vendors.js" })
+      new webpack.optimize.CommonsChunkPlugin(WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG)
     ];
   }
   return config;
 };
+
+export default getConfiguration;
