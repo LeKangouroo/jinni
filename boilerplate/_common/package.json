@@ -23,6 +23,7 @@
     "gulp": "3.9.1",
     "gulp-gzip": "1.4.0",
     "gulp-imagemin": "2.4.0",
+    "gulp-jasmine": "2.4.2",
     "gulp-jshint": "2.0.1",
     "gulp-postcss": "6.2.0",
     "gulp-pug": "3.1.0",
@@ -36,6 +37,7 @@
     "html-loader": "0.4.4",
     "imagemin-jpeg-recompress": "4.3.0",
     "imagemin-pngquant": "4.2.0",
+    "jasmine-reporters": "2.2.0",
     "jshint": "2.9.3",
     "jshint-stylish": "2.2.1",
     "json-loader": "0.5.4",
@@ -47,6 +49,7 @@
     "normalize.css": "5.0.0",
     "rlite-router": "1.1.3",
     "run-sequence": "1.2.2",
+    "selenium-webdriver": "3.0.0",
     "strip-loader": "0.1.2",
     "svg4everybody": "2.1.0",
     "validatinator": "1.3.3",
@@ -68,6 +71,7 @@
     "deploy:prod": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js ftp --env=production",
     "dev": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js dev",
     "email": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js email",
+    "tests:instrumented": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js instrumented-tests",
     "todos": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js todos",
     "zip": "node_modules/gulp/bin/gulp.js --gulpfile taskrunner/gulpfile.babel.js zip"
   }
