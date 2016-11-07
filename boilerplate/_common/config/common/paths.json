@@ -8,6 +8,7 @@
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
+    "instrumentedTests": "tests/instrumented-tests/specs/*.js",
     "pug": {
       "default": [
         "!src/html/_pug{,/**}",
