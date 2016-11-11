@@ -23,7 +23,7 @@ gulp.task('email', (callback) => {
   const tpl = template(fs.readFileSync(paths.relocate(config.message.template)));
   const data = config.message.data;
 
-  git.changelog({ start: argv.start, end: argv.end || 'HEAD', format: 'html' }).then(
+  git.changelog({ start: argv['changelog-start'], end: argv['changelog-end'], format: 'html' }).then(
     (outputString) => {
 
       data.changelog = outputString;
