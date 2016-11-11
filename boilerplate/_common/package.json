@@ -71,7 +71,9 @@
     "deploy:prod": "gulp --gulpfile taskrunner/gulpfile.babel.js ftp --env=production",
     "dev": "npm run clean && gulp --gulpfile taskrunner/gulpfile.babel.js dev",
     "email": "gulp --gulpfile taskrunner/gulpfile.babel.js email",
+    "tests": "npm run tests:unit && npm run tests:instrumented",
     "tests:instrumented": "gulp --gulpfile taskrunner/gulpfile.babel.js instrumented-tests",
+    "tests:unit": "gulp --gulpfile taskrunner/gulpfile.babel.js unit-tests",
     "todos": "gulp --gulpfile taskrunner/gulpfile.babel.js todos",
     "zip": "gulp --gulpfile taskrunner/gulpfile.babel.js zip"
   }
