@@ -1,3 +1,18 @@
+import CustomException from './custom-exception';
+
+class RequestException extends CustomException
+{
+  constructor(xhr) {
+
+    super(xhr.statusText);
+    this.xhr = xhr;
+  }
+  getXHR() {
+
+    return this.xhr;
+  }
+}
+
 export default class Request
 {
   constructor(url, method = "GET", body = null, headers = {})
@@ -8,11 +23,11 @@ export default class Request
     this.url = url;
     this.xhr = new XMLHttpRequest();
   }
-  
+
   ///////////////////////////////////////////////////////////////
   // INSTANCE METHODS
   ///////////////////////////////////////////////////////////////
-  
+
   send()
   {
     return new Promise((resolve, reject) => {
@@ -29,9 +44,9 @@ export default class Request
 
         if (this.xhr.readyState === 4)
         {
-          if (this.xhr.status >= 400 || this.xhr.status === 0)
+          if (this.xhr.status >= 500 || this.xhr.status === 0)
           {
-            reject(this.xhr);
+            reject(new RequestException(this.xhr));
           }
           else
           {
@@ -78,22 +93,22 @@ export default class Request
     this.url = url;
     return this;
   }
-  
+
   ///////////////////////////////////////////////////////////////
   // STATIC METHODS
   ///////////////////////////////////////////////////////////////
-  
+
   static serializeURLParams(params)
   {
     var paramsArray;
-    
+
     paramsArray = [];
     params.forEach(function(item) {
-      
+
       if (item[1] instanceof Array)
       {
         item[1].forEach(function(subItem) {
-          
+
           paramsArray.push(`${item[0]}[]=${subItem}`);
         });
       }

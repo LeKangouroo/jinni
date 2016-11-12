@@ -8,6 +8,7 @@
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
+    "instrumentedTests": "tests/instrumented-tests/specs/*.js",
     "pug": {
       "default": [
         "!src/html/_pug{,/**}",
@@ -34,7 +35,8 @@
     "todos": [
       "!src/vendors/**",
       "src/**/*.{js,html,pug,scss,sass}"
-    ]
+    ],
+    "unitTests": "tests/unit-tests/specs/*.js"
   },
   "builds": {
     "css": {

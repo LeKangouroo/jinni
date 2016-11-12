@@ -1,4 +1,4 @@
-# VERSION <%- version %> CHANGELOG (<%- datetime %>)
+# <% if (version) { %>VERSION <%- version %> <%}%>CHANGELOG (<%- datetime %>)
 <% if (commits.hotfixes.length > 0) { %>
 ## Bug fixes:
 <% _.forEach(commits.hotfixes, function(hotfix) {%>

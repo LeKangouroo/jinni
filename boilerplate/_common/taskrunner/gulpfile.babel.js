@@ -1,7 +1,7 @@
-var fs      = require('fs');
-var tasks   = fs.readdirSync('./tasks/');
+import './usage/usage';
+import fs from 'fs';
+
+const tasks = fs.readdirSync('./tasks/');
 
 // Tasks loading
-tasks.forEach(function(task) {
-    require('./tasks/' + task);
-});
+tasks.forEach((task) => require('./tasks/' + task));

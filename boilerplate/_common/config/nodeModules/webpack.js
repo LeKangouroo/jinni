@@ -41,6 +41,7 @@ const getEntries = (globPath) => {
 const getConfiguration = () => {
 
   const config = {
+    devtool: 'source-map',
     entry: getEntries(PROJECT_DIR + '/' + paths.sources.js.default),
     output: {
       filename: '[name].js'

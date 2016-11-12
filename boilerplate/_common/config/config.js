@@ -2,6 +2,7 @@ import api from './tasks/api.json';
 import autoPrefixer from './nodeModules/auto-prefixer.json';
 import browserSync from './nodeModules/browser-sync.json';
 import clean from './tasks/clean.json';
+import jasmine from './nodeModules/jasmine';
 import JPEGRecompress from './nodeModules/imagemin/jpeg-recompress.json';
 import jshint from './nodeModules/jshint.json';
 import jsonServerDB from './nodeModules/json-server/db.json';
@@ -25,6 +26,7 @@ export default {
     browserSync,
     imagemin: { PNGQuant, JPEGRecompress },
     pug,
+    jasmine,
     jshint,
     jsonServer: { db: jsonServerDB },
     sass,

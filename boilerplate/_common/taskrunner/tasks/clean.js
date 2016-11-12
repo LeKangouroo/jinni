@@ -28,10 +28,15 @@ const onSuccess = (deletedItems, callback) => {
 
 gulp.task('clean', (callback) => {
 
-  const targets = paths.relocate(config.tasks.clean.paths[argv.mode]);
+  let targets = paths.relocate(config.tasks.clean.paths.development);
+
   const options = {force: true};
 
+  if (argv.dist)
+  {
+    targets = targets.concat(paths.relocate(config.tasks.clean.paths.distributable));
+  }
   del(targets, options)
-    .then((deletedItems) => onSuccess(deletedItems, callback))
-    .catch((err) => onError(err, callback));
+  .then((deletedItems) => onSuccess(deletedItems, callback))
+  .catch((err) => onError(err, callback));
 });

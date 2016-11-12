@@ -6,7 +6,7 @@ import tasks from '../modules/tasks';
 
 gulp.task('changelog', (callback) => {
 
-  git.changelog({ start: argv.start, end: argv.end || 'HEAD', format: argv.format || 'markdown' }).then(
+  git.changelog({ start: argv.start, end: argv.end, format: argv.format }).then(
     (outputString) => logger.raw(outputString),
     (err) => tasks.error('changelog', callback, err)
   );
