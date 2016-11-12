@@ -113,6 +113,8 @@ const generateBoilerplate = (params) => {
         {
           return reject(err);
         }
+        fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
+        fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
         resolve(params);
       });
     });
