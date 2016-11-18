@@ -1,17 +1,4 @@
-import CustomException from './custom-exception';
-
-class RequestException extends CustomException
-{
-  constructor(xhr) {
-
-    super(xhr.statusText);
-    this.xhr = xhr;
-  }
-  getXHR() {
-
-    return this.xhr;
-  }
-}
+import RequestException from './request-exception';
 
 export default class Request
 {
@@ -44,9 +31,9 @@ export default class Request
 
         if (this.xhr.readyState === 4)
         {
-          if (this.xhr.status >= 500 || this.xhr.status === 0)
+          if (this.xhr.status === 0)
           {
-            reject(new RequestException(this.xhr));
+            reject(new RequestException('Unexpected XMLHTTPRequest error', this.xhr));
           }
           else
           {
