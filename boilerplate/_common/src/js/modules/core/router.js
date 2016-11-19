@@ -1,15 +1,7 @@
 /* globals Location: false */
 
-import Rlite from "rlite-router";
-
-class RouterException extends Error
-{
-  constructor(message)
-  {
-    super(message);
-    this.name = "RouterException";
-  }
-}
+import Rlite from 'rlite-router';
+import RouterException from './router-exception';
 
 export default class Router
 {
@@ -42,6 +34,14 @@ export default class Router
   // PUBLIC INSTANCE METHODS
   ///////////////////////////////////////////////////////////////////////
 
+  changeRoute(route)
+  {
+    this.location.hash = '#' + route;
+  }
+  getQueryParams()
+  {
+    return Router.getQueryParams(this.location.search);
+  }
   init()
   {
     this.rlite = new Rlite();

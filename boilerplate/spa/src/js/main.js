@@ -1,5 +1,5 @@
 import 'core/polyfills';
-import * as router from 'core/router.js';
+import router from 'core/router.js';
 import events from 'modules/core/events.js';
 import homeSection from 'vuejs/sections/home/home.vue';
 import SVG4Everybody from 'svg4everybody';
