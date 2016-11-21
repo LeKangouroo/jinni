@@ -66,7 +66,7 @@
     "api": "gulp --gulpfile taskrunner/gulpfile.babel.js api",
     "build:preprod": "npm run fclean && gulp --gulpfile taskrunner/gulpfile.babel.js build --env=pre-production --mode=distributable",
     "build:prod": "npm run fclean && gulp --gulpfile taskrunner/gulpfile.babel.js build --env=production --mode=distributable",
-    "chlg": "gulp --gulpfile taskrunner/gulpfile.babel.js changelog",
+    "changelog": "gulp --gulpfile taskrunner/gulpfile.babel.js changelog",
     "clean": "gulp --gulpfile taskrunner/gulpfile.babel.js clean",
     "deploy:preprod": "gulp --gulpfile taskrunner/gulpfile.babel.js ftp --env=pre-production",
     "deploy:prod": "gulp --gulpfile taskrunner/gulpfile.babel.js ftp --env=production",
