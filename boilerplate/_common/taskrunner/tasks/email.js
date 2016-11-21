@@ -21,7 +21,7 @@ gulp.task('email', (callback) => {
   ];
   const transporter = nodemailer.createTransport(transportData.join(''));
   const tpl = template(fs.readFileSync(paths.relocate(config.message.template)));
-  const data = config.message.data;
+  const data = config.message.data[argv.env];
 
   git.changelog({ start: argv['changelog-start'], end: argv['changelog-end'], format: 'html' }).then(
     (outputString) => {
@@ -30,7 +30,7 @@ gulp.task('email', (callback) => {
       const mailOptions = {
         from: config.message.sender,
         to: config.message.recipients.join(','),
-        subject: config.message.subject,
+        subject: config.message.subject[argv.env],
         html: tpl(data)
       };
       transporter.sendMail(mailOptions, (error) => {

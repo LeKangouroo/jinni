@@ -12,10 +12,18 @@
     "recipients": [
       "a@example.com"
     ],
-    "subject": "Subject",
+    "subject": {
+      "pre-production": "Subject pre-production",
+      "production": "Subject production"
+    },
     "template": "taskrunner/templates/email.html",
     "data": {
-      "key": "value"
+      "pre-production": {
+        "key": "value pre-production"
+      },
+      "production": {
+        "key": "value production"
+      }
     }
   }
 }
