@@ -73,6 +73,7 @@
     "dev": "npm run clean && gulp --gulpfile taskrunner/gulpfile.babel.js dev",
     "email": "gulp --gulpfile taskrunner/gulpfile.babel.js email",
     "fclean": "npm run clean -- --dist",
+    "help": "gulp --gulpfile taskrunner/gulpfile.babel.js --help",
     "tests": "npm run tests:unit && npm run tests:instrumented",
     "tests:instrumented": "gulp --gulpfile taskrunner/gulpfile.babel.js instrumented-tests",
     "tests:unit": "gulp --gulpfile taskrunner/gulpfile.babel.js unit-tests",
