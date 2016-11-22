@@ -1,3 +1,4 @@
+import api from './commands/api';
 import build from './commands/build';
 import changelog from './commands/changelog';
 import clean from './commands/clean';
@@ -10,6 +11,7 @@ import yargs from 'yargs';
 const usage = yargs
   .locale('en')
   .usage('Usage: $0 <command> [options]')
+  .command(api)
   .command(build)
   .command(changelog)
   .command(clean)

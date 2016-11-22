@@ -42,7 +42,7 @@ $> npm run zip
 To get Git changelog
 
 ```shell
-$> npm run chlg -- --start=<commit-id>
+$> npm run changelog -- --start=<commit-id>
 ```
 
 To send release email

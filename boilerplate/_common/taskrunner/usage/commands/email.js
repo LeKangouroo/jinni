@@ -1,3 +1,5 @@
+import env from '../options/env';
+
 export default {
   command: 'email',
   describe: 'Sends release email',
@@ -11,6 +13,7 @@ export default {
       default: 'HEAD',
       describe: 'Git commit used as the ending point of the changelog',
       type: 'string'
-    }
+    },
+    env
   }
 };

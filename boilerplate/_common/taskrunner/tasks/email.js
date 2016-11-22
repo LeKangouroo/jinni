@@ -9,7 +9,7 @@ import template from 'lodash/template';
 
 gulp.task('email', (callback) => {
 
-  const config = require(paths.relocate('config/tasks/email.json'));
+  const config = require(paths.relocate('config/tasks/email.json')); // NOTE: this path should not go in config/config.js. This will cause an error if the file is missing.
   const transportData = [
     config.server.protocol,
     '://',
@@ -21,7 +21,7 @@ gulp.task('email', (callback) => {
   ];
   const transporter = nodemailer.createTransport(transportData.join(''));
   const tpl = template(fs.readFileSync(paths.relocate(config.message.template)));
-  const data = config.message.data;
+  const data = config.message.data[argv.env];
 
   git.changelog({ start: argv['changelog-start'], end: argv['changelog-end'], format: 'html' }).then(
     (outputString) => {
@@ -30,7 +30,7 @@ gulp.task('email', (callback) => {
       const mailOptions = {
         from: config.message.sender,
         to: config.message.recipients.join(','),
-        subject: config.message.subject,
+        subject: config.message.subject[argv.env],
         html: tpl(data)
       };
       transporter.sendMail(mailOptions, (error) => {
