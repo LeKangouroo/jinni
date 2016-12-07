@@ -1,6 +1,6 @@
 {
   "name": "jinni",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "A boilerplate generator for front end projects",
   "engines": {
     "node": "6.7.*"

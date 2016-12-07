@@ -9,6 +9,7 @@ doctype html
 html
   head
     meta(charset="UTF-8")
+    meta(name="robots", content="index,follow")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     if ENV === 'production'
@@ -17,9 +18,9 @@ html
       title [@@ENV] #{page.title}
     include ../includes/common/metas
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
-    script(src="js/common.js?bust=@@CACHE_BUST")
-    script(src="js/main.js?bust=@@CACHE_BUST")
   body
     div#app
-      main#main
+      main
         block content
+    script(src="js/common.js?bust=@@CACHE_BUST")
+    script(src="js/main.js?bust=@@CACHE_BUST")
