@@ -1,5 +1,6 @@
-[Home]: index.md
+[Documentation]: index.md
+[Home]: ../README.md
 
-[Home] > Project Structure
+[Home] > [Documentation] > Project Structure
 
 # Project Structure

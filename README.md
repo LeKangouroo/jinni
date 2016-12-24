@@ -1,3 +1,5 @@
+[documentation]: docs/index.md
+
 # What is Jinni?
 
 A boilerplate generator for front end projects.
@@ -17,5 +19,3 @@ npm install -g jinni
 # Documentation
 
 Check out the [documentation] for more details
-
-[documentation]: docs/index.md
