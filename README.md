@@ -6,7 +6,7 @@ Jinni is a boilerplate generator for front end projects.
 
 # Dependencies
 
-* [NodeJS](https://nodejs.org) (v6.x LTS)
+* [NodeJS](https://nodejs.org) (v6.7.x)
 
 # Installation
 
@@ -23,8 +23,3 @@ jin init
 ```
 
 Follow the instructions, then read the README in the current directory for more details.
-
-
-# Documentation
-
-Check out the [wiki](https://github.com/itadakimas/jinni/wiki) for the complete documentation
