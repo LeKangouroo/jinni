@@ -9,12 +9,12 @@ ES2015 transpiling, unit / behaviour tests running, and more. See the [Features]
 
 # Summary
 
-* [Installation]
+* [Getting Started]
 * [Commands]
 * [Features]
 * [Projet Structure]
 
 [Commands]: commands.md
 [Features]: features.md
-[Installation]: installation.md
+[Getting Started]: getting-started.md
 [Projet Structure]: project-structure.md
