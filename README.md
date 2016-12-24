@@ -1,8 +1,8 @@
 # What is Jinni?
 
-![Dessin animé Aladdin](http://i.giphy.com/tpTOw6sljB2U.gif)
+A boilerplate generator for front end projects.
 
-Jinni is a boilerplate generator for front end projects.
+![Scene for Disney's Aladdin movie](http://i.giphy.com/tpTOw6sljB2U.gif)
 
 # Dependencies
 
@@ -14,17 +14,8 @@ Jinni is a boilerplate generator for front end projects.
 npm install -g jinni
 ```
 
-# Getting started
-
-To create a new project in the current working directory, you can use the following command:
-
-```
-jin init
-```
-
-Follow the instructions, then read the README in the current directory for more details.
-
-
 # Documentation
 
-Check out the [wiki](https://github.com/itadakimas/jinni/wiki) for the complete documentation
+Check out the [documentation] for more details
+
+[documentation]: docs/index.md
