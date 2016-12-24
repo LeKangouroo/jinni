@@ -16,7 +16,4 @@ That's it ! All you have to do now is to read the README.me file added in the cu
 
 <br>
 
-For the full list of available commands, use the `jin --help` command or checkout the [list of available commands].
-
-
-[list of available commands]: commands.md
+For the full list of available commands, use the `jin --help` command.
