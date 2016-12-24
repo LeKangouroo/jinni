@@ -1,3 +1,9 @@
+[Home]: index.md
+
+[Home] > Getting Started
+
+# Getting Started
+
 To install Jinni, all you need to do is to type the following command in your terminal:
 
 ```
