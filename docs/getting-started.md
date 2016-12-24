@@ -12,11 +12,8 @@ Then if you want to create a new project, simply use the **init** command like s
 jin init
 ```
 
-<br>
-
 That's it ! All you have to do now is to read the README.me file added in the current directory.
 
-<br>
 <br>
 
 For the full list of available commands, use the `jin --help` command or checkout the [list of available commands].
