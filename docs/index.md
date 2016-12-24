@@ -1,9 +1,6 @@
 [Features]: features.md
 [Getting Started]: getting-started.md
-[Home]: ../README.md
 [Projet Structure]: project-structure.md
-
-[Home] > Documentation
 
 # Introduction
 

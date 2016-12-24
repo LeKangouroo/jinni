@@ -1,4 +1,4 @@
-[documentation]: docs/index.md
+[documentation]: http://itadakimas.github.io/jinni
 
 # What is Jinni?
 

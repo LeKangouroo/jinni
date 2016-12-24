@@ -1,11 +1,10 @@
-[Documentation]: index.md
 [Github Pages]: https://pages.github.com
-[Home]: ../README.md
+[Home]: index.md
 [Jekyll]: http://jekyllrb.com
 [Markdown]: https://en.wikipedia.org/wiki/Markdown
 [Vue.js]: http://vuejs.org
 
-[Home] > [Documentation] > Project Structure
+[Home] > Project Structure
 
 # Project Structure
 
@@ -75,7 +74,7 @@
 
 ### boilerplate/
 
-The `boilerplate/` directory includes the complete codebase for your projects. It has 3 subdirectory :
+The `boilerplate/` directory includes the complete codebase for your projects. It has 3 subdirectories :
 
 1. `boilerplate/_common/` contains files that are not specific to a type of boilerplate.
 2. `boilerplate/classic` contains files for classic websites only.
