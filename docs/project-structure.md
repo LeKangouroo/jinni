@@ -1,11 +1,10 @@
-[Documentation]: index.md
 [Github Pages]: https://pages.github.com
-[Home]: ../README.md
+[Home]: index.md
 [Jekyll]: http://jekyllrb.com
 [Markdown]: https://en.wikipedia.org/wiki/Markdown
 [Vue.js]: http://vuejs.org
 
-[Home] > [Documentation] > Project Structure
+[Home] > Project Structure
 
 # Project Structure
 

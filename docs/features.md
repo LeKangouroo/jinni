@@ -1,7 +1,6 @@
-[Documentation]: index.md
-[Home]: ../README.md
+[Home]: index.md
 
-[Home] > [Documentation] > Features
+[Home] > Features
 
 # Features
 

@@ -1,7 +1,6 @@
-[Documentation]: index.md
-[Home]: ../README.md
+[Home]: index.md
 
-[Home] > [Documentation] > Getting Started
+[Home] > Getting Started
 
 # Getting Started
 
