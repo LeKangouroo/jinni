@@ -5,9 +5,9 @@ import homeSection from 'vuejs/sections/home/home.vue';
 import SVG4Everybody from 'svg4everybody';
 import Vue from 'vue';
 
+SVG4Everybody();
 document.addEventListener('DOMContentLoaded', function() {
 
-  SVG4Everybody();
   new Vue({
 
     el: '#app',
