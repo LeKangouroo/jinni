@@ -1,10 +1,12 @@
-var yargs = require('yargs');
+const init = require('./init'),
+      options = require('./options/options'),
+      yargs = require('yargs');
 
-var usage = yargs.usage('Usage: $0 [options] <command> [<args>]')
+const usage = yargs.usage('Usage: $0 [options] <command> [<args>]')
   .strict()
-  .command('init', 'Creates a new project')
-  .demand(1)
+  .command(init)
   .help('h')
-  .alias('h', 'help');
+  .alias('h', 'help')
+  .option('v', options.version);
 
 module.exports = usage;
