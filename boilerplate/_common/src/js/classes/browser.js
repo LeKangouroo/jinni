@@ -1,3 +1,4 @@
+import BrowserException from './browser-exception';
 import Jump from 'jump.js';
 
 const DEVICES = [
@@ -38,15 +39,6 @@ const DEVICES = [
     mediaQuery:  "(min-width: 1600px)"
   }
 ];
-
-export class BrowserException extends Error
-{
-  constructor(message)
-  {
-    super(message);
-    this.name = "BrowserException";
-  }
-}
 
 export default class Browser
 {
