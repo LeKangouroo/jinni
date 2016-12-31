@@ -1,6 +1,6 @@
 import 'core/polyfills';
-import router from 'core/router.js';
-import events from 'modules/core/events.js';
+import router from 'core/router';
+import events from 'classes/events';
 import homeSection from 'vuejs/sections/home/home.vue';
 import SVG4Everybody from 'svg4everybody';
 import Vue from 'vue';

@@ -1,5 +1,3 @@
-/* globals Location: false */
-
 import Rlite from 'rlite-router';
 import RouterException from './router-exception';
 import URI from 'urijs';

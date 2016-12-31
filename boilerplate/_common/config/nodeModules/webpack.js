@@ -77,8 +77,8 @@ const getConfiguration = () => {
         /*
          * Directories
          */
+        classes: PROJECT_DIR + '/src/js/classes',
         core: PROJECT_DIR + '/src/js/core',
-        modules: PROJECT_DIR + '/src/js/modules',
         vuejs: PROJECT_DIR + '/src/vuejs',
 
         // TODO: remove this line when VueJS code architecture has been updated
