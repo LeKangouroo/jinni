@@ -1,33 +1,22 @@
-import _assign from "lodash/assign";
-import FormValidator from "./form-validator";
+import FormException from './form-exception';
 
-const DEFAULT_OPTIONS = {
-  validation: false
-};
-
-export class FormException extends Error
+class Form
 {
-  constructor(message)
+  constructor(element)
   {
-    super(message);
-    this.name = "FormException";
-  }
-}
-
-export default class Form
-{
-  constructor(element, options) {
-
     if (element instanceof HTMLFormElement === false)
     {
       throw new FormException("element is not an instance of HTMLFormElement");
     }
     this.el = element;
-    this.options = (options) ? _assign(DEFAULT_OPTIONS, options) : DEFAULT_OPTIONS;
-    this.validator = (this.options.validation) ? new FormValidator(this, this.options.validation) : null;
   }
-  getData() {
 
+  ///////////////////////////////////////////////////////////////////
+  // INSTANCE METHODS
+  ///////////////////////////////////////////////////////////////////
+
+  getData()
+  {
     var data,
         el,
         isCheckedInputFound,
@@ -38,28 +27,37 @@ export default class Form
     fields = this.getFields();
     for (name in fields)
     {
+      let nodeListValue = undefined;
+
       if (fields.hasOwnProperty(name))
       {
         el = fields[name];
         isCheckedInputFound = false;
-        if (el instanceof NodeList) // NOTE: multiple elements have the same "name" attribute
+
+        // NOTE: multiple elements have the same "name" attribute
+        if (el instanceof NodeList)
         {
-          if (el[0] instanceof HTMLInputElement)
+          for (let item of el)
           {
-            if (["checkbox", "radio"].indexOf(el[0].type) > -1) // NOTE: case 1 => radio and checkbox inputs
+            if (!(item instanceof HTMLInputElement) || ['checkbox', 'radio'].indexOf(item.type) < 0)
             {
-              for (let item of el) // NOTE: loops through inputs to find the selected item
-              {
-                if (item.checked)
-                {
-                  el = item;
-                  isCheckedInputFound = true;
-                  break;
-                }
-              }
+              throw new FormException(`unexpected NodeList item with type "${firstElement.type}"`);
             }
-            data[name] = (isCheckedInputFound) ? el.value : undefined;
+            if (item.checked)
+            {
+              if (item.type === 'radio')
+              {
+                nodeListValue = item.value;
+                break;
+              }
+              if (typeof nodeListValue === 'undefined')
+              {
+                nodeListValue = [];
+              }
+              nodeListValue.push(item.value);
+            }
           }
+          data[name] = nodeListValue;
         }
         else if (el instanceof HTMLInputElement && ["checkbox", "radio"].indexOf(el.type) > -1)
         {
@@ -73,8 +71,12 @@ export default class Form
     }
     return data;
   }
-  getFields(hiddenFields = true, asArray = false) {
-
+  getElement()
+  {
+    return this.el;
+  }
+  getFields(hiddenFields = true, asArray = false)
+  {
     var els,
         fields,
         fieldNames,
@@ -101,8 +103,8 @@ export default class Form
     }
     return fields;
   }
-  getFieldNames(hiddenFields = true) {
-
+  getFieldNames(hiddenFields = true)
+  {
     var f,
         elements,
         fieldNames,
@@ -117,7 +119,7 @@ export default class Form
       f = elements[i];
       if (fieldNames.indexOf(f.name) === -1)
       {
-        if (hiddenFields === false && this._isHiddenInput(f))
+        if (hiddenFields === false && Form.isHiddenInput(f))
         {
           continue;
         }
@@ -126,8 +128,8 @@ export default class Form
     }
     return fieldNames;
   }
-  trimValues() {
-
+  trimValues()
+  {
     var formFields;
 
     formFields = this.getFields(false, true);
@@ -139,16 +141,15 @@ export default class Form
       }
     });
   }
-  validate() {
-    
-    if (this.validator === null)
-    {
-      throw new FormException("validation not enabled in this form");
-    }
-    return this.validator.validate();
-  }
-  _isHiddenInput(field) {
 
+  ///////////////////////////////////////////////////////////////////
+  // STATIC METHODS
+  ///////////////////////////////////////////////////////////////////
+
+  static isHiddenInput(field)
+  {
     return (field instanceof HTMLInputElement && field.type === "hidden");
   }
 }
+
+export default Form;
