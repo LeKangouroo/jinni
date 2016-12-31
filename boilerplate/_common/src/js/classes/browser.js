@@ -1,3 +1,5 @@
+import Jump from 'jump.js';
+
 const DEVICES = [
   {
     type:        "mobile",
@@ -66,7 +68,7 @@ export default class Browser
   static getCurrentPosition()
   {
     return new Promise(function(resolve, reject) {
-      
+
       if (window.navigator && window.navigator.geolocation)
       {
         window.navigator.geolocation.getCurrentPosition(
@@ -86,5 +88,9 @@ export default class Browser
         reject(new BrowserException("geolocation is not supported in this browser"));
       }
     });
+  }
+  static scrollToElement({ element, duration = 1000, callback = undefined })
+  {
+    Jump(element, { callback, duration });
   }
 }
