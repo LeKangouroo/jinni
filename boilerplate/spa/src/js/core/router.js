@@ -1,5 +1,5 @@
-import Events from 'modules/core/events.js';
-import Router from 'modules/core/router.js';
+import Events from 'classes/events';
+import Router from 'classes/router';
 
 const router = new Router(
   [

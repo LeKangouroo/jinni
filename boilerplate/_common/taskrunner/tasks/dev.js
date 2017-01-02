@@ -8,7 +8,7 @@ import watch from 'gulp-watch';
 runSequence.use(gulp);
 gulp.task('dev', (callback) => {
 
-  runSequence(['sass', 'svg', 'html', 'pug', 'javascript', 'api'], 'livereload', () => {
+  runSequence(['sass', 'svg', 'html', 'pug', 'javascript'], 'livereload', () => {
 
     watch(paths.relocate(config.common.paths.sources.html.watch), () => runSequence('html'));
     watch(paths.relocate(config.common.paths.sources.pug.watch), () => runSequence('pug'));

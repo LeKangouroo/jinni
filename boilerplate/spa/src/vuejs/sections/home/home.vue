@@ -5,7 +5,7 @@
 </template>
 <script>
 
-  import events from 'modules/core/events.js';
+  import events from 'classes/events';
 
   export default {
 

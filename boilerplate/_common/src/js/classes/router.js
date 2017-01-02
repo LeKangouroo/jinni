@@ -1,7 +1,6 @@
-/* globals Location: false */
-
 import Rlite from 'rlite-router';
 import RouterException from './router-exception';
+import URI from 'urijs';
 
 export default class Router
 {
@@ -27,7 +26,10 @@ export default class Router
 
   static getQueryParams(queryString)
   {
-    return queryString.replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this;}.bind({}))[0];
+    const uri = new URI();
+
+    uri.search(queryString);
+    return uri.search(true);
   }
 
   ///////////////////////////////////////////////////////////////////////

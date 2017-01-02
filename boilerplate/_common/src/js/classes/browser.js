@@ -1,3 +1,6 @@
+import BrowserException from './browser-exception';
+import Jump from 'jump.js';
+
 const DEVICES = [
   {
     type:        "mobile",
@@ -37,15 +40,6 @@ const DEVICES = [
   }
 ];
 
-export class BrowserException extends Error
-{
-  constructor(message)
-  {
-    super(message);
-    this.name = "BrowserException";
-  }
-}
-
 export default class Browser
 {
   static getCurrentDevice()
@@ -66,7 +60,7 @@ export default class Browser
   static getCurrentPosition()
   {
     return new Promise(function(resolve, reject) {
-      
+
       if (window.navigator && window.navigator.geolocation)
       {
         window.navigator.geolocation.getCurrentPosition(
@@ -86,5 +80,9 @@ export default class Browser
         reject(new BrowserException("geolocation is not supported in this browser"));
       }
     });
+  }
+  static scrollToElement({ element, duration = 1000, callback = undefined })
+  {
+    Jump(element, { callback, duration });
   }
 }

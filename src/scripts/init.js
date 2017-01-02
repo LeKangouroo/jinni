@@ -84,7 +84,7 @@ const askQuestions = () => {
 
 const bye = () => {
 
-  logger.log(chalk.green('\n\nYou wish has been granted!\n'));
+  logger.log(chalk.green('\n\nYour wish has been granted!\n'));
   process.exit(EXIT_SUCCESS);
 };
 
