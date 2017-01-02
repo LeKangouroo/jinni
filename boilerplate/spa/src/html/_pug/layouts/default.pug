@@ -17,6 +17,7 @@ html
     else
       title [@@ENV] #{page.title}
     include ../includes/common/metas
+    link(rel='icon', type='image/png', href='assets/images/metadata/favicon.png?bust=@@CACHE_BUST')
     link(rel="stylesheet", href="css/main.css?bust=@@CACHE_BUST")
     script(src="js/common.js?bust=@@CACHE_BUST")
     script(src="js/main.js?bust=@@CACHE_BUST")
