@@ -81,7 +81,7 @@ const getConfiguration = () => {
         core: PROJECT_DIR + '/src/js/core',
         vuejs: PROJECT_DIR + '/src/vuejs',
 
-        // TODO: remove this line when VueJS code architecture has been updated
+        // NOTE: see the following URL for more details: https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only-Build
         vue: 'vue/dist/vue.js'
       }
     }
