@@ -1,6 +1,6 @@
-import CustomException from './custom-exception';
+import AbstractException from './abstract-exception';
 
-class FormException extends CustomException
+class FormException extends AbstractException
 {
   constructor(message)
   {
