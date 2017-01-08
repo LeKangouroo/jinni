@@ -1,7 +1,7 @@
 import 'core/polyfills';
 import router from 'core/router';
 import events from 'core/events';
-import homeSection from 'vuejs/sections/home/home.vue';
+import homeSection from 'sections/home/home.vue';
 import SVG4Everybody from 'svg4everybody';
 import Vue from 'vue';
 

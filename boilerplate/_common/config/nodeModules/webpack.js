@@ -78,8 +78,9 @@ const getConfiguration = () => {
          * Directories
          */
         classes: PROJECT_DIR + '/src/js/classes',
+        components: PROJECT_DIR + '/src/components',
         core: PROJECT_DIR + '/src/js/core',
-        vuejs: PROJECT_DIR + '/src/vuejs',
+        sections: PROJECT_DIR + '/src/sections',
 
         // NOTE: see the following URL for more details: https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only-Build
         vue: 'vue/dist/vue.js'
