@@ -5,18 +5,18 @@
 </template>
 <script>
 
-  import events from 'classes/events';
+  import events from 'core/events';
 
   export default {
 
     mounted() {
 
       console.log('home section loaded');
-      events.emit('section:loaded');
+      events.notifyObservers('section:loaded');
     },
     destroyed() {
 
-      events.emit('section:destroyed');
+      events.notifyObservers('section:destroyed');
     }
   };
 

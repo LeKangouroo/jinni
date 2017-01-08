@@ -1,6 +1,6 @@
 import 'core/polyfills';
 import router from 'core/router';
-import events from 'classes/events';
+import events from 'core/events';
 import homeSection from 'vuejs/sections/home/home.vue';
 import SVG4Everybody from 'svg4everybody';
 import Vue from 'vue';
@@ -20,18 +20,18 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     mounted() {
 
-      events.on('section:destroyed', () => {
+      events.addObserver('section:destroyed', () => {
 
         this.isLoading = true;
       });
 
-      events.on('section:loaded', () => {
+      events.addObserver('section:loaded', () => {
 
         this.isLoading = false;
         SVG4Everybody();
       });
 
-      events.on('router:update', (route) => {
+      events.addObserver('router:update', (route) => {
 
         this.currentSection = `${route.name}-section`;
       });

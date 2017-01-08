@@ -4,19 +4,30 @@ class AbstractObservable
   {
     this.observers = [];
   }
-  addObserver(observer)
+
+  ////////////////////////////////////////////////////////////
+  // INSTANCE METHODS
+  ////////////////////////////////////////////////////////////
+
+  addObserver(eventName, listener)
   {
-    this.observers.push(observer);
+    this.observers.push({ eventName, listener });
   }
-  notifyObservers(eventName)
+  notifyObservers(eventName, ...args)
   {
-    this.observers.forEach((o) => o(eventName, this));
+    this.observers
+    .filter((o) => (o.eventName === eventName))
+    .forEach((o) => o.listener.apply(this, args));
   }
-  removeObserver(observer)
+  removeObserver(eventName, listener)
   {
-    this.observers = this.observers.filter((o) => (o !== observer));
+    this.observers = this.observers.filter((o) => (o.eventName !== eventName || o.listener !== listener));
   }
-  removeAllObservers()
+  removeObservers(eventName)
+  {
+    this.observers = this.observers.filter((o) => (o.eventName !== eventName));
+  }
+  removeObserversAll()
   {
     this.observers = [];
   }

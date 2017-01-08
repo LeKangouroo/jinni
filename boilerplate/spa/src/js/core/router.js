@@ -1,4 +1,4 @@
-import Events from 'classes/events';
+import events from 'core/events';
 import Router from 'classes/router';
 
 const router = new Router(
@@ -9,6 +9,6 @@ const router = new Router(
 );
 
 router.setDefaultRoute('home');
-router.onRouteChange((route) => Events.emit('router:update', route));
+router.onRouteChange((route) => events.notifyObservers('router:update', route));
 
 export default router;
