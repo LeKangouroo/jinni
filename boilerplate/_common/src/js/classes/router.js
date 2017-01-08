@@ -31,6 +31,13 @@ export default class Router
     uri.search(queryString);
     return uri.search(true);
   }
+  static serializeQueryParams(queryParams)
+  {
+    const uri = new URI();
+
+    uri.search(queryParams);
+    return uri.search();
+  }
 
   ///////////////////////////////////////////////////////////////////////
   // PUBLIC INSTANCE METHODS
