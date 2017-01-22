@@ -1,4 +1,7 @@
 [Home]: index.md
+[BrowserSync]: https://www.browsersync.io
+[Pug]: https://pugjs.org
+[Sass]: http://sass-lang.com
 
 [Home] > Features
 
@@ -28,9 +31,9 @@ Here is the full list of available tasks :
 | images             | processes image files (i.e. optimization)                        | no         |
 | instrumented-tests | runs instrumented tests (browser interactions)                   | yes        |
 | javascript         | processes JavaScript files (transpiling, modules bundling, etc.) | yes        |
-| livereload         | starts a [BrowserSync](https://www.browsersync.io) server        | no         |
-| pug                | processes [Pug](https://github.com/pugjs/pug) files              | no         |
-| sass               | processes [Sass](http://sass-lang.com) files                     | no         |
+| livereload         | starts a [BrowserSync] server                                    | no         |
+| pug                | processes [Pug] files                                            | no         |
+| sass               | processes [Sass] files                                           | no         |
 | static             | copies static files into the distributable code's directory      | no         |
 | svg                | generates a sprite from SVG icons                                | no         |
 | todos              | generates a TODO.md file listing all //TODO comments             | yes        |
