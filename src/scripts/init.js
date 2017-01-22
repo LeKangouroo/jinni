@@ -121,37 +121,11 @@ const generateBoilerplate = (params) => {
   });
 };
 
-const init = () => {
-
-  logger.log(ASCII_ART);
-  logger.log("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
-  askQuestions()
-  .then(
-    (answers) => generateBoilerplate({answers: answers, cwd: CWD, root: BOILERPLATE_DIR}),
-    (err) => fail('an error occured during questions asking phase', err)
-  )
-  .then(
-    (context) => savePackage(context),
-    (err) => fail('an error occured during boilerplate generation phase', err)
-  )
-  .then(
-
-    () => {
-
-      logger.log('\nThanks my friend! Now, let the magic happen...\n\n');
-      return install();
-    },
-    (err) => fail('an error occured during package generation phase', err)
-  )
-  .then(
-    () => bye(),
-    (err) => fail('an error occured during installation phase', err)
-  );
-};
-
 const install = () => {
 
   return new Promise((resolve, reject) => {
+
+    logger.log('\nThanks my friend! Now, let the magic happen...\n\n');
 
     const proc = spawn('npm', ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
 
@@ -192,4 +166,19 @@ const savePackage = (params) => {
 /*
  * Execution
  */
-init();
+logger.log(ASCII_ART);
+logger.log("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
+askQuestions()
+.then(
+  (answers) => generateBoilerplate({answers: answers, cwd: CWD, root: BOILERPLATE_DIR}),
+  (err) => fail('an error occured during questions asking phase', err)
+).then(
+  (context) => savePackage(context),
+  (err) => fail('an error occured during boilerplate generation phase', err)
+).then(
+  () => install(),
+  (err) => fail('an error occured during package generation phase', err)
+).then(
+  () => bye(),
+  (err) => fail('an error occured during installation phase', err)
+);

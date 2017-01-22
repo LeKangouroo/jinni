@@ -24,12 +24,19 @@ export default class Router
   // PUBLIC STATIC METHODS
   ///////////////////////////////////////////////////////////////////////
 
-  static getQueryParams(queryString)
+  static parseQueryParams(queryString)
   {
     const uri = new URI();
 
     uri.search(queryString);
     return uri.search(true);
+  }
+  static serializeQueryParams(queryParams)
+  {
+    const uri = new URI();
+
+    uri.search(queryParams);
+    return uri.search();
   }
 
   ///////////////////////////////////////////////////////////////////////
@@ -42,7 +49,7 @@ export default class Router
   }
   getQueryParams()
   {
-    return Router.getQueryParams(this.location.search);
+    return Router.parseQueryParams(this.location.search);
   }
   init()
   {
@@ -54,7 +61,7 @@ export default class Router
         this.callback({
           name:   item.name,
           params: r.params,
-          query:  Router.getQueryParams(this.location.search),
+          query:  this.getQueryParams(),
           uri:    item.uri
         });
       });

@@ -1,6 +1,6 @@
-import CustomException from './custom-exception';
+import AbstractException from './abstract-exception';
 
-export default class RequestException extends CustomException
+export default class RequestException extends AbstractException
 {
   constructor(message, xhr)
   {
