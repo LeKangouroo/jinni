@@ -1,6 +1,7 @@
 [Features]: features.md
 [Getting Started]: getting-started.md
 [Projet Structure]: project-structure.md
+[Dependencies]: dependencies.md
 
 # Introduction
 
@@ -15,3 +16,4 @@ ES2015 transpiling, unit / behaviour tests running, and more. See the [Features]
 * [Getting Started]
 * [Features]
 * [Projet Structure]
+* [Dependencies]
