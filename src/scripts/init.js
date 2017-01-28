@@ -129,6 +129,14 @@ const install = () => {
 
     const proc = spawn('npm', ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
 
+    proc.on('error', (err) => {
+
+      logger.warning('Master, I failed to install the dependencies because of the following error:');
+      logger.trace(err);
+      logger.info('You can still do it yourself by using the "npm install" command');
+      resolve();
+    });
+
     proc.on('close', (code) => {
 
       if (code !== 0)
