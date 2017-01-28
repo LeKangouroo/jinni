@@ -1,9 +1,15 @@
 import AbstractException from './abstract-exception';
 
-export default class BrowserException extends AbstractException
+class BrowserException extends AbstractException
 {
+  /**
+   * Constructor
+   * @param {String} message A human-readable description of the error.
+   */
   constructor(message)
   {
     super(message);
   }
 }
+
+export default BrowserException;
