@@ -1,7 +1,4 @@
-/*
- * Module
- */
-module.exports = {
+export default {
 
   patterns: {
 
