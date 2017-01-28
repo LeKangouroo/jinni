@@ -1,4 +1,4 @@
-import config from '../../config/config';
+import config from '../config/config';
 import gulp from 'gulp';
 import logger from '../modules/logger';
 import paths from '../modules/paths';

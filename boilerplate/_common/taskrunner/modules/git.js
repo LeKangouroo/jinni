@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { exec } from 'child_process';
-import config from '../../config/config';
+import config from '../config/config';
 import fs from 'fs';
 import path from 'path';
 import pkg from '../../package.json';

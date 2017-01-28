@@ -1,6 +1,6 @@
 import argv from '../modules/argv';
 import autoPrefixer from 'autoprefixer';
-import config from '../../config/config';
+import config from '../config/config';
 import gulp from 'gulp';
 import paths from '../modules/paths';
 import postCSS from 'gulp-postcss';

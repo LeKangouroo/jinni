@@ -1,7 +1,4 @@
-/*
- * Dependencies
- */
-import argv  from '../../taskrunner/modules/argv';
+import argv  from '../../modules/argv';
 import glob from 'glob';
 import path from 'path';
 import paths from '../common/paths.json';

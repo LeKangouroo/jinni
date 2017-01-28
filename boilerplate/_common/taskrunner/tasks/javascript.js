@@ -1,5 +1,5 @@
 import argv from '../modules/argv';
-import config from '../../config/config';
+import config from '../config/config';
 import gulp from 'gulp';
 import jsHint from 'gulp-jshint';
 import jsHintStylish from 'jshint-stylish';
