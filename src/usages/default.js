@@ -4,6 +4,7 @@ const init = require('./init'),
 
 const usage = yargs.usage('Usage: $0 [options] <command> [<args>]')
   .strict()
+  .recommendCommands()
   .command(init)
   .help('h')
   .alias('h', 'help')
