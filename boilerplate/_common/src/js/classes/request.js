@@ -123,32 +123,6 @@ class Request
     this.url = url;
     return this;
   }
-
-  ///////////////////////////////////////////////////////////////
-  // STATIC METHODS
-  ///////////////////////////////////////////////////////////////
-
-  static serializeURLParams(params)
-  {
-    var paramsArray;
-
-    paramsArray = [];
-    params.forEach(function(item) {
-
-      if (item[1] instanceof Array)
-      {
-        item[1].forEach(function(subItem) {
-
-          paramsArray.push(`${item[0]}[]=${subItem}`);
-        });
-      }
-      else
-      {
-        paramsArray.push(`${item[0]}=${item[1]}`);
-      }
-    });
-    return "?" + paramsArray.join("&");
-  }
 }
 
 export default Request;
