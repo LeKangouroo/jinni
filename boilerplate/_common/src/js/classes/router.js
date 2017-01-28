@@ -2,12 +2,22 @@ import Rlite from 'rlite-router';
 import RouterException from './router-exception';
 import URI from 'urijs';
 
-export default class Router
+/**
+ * Provides client-side routing system and utility methods related to the URLs
+ */
+class Router
 {
   ///////////////////////////////////////////////////////////////////////
   // CONSTRUCTOR
   ///////////////////////////////////////////////////////////////////////
 
+  /**
+   * Constructor
+   * @param {Object[]} routes - a list of routes to use
+   * @param {String} routes[].name - the name of the route
+   * @param {String} routes[].uri - the URI of the route. You can define URI variables by prefixing with ":" like this /path/:variableName
+   * @param {Location} location - an object implementing the Location interface
+   */
   constructor(routes, location)
   {
     this._validateLocation(location);
@@ -24,6 +34,11 @@ export default class Router
   // PUBLIC STATIC METHODS
   ///////////////////////////////////////////////////////////////////////
 
+  /**
+   * Parses query string parameters from a string and returns an object containing those parameters
+   * @param {String} queryString - the query string
+   * @returns {Object} - an object containing the query params
+   */
   static parseQueryParams(queryString)
   {
     const uri = new URI();
@@ -31,6 +46,12 @@ export default class Router
     uri.search(queryString);
     return uri.search(true);
   }
+
+  /**
+   * Converts an object of query parameters into a query string
+   * @param {Object} queryParams - an object containing the query params
+   * @returns {String} the query string
+   */
   static serializeQueryParams(queryParams)
   {
     const uri = new URI();
@@ -43,14 +64,27 @@ export default class Router
   // PUBLIC INSTANCE METHODS
   ///////////////////////////////////////////////////////////////////////
 
+  /**
+   * Changes the current route
+   * @param {String} route - a URI representing the route
+   */
   changeRoute(route)
   {
     this.location.hash = '#' + route;
   }
+
+  /**
+   * Returns the query params of the current route
+   * @returns {Object} the query params
+   */
   getQueryParams()
   {
     return Router.parseQueryParams(this.location.search);
   }
+
+  /**
+   * Initializes the router
+   */
   init()
   {
     this.rlite = new Rlite();
@@ -81,11 +115,21 @@ export default class Router
     window.addEventListener("hashchange", processHash.bind(null, this));
     processHash.call(null, this);
   }
+
+  /**
+   * Sets a callback function called on route change
+   * @param {Function} cb - the callback function
+   */
   onRouteChange(cb)
   {
     this._validateCallback(cb);
     this.callback = cb;
   }
+
+  /**
+   * Sets the default route to use when the current route doesn't match any registered route pattern
+   * @param {String} name - the name of the default route
+   */
   setDefaultRoute(name)
   {
     for (let item of this.routes)
@@ -139,3 +183,5 @@ export default class Router
     }
   }
 }
+
+export default Router;
