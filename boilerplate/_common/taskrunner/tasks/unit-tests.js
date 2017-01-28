@@ -1,4 +1,4 @@
-import config from '../../config/config';
+import config from '../config/config';
 import gulp from 'gulp';
 import jasmine from 'gulp-jasmine';
 import paths from '../modules/paths';

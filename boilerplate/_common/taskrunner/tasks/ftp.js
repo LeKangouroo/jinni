@@ -6,7 +6,7 @@ import tasks from '../modules/tasks';
 
 gulp.task('ftp', (callback) => {
 
-  const config = require('../../config/tasks/ftp.json')[argv.env];
+  const config = require('../config/tasks/ftp.json')[argv.env];
   const connection = new ftp({
     host: config.host,
     user: config.username,

@@ -1,5 +1,5 @@
 import argv from '../modules/argv';
-import config from '../../config/config';
+import config from '../config/config';
 import del from 'del';
 import errno from 'errno';
 import gulp from 'gulp';

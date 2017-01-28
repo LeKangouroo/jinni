@@ -1,5 +1,5 @@
 import browserSync from 'browser-sync';
-import config from '../../config/config';
+import config from '../config/config';
 import gulp from 'gulp';
 import paths from '../modules/paths';
 

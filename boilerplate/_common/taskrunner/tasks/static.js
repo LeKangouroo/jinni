@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import config from '../../config/config';
+import config from '../config/config';
 import paths from '../modules/paths';
 import tasks from '../modules/tasks';
 
