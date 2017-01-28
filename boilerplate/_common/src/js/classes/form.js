@@ -2,6 +2,11 @@ import FormException from './form-exception';
 
 class Form
 {
+  /**
+   * Constructor
+   * @param {HTMLFormElement} element - an HTML form element
+   * @throws {FormException}
+   */
   constructor(element)
   {
     if (element instanceof HTMLFormElement === false)
@@ -15,6 +20,11 @@ class Form
   // INSTANCE METHODS
   ///////////////////////////////////////////////////////////////////
 
+  /**
+   * Returns the data extracted from the form
+   * @returns {Object} an object with key-value pairs representing the data
+   * @throws {FormException}
+   */
   getData()
   {
     var data,
@@ -71,10 +81,22 @@ class Form
     }
     return data;
   }
+
+  /**
+   * Returns the HTML form element
+   * @returns {HTMLFormElement} the element
+   */
   getElement()
   {
     return this.el;
   }
+
+  /**
+   * Returns the list of form elements inside the form
+   * @param {Boolean} [hiddenFields=true] - adds hidden fields (i.e. input[type="hidden"]) to the list
+   * @param {Boolean} [asArray=false] - returns the list as an array instead of key-value pairs
+   * @returns {Object|Array} the list form elements
+   */
   getFields(hiddenFields = true, asArray = false)
   {
     var els,
@@ -103,6 +125,12 @@ class Form
     }
     return fields;
   }
+
+  /**
+   * Returns the list of field names
+   * @param {Boolean} [hiddenFields=true] - adds hidden fields (i.e. input[type="hidden"]) to the list
+   * @returns {Array} the list field names
+   */
   getFieldNames(hiddenFields = true)
   {
     var f,
@@ -128,6 +156,10 @@ class Form
     }
     return fieldNames;
   }
+
+  /**
+   * Trims string values of the form
+   */
   trimValues()
   {
     var formFields;
@@ -146,6 +178,11 @@ class Form
   // STATIC METHODS
   ///////////////////////////////////////////////////////////////////
 
+  /**
+   * Checks if a field is a hidden input
+   * @param {HTMLElement} field - the HTML element of the field
+   * @returns {Boolean}
+   */
   static isHiddenInput(field)
   {
     return (field instanceof HTMLInputElement && field.type === "hidden");
