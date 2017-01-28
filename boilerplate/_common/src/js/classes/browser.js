@@ -40,8 +40,15 @@ const DEVICES = [
   }
 ];
 
-export default class Browser
+/**
+ * An class which provides an abstraction layer for interacting with the browser
+ */
+class Browser
 {
+  /**
+   * Returns informations about the current device
+   * @returns {?Object} - an object containing the informations about the device or null
+   */
   static getCurrentDevice()
   {
     var device,
@@ -57,6 +64,12 @@ export default class Browser
     }
     return device;
   }
+
+  /**
+   * Returns a promise which resolves with an instance of the Position interface
+   * @see: https://developer.mozilla.org/en-US/docs/Web/API/Position
+   * @returns {Promise} - the promise
+   */
   static getCurrentPosition()
   {
     return new Promise(function(resolve, reject) {
@@ -81,8 +94,17 @@ export default class Browser
       }
     });
   }
+
+  /**
+   * Scrolls the browser viewport to an element
+   * @param {Element} element - an element of the DOM
+   * @param {Number} [duration=1000] - the duration of the animation in milliseconds
+   * @param {?Function} callback - the callback function called when the scrolling animation ends
+   */
   static scrollToElement({ element, duration = 1000, callback = undefined })
   {
     Jump(element, { callback, duration });
   }
 }
+
+export default Browser;

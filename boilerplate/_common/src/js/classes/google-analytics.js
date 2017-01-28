@@ -1,3 +1,7 @@
+/**
+ * An abstraction layer for Google Analytics JavaScript API
+ * @see: https://developers.google.com/analytics/devguides/collection/analyticsjs/
+ */
 class GoogleAnalytics
 {
   /**
