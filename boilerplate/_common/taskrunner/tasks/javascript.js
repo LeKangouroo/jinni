@@ -1,8 +1,8 @@
 import argv from '../modules/argv';
 import config from '../config/config';
+import eslint from 'gulp-eslint';
 import gulp from 'gulp';
-import jsHint from 'gulp-jshint';
-import jsHintStylish from 'jshint-stylish';
+import gulpIf from 'gulp-if';
 import paths from '../modules/paths';
 import replace from 'gulp-replace-task';
 import runSequence from 'run-sequence';
@@ -35,11 +35,13 @@ gulp.task('javascript-build', (callback) => {
 
 gulp.task('javascript-lint', (callback) => {
 
+  const isDistributableBuild = argv.mode === 'distributable';
+
   return gulp
     .src(paths.relocate(config.common.paths.sources.js.default))
       .on('error', (err) => tasks.error('javascript', callback, err))
-    .pipe(jsHint(config.nodeModules.jshint))
-      .on('error', (err) => tasks.error('javascript', callback, err))
-    .pipe(jsHint.reporter(jsHintStylish))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(gulpIf(isDistributableBuild, eslint.failAfterError()))
       .on('error', (err) => tasks.error('javascript', callback, err));
 });
