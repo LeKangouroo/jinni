@@ -1,4 +1,5 @@
 import RequestException from './request-exception';
+import Response from './response';
 
 /**
  * Abstraction layer for asynchronous requests using XMLHttpRequest
@@ -56,7 +57,7 @@ class Request
           }
           else
           {
-            resolve(this.xhr);
+            resolve(new Response(this.xhr));
           }
         }
       };
