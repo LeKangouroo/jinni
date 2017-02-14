@@ -2,12 +2,13 @@ import argv  from '../../modules/argv';
 import glob from 'glob';
 import path from 'path';
 import paths from '../common/paths.json';
+import pathsModule from '../../modules/paths';
 import webpack from 'webpack';
 
 /*
  * Constants
  */
-const PROJECT_DIR = path.resolve(__dirname, '../../');
+const PROJECT_DIR = pathsModule.relocate('./');
 const WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG = {
   name: 'common',
   minChunks: (module) => isVendor(module),

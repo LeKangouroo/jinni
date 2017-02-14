@@ -1,6 +1,5 @@
+import { assert } from 'chai';
 import webdriver from 'selenium-webdriver';
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
 const builder = new webdriver.Builder()
   .forBrowser('firefox');
@@ -18,11 +17,11 @@ describe('A Hello World test suite', () => {
     driver.getTitle().then(
 
       (title) => {
-        expect(title).toBe('Google');
+        assert.strictEqual(title, 'Google');
         done();
       },
       (err) => {
-        done.fail(err);
+        done(err);
       }
     );
   });
