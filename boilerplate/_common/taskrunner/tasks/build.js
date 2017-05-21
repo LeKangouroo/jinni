@@ -27,7 +27,7 @@ const saveBuildData = (filePath, data) => {
 };
 
 
-gulp.task('build', ['sass', 'svg', 'html', 'pug', 'javascript', 'static', 'images', 'todos'], (callback) => {
+gulp.task('build', ['sass', 'svg', 'html', 'react-to-html', 'javascript', 'static', 'images', 'todos'], (callback) => {
 
   const BUILD_DATA = {
     date: new Date().toISOString(),
