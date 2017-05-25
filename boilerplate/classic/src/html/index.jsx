@@ -9,12 +9,7 @@ class Page extends Component
     this.state = {
       env: props.env,
       page: {
-        title: 'Hello World',
-        metas: {
-          twitter: {
-            isEnabled: true
-          }
-        }
+        title: 'Accueil'
       }
     };
   }
@@ -22,7 +17,7 @@ class Page extends Component
   {
     return (
       <DefaultLayout env={this.state.env} page={this.state.page}>
-        <p>foobarlaand</p>
+        <h1>Page d'accueil</h1>
       </DefaultLayout>
     );
   }
