@@ -3,15 +3,30 @@ import config from '../config/config';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import paths from '../modules/paths';
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import replace from 'gulp-replace-task';
 import tasks from '../modules/tasks';
 import through2 from 'through2';
 
+const clearModuleCache = (path) => {
+
+  if (typeof require.cache[path] !== "undefined")
+  {
+    const module = require.cache[path];
+
+    if (module.children.length > 0)
+    {
+      module.children.forEach((child) => clearModuleCache(child.id));
+    }
+    delete require.cache[path];
+  }
+};
+
 const convertReactToHtml = () => {
 
   return through2.obj(function(chunk, encoding, callback) {
+
+    clearModuleCache(chunk.path);
 
     const component = require(chunk.path).default;
 
