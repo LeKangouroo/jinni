@@ -2,7 +2,7 @@
 [Home]: index.md
 [Jekyll]: http://jekyllrb.com
 [Markdown]: https://en.wikipedia.org/wiki/Markdown
-[Vue.js]: http://vuejs.org
+[React]: https://facebook.github.io/react
 
 [Home] > Project Structure
 
@@ -96,7 +96,7 @@ The `boilerplate/` directory includes the complete codebase for your projects. I
 
 1. `boilerplate/_common/` contains files that are not specific to a type of boilerplate.
 2. `boilerplate/classic` contains files for classic websites only.
-3. `boilerplate/spa` contains files for Single Page Applications only. [Vue.js] is the selected framework, but can be easily replaced.
+3. `boilerplate/spa` contains files for Single Page Applications only. [React] is the selected framework.
 
 ### docs/
 

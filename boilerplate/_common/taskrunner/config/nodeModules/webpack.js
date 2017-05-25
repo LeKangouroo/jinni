@@ -61,13 +61,6 @@ const getConfiguration = () => {
           test:    /\.html$/,
           exclude: /(node_modules)/,
           loader:  'html-loader?attrs=false'
-        },
-
-        // TODO: remove this after adding react in the stack
-        {
-          test:    /\.vue$/,
-          exclude: /(node_modules)/,
-          loader:  'vue-loader'
         }
       ]
     },
@@ -80,11 +73,7 @@ const getConfiguration = () => {
         classes: PROJECT_DIR + '/src/js/classes',
         components: PROJECT_DIR + '/src/components',
         core: PROJECT_DIR + '/src/js/core',
-        sections: PROJECT_DIR + '/src/sections',
-
-        // TODO: remove this after adding react in the stack
-        // NOTE: see the following URL for more details: https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only-Build
-        vue: 'vue/dist/vue.js'
+        sections: PROJECT_DIR + '/src/sections'
       }
     }
   };
