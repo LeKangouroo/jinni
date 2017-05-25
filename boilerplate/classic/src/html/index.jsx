@@ -6,15 +6,26 @@ class Page extends Component
   constructor(props)
   {
     super(props);
+    this.state = {
+      env: props.env,
+      page: {
+        title: 'Hello World',
+        metas: {
+          twitter: {
+            isEnabled: true
+          }
+        }
+      }
+    };
   }
   render()
   {
     return (
-      <DefaultLayout title="Accueil">
+      <DefaultLayout env={this.state.env} page={this.state.page}>
         <p>foobarlaand</p>
       </DefaultLayout>
     );
   }
 }
 
-export default <Page/>;
+export default Page;

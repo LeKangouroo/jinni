@@ -3,6 +3,7 @@ import config from '../config/config';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import paths from '../modules/paths';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import replace from 'gulp-replace-task';
 import tasks from '../modules/tasks';
@@ -29,8 +30,11 @@ const convertReactToHtml = () => {
     clearModuleCache(chunk.path);
 
     const component = require(chunk.path).default;
+    const props = { env: argv.env };
+    const element = React.createElement(component, props, null);
+    const output = ReactDOMServer.renderToStaticMarkup(element);
 
-    chunk.contents = new Buffer(ReactDOMServer.renderToStaticMarkup(component));
+    chunk.contents = new Buffer(output);
     callback(null, chunk);
   });
 };
