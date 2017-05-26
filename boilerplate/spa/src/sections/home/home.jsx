@@ -1,4 +1,5 @@
 import events from 'core/events';
+import ExampleComponent from 'components/example-component/example-component.jsx';
 import React from 'react';
 
 class HomeSection extends React.Component
@@ -25,6 +26,7 @@ class HomeSection extends React.Component
     return (
       <section className="s-home">
         <h1>Home section</h1>
+        <ExampleComponent/>
       </section>
     );
   }
