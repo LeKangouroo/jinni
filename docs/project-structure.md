@@ -12,80 +12,75 @@
 
 ```
 .
-├───boilerplate
-│   ├───classic
-│   │   └───src
-│   │       ├───html
-│   │       │   └───_pug
-│   │       │       └───layouts
-│   │       ├───js
-│   │       └───sass
-│   │           ├───base
-│   │           └───components
-│   ├───spa
-│   │   └───src
-│   │       ├───html
-│   │       │   └───_pug
-│   │       │       └───layouts
-│   │       ├───js
-│   │       │   └───core
-│   │       ├───sass
-│   │       │   ├───base
-│   │       │   └───vuejs
-│   │       └───vuejs
-│   │           └───sections
-│   │               └───home
-│   └───_common
-│       ├───config
-│       │   ├───common
-│       │   ├───nodeModules
-│       │   │   └───imagemin
-│       │   └───tasks
-│       ├───src
-│       │   ├───assets
-│       │   │   └───images
-│       │   │       ├───icons
-│       │   │       │   └───svg
-│       │   │       └───metadata
-│       │   ├───html
-│       │   │   └───_pug
-│       │   │       └───includes
-│       │   │           └───common
-│       │   ├───js
-│       │   │   ├───classes
-│       │   │   └───core
-│       │   ├───sass
-│       │   │   ├───base
-│       │   │   ├───mixins
-│       │   │   ├───ui
-│       │   │   ├───variables
-│       │   │   └───vendors
-│       │   └───vendors
-│       ├───taskrunner
-│       │   ├───assets
-│       │   │   └───images
-│       │   │       └───notifications
-│       │   ├───modules
-│       │   ├───tasks
-│       │   ├───templates
-│       │   │   └───changelog
-│       │   └───usage
-│       │       ├───commands
-│       │       └───options
-│       └───tests
-│           ├───instrumented-tests
-│           │   └───specs
-│           └───unit-tests
-│               └───specs
-├───docs
-└───src
-    ├───assets
-    │   └───text
-    ├───bin
-    ├───modules
-    ├───scripts
-    └───usages
-        └───options
+├── boilerplate
+│   ├── _common
+│   │   ├── src
+│   │   │   ├── assets
+│   │   │   │   └── images
+│   │   │   │       ├── icons
+│   │   │   │       │   └── svg
+│   │   │   │       └── metadata
+│   │   │   ├── js
+│   │   │   │   ├── classes
+│   │   │   │   └── core
+│   │   │   ├── sass
+│   │   │   │   ├── base
+│   │   │   │   ├── mixins
+│   │   │   │   ├── variables
+│   │   │   │   └── vendors
+│   │   │   └── vendors
+│   │   ├── taskrunner
+│   │   │   ├── assets
+│   │   │   │   └── images
+│   │   │   │       └── notifications
+│   │   │   ├── config
+│   │   │   │   ├── common
+│   │   │   │   ├── nodeModules
+│   │   │   │   │   └── imagemin
+│   │   │   │   └── tasks
+│   │   │   ├── modules
+│   │   │   ├── tasks
+│   │   │   ├── templates
+│   │   │   │   └── changelog
+│   │   │   └── usage
+│   │   │       ├── commands
+│   │   │       └── options
+│   │   └── tests
+│   │       ├── instrumented-tests
+│   │       │   └── specs
+│   │       └── unit-tests
+│   │           └── specs
+│   ├── classic
+│   │   └── src
+│   │       ├── html
+│   │       │   └── _react
+│   │       │       └── layouts
+│   │       ├── js
+│   │       └── sass
+│   │           ├── base
+│   │           └── components
+│   └── spa
+│       └── src
+│           ├── components
+│           │   └── example-component
+│           ├── html
+│           │   └── _react
+│           │       └── layouts
+│           ├── js
+│           │   └── core
+│           ├── sass
+│           │   └── base
+│           └── sections
+│               └── home
+├── docs
+└── src
+    ├── assets
+    │   └── text
+    ├── bin
+    ├── modules
+    ├── scripts
+    └── usages
+        └── options
 ```
 
 ## Details
