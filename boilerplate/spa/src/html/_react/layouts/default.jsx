@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
-import React, { Component } from 'react';
+import React from 'react';
 
-class DefaultLayout extends Component
+class DefaultLayout extends React.Component
 {
   constructor(props)
   {

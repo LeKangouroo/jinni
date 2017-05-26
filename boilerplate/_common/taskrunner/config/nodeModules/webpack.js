@@ -47,7 +47,7 @@ const getConfiguration = () => {
     module: {
       loaders: [
         {
-          test:    /\.js$/,
+          test:    /\.jsx?$/,
           exclude: /(node_modules)/,
           loader:  'babel-loader',
           query:   { cacheDirectory: PROJECT_DIR + '/tmp/_babel' }

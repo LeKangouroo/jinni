@@ -93,6 +93,7 @@ class Router
       this.rlite.add(item.uri.substr(1), (r) => {
 
         this.callback({
+          data:   item.data,
           name:   item.name,
           params: r.params,
           query:  this.getQueryParams(),
