@@ -1,7 +1,7 @@
 import DefaultLayout from './_react/layouts/default.jsx';
-import React, { Component } from 'react';
+import React from 'react';
 
-class Page extends Component
+class Page extends React.Component
 {
   constructor(props)
   {
