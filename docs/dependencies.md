@@ -15,13 +15,13 @@
 [Node Notifier]:        https://github.com/mikaelbr/node-notifier
 [Nodemailer]:           https://community.nodemailer.com
 [Pug]:                  https://pugjs.org
+[React]:                https://facebook.github.io/react
 [Rlite]:                https://github.com/chrisdavies/rlite
 [Selenium Webdriver]:   http://www.seleniumhq.org
 [SVG Sprite]:           https://github.com/jkphl/svg-sprite
 [SVG4Everybody]:        https://github.com/jonathantneal/svg4everybody
 [URI.js]:               https://github.com/medialize/URI.js
 [Vinyl FTP]:            https://github.com/morris/vinyl-ftp
-[Vue]:                  https://vuejs.org
 [Webpack]:              https://webpack.js.org
 [Yargs]:                http://yargs.js.org
 
@@ -55,7 +55,7 @@
 * [Bourbon] - A Lightweight Sass Tool Set.
 * [Bourbon Neat] - A lightweight, semantic grid framework built with [Bourbon].
 * [Jump.js] - A modern smooth scrolling library.
+* [React] - A JavaScript library for building user interfaces
 * [Rlite] - Tiny, fast, light-weight JavaScript routing with zero dependencies.
 * [SVG4Everybody] - A Polyfill for SVG External Content feature.
 * [URI.js] - Javascript URL mutation library.
-* [Vue] - A progressive, incrementally-adoptable JavaScript framework for building UI on the web.

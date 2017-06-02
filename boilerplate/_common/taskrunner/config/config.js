@@ -6,7 +6,6 @@ import jsonServer from './nodeModules/json-server.json';
 import mocha from './nodeModules/mocha';
 import paths from './common/paths.json';
 import PNGQuant from './nodeModules/imagemin/pngquant.json';
-import pug from './nodeModules/pug.json';
 import replacements from './common/replacements';
 import sass from './nodeModules/sass.json';
 import svgSprite from './nodeModules/svg-sprite.json';
@@ -25,7 +24,6 @@ export default {
     imagemin: { PNGQuant, JPEGRecompress },
     jsonServer,
     mocha,
-    pug,
     sass,
     svgSprite,
     webpack

@@ -1,42 +1,34 @@
 import 'core/polyfills';
-import router from 'core/router';
 import events from 'core/events';
-import homeSection from 'sections/home/home.vue';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import router from 'core/router';
 import SVG4Everybody from 'svg4everybody';
-import Vue from 'vue';
 
+console.log('main.js file loaded');
 SVG4Everybody();
 document.addEventListener('DOMContentLoaded', function() {
 
-  new Vue({
+  console.log('DOMContentLoaded event callback called');
 
-    el: '#app',
-    data: {
-      currentSection: null,
-      isLoading: true
-    },
-    components: {
-      homeSection
-    },
-    mounted() {
+  events.addObserver('router:update', (route) => {
 
-      events.addObserver('section:destroyed', () => {
+    const element = React.createElement(route.data.component);
+    const container = document.querySelector('#app');
 
-        this.isLoading = true;
-      });
-
-      events.addObserver('section:loaded', () => {
-
-        this.isLoading = false;
-        SVG4Everybody();
-      });
-
-      events.addObserver('router:update', (route) => {
-
-        this.currentSection = `${route.name}-section`;
-      });
-
-      router.init();
-    }
+    ReactDOM.render(element, container);
   });
+
+  events.addObserver('section:destroyed', (section) => {
+
+    console.log('section destroyed:', section.getName());
+  });
+
+  events.addObserver('section:loaded', (section) => {
+
+    console.log('section loaded:', section.getName());
+    SVG4Everybody();
+  });
+
+  router.init();
 });

@@ -2,7 +2,7 @@
 [Home]: index.md
 [Jekyll]: http://jekyllrb.com
 [Markdown]: https://en.wikipedia.org/wiki/Markdown
-[Vue.js]: http://vuejs.org
+[React]: https://facebook.github.io/react
 
 [Home] > Project Structure
 
@@ -12,80 +12,75 @@
 
 ```
 .
-├───boilerplate
-│   ├───classic
-│   │   └───src
-│   │       ├───html
-│   │       │   └───_pug
-│   │       │       └───layouts
-│   │       ├───js
-│   │       └───sass
-│   │           ├───base
-│   │           └───components
-│   ├───spa
-│   │   └───src
-│   │       ├───html
-│   │       │   └───_pug
-│   │       │       └───layouts
-│   │       ├───js
-│   │       │   └───core
-│   │       ├───sass
-│   │       │   ├───base
-│   │       │   └───vuejs
-│   │       └───vuejs
-│   │           └───sections
-│   │               └───home
-│   └───_common
-│       ├───config
-│       │   ├───common
-│       │   ├───nodeModules
-│       │   │   └───imagemin
-│       │   └───tasks
-│       ├───src
-│       │   ├───assets
-│       │   │   └───images
-│       │   │       ├───icons
-│       │   │       │   └───svg
-│       │   │       └───metadata
-│       │   ├───html
-│       │   │   └───_pug
-│       │   │       └───includes
-│       │   │           └───common
-│       │   ├───js
-│       │   │   ├───classes
-│       │   │   └───core
-│       │   ├───sass
-│       │   │   ├───base
-│       │   │   ├───mixins
-│       │   │   ├───ui
-│       │   │   ├───variables
-│       │   │   └───vendors
-│       │   └───vendors
-│       ├───taskrunner
-│       │   ├───assets
-│       │   │   └───images
-│       │   │       └───notifications
-│       │   ├───modules
-│       │   ├───tasks
-│       │   ├───templates
-│       │   │   └───changelog
-│       │   └───usage
-│       │       ├───commands
-│       │       └───options
-│       └───tests
-│           ├───instrumented-tests
-│           │   └───specs
-│           └───unit-tests
-│               └───specs
-├───docs
-└───src
-    ├───assets
-    │   └───text
-    ├───bin
-    ├───modules
-    ├───scripts
-    └───usages
-        └───options
+├── boilerplate
+│   ├── _common
+│   │   ├── src
+│   │   │   ├── assets
+│   │   │   │   └── images
+│   │   │   │       ├── icons
+│   │   │   │       │   └── svg
+│   │   │   │       └── metadata
+│   │   │   ├── js
+│   │   │   │   ├── classes
+│   │   │   │   └── core
+│   │   │   ├── sass
+│   │   │   │   ├── base
+│   │   │   │   ├── mixins
+│   │   │   │   ├── variables
+│   │   │   │   └── vendors
+│   │   │   └── vendors
+│   │   ├── taskrunner
+│   │   │   ├── assets
+│   │   │   │   └── images
+│   │   │   │       └── notifications
+│   │   │   ├── config
+│   │   │   │   ├── common
+│   │   │   │   ├── nodeModules
+│   │   │   │   │   └── imagemin
+│   │   │   │   └── tasks
+│   │   │   ├── modules
+│   │   │   ├── tasks
+│   │   │   ├── templates
+│   │   │   │   └── changelog
+│   │   │   └── usage
+│   │   │       ├── commands
+│   │   │       └── options
+│   │   └── tests
+│   │       ├── instrumented-tests
+│   │       │   └── specs
+│   │       └── unit-tests
+│   │           └── specs
+│   ├── classic
+│   │   └── src
+│   │       ├── html
+│   │       │   └── _react
+│   │       │       └── layouts
+│   │       ├── js
+│   │       └── sass
+│   │           ├── base
+│   │           └── components
+│   └── spa
+│       └── src
+│           ├── components
+│           │   └── example-component
+│           ├── html
+│           │   └── _react
+│           │       └── layouts
+│           ├── js
+│           │   └── core
+│           ├── sass
+│           │   └── base
+│           └── sections
+│               └── home
+├── docs
+└── src
+    ├── assets
+    │   └── text
+    ├── bin
+    ├── modules
+    ├── scripts
+    └── usages
+        └── options
 ```
 
 ## Details
@@ -96,7 +91,7 @@ The `boilerplate/` directory includes the complete codebase for your projects. I
 
 1. `boilerplate/_common/` contains files that are not specific to a type of boilerplate.
 2. `boilerplate/classic` contains files for classic websites only.
-3. `boilerplate/spa` contains files for Single Page Applications only. [Vue.js] is the selected framework, but can be easily replaced.
+3. `boilerplate/spa` contains files for Single Page Applications only. [React] is the selected framework.
 
 ### docs/
 
