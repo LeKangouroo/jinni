@@ -47,7 +47,7 @@ const getConfiguration = () => {
     module: {
       loaders: [
         {
-          test:    /\.js$/,
+          test:    /\.jsx?$/,
           exclude: /(node_modules)/,
           loader:  'babel-loader',
           query:   { cacheDirectory: PROJECT_DIR + '/tmp/_babel' }
@@ -61,11 +61,6 @@ const getConfiguration = () => {
           test:    /\.html$/,
           exclude: /(node_modules)/,
           loader:  'html-loader?attrs=false'
-        },
-        {
-          test:    /\.vue$/,
-          exclude: /(node_modules)/,
-          loader:  'vue-loader'
         }
       ]
     },
@@ -78,10 +73,7 @@ const getConfiguration = () => {
         classes: PROJECT_DIR + '/src/js/classes',
         components: PROJECT_DIR + '/src/components',
         core: PROJECT_DIR + '/src/js/core',
-        sections: PROJECT_DIR + '/src/sections',
-
-        // NOTE: see the following URL for more details: https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only-Build
-        vue: 'vue/dist/vue.js'
+        sections: PROJECT_DIR + '/src/sections'
       }
     }
   };

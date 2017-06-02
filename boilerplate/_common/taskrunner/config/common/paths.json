@@ -2,21 +2,21 @@
   "sources": {
     "html": {
       "default": [
-        "!src/html/_pug{,/**}",
+        "!src/html/_react{,/**}",
         "src/html/**/*.html"
       ],
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
     "instrumentedTests": "tests/instrumented-tests/specs/*.js",
-    "pug": {
+    "reactHtml": {
       "default": [
-        "!src/html/_pug{,/**}",
-        "src/html/**/*.pug"
+        "!src/html/_react{,/**}",
+        "src/html/**/*.jsx"
       ],
       "watch": [
-        "src/html/**/*.pug",
-        "src/html/_pug/**/*"
+        "src/html/**/*.jsx",
+        "src/html/_react/**/*"
       ]
     },
     "js": {
@@ -33,7 +33,7 @@
     "svg": "src/assets/images/icons/svg/*.svg",
     "todos": [
       "!src/vendors/**",
-      "src/**/*.{js,html,pug,scss,sass}"
+      "src/**/*.{js,jsx,html,scss,sass}"
     ],
     "unitTests": "tests/unit-tests/specs/*.js"
   },
