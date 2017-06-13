@@ -7,6 +7,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const logger = require('../modules/logger');
 const ncp = require('ncp').ncp;
+const os = require('os');
 const path = require('path');
 const packageNameValidator = require('validate-npm-package-name');
 const rimraf = require('rimraf');
@@ -127,7 +128,8 @@ const install = () => {
 
     logger.log('\nThanks my friend! Now, let the magic happen...\n\n');
 
-    const proc = spawn('npm', ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
+    const cmd = (os.type() === 'Windows_NT') ? 'npm.cmd' : 'npm';
+    const proc = spawn(cmd, ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
 
     proc.on('error', (err) => {
 
