@@ -22,6 +22,7 @@ This section presents some useful resource that you can use to develop your proj
 | UI         | Packery             | Gapless, draggable grid layouts                           | http://packery.metafizzy.co                              |
 | UI         | Scroll Reveal       | Easy scroll animations for web and mobile browsers.       | https://scrollrevealjs.org                               |
 | UI         | Shepherd            | A library to create interactive tutorials                 | https://github.com/HubSpot/shepherd                      |
+| UI         | Typed.js            | A typing animation library                                | https://github.com/mattboldt/typed.js                    |
 | UI         | Waypoints           | Execute a function whenever you scroll to an element      | https://github.com/imakewebthings/waypoints              |
 | Validation | Validator           | A library of string validators and sanitizers.            | https://github.com/chriso/validator.js                   |
 | Validation | Parsley             | A form validation library based on jQuery                 | http://parsleyjs.org                                     |
