@@ -62,8 +62,6 @@ gulp.task('react-to-html', (callback) => {
       .on('error', (err) => tasks.error('react-to-html', callback, err))
     .pipe(replaceExtension('.html'))
       .on('error', (err) => tasks.error('react-to-html', callback, err))
-    .pipe(replaceExtension('.html'))
-      .on('error', (err) => tasks.error('react-to-html', callback, err))
     .pipe(replace({ patterns: config.common.replacements.patterns.common }))
       .on('error', (err) => tasks.error('react-to-html', callback, err))
     .pipe(replace({ patterns: config.common.replacements.patterns[argv.env] }))
