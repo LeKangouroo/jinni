@@ -23,4 +23,8 @@ class Page extends React.Component
   }
 }
 
+Page.defaultProps = {
+  docType: '<!DOCTYPE html>'
+};
+
 export default Page;

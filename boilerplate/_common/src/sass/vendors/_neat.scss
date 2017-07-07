@@ -1,10 +1,10 @@
 // Gris system configuration
-$grid-columns: 12;
-$max-width:    960px;
+$grid-columns: $grid-system-columns;
+$max-width: $grid-system-max-width;
 
 // Visual grid settings (for development purpose)
-$visual-grid:       $debug;
-$visual-grid-color: #88B9CE;
+$visual-grid: $grid-system-visual-grid-visible;
+$visual-grid-color: $grid-system-visual-grid-color;
 $visual-grid-index: front;
 
 @import "../../../node_modules/bourbon-neat/app/assets/stylesheets/neat";

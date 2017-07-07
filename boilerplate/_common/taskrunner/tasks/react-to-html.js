@@ -32,7 +32,8 @@ const convertReactToHtml = () => {
     const component = require(chunk.path).default;
     const props = { env: argv.env };
     const element = React.createElement(component, props, null);
-    const output = ReactDOMServer.renderToStaticMarkup(element);
+    const docType = component.defaultProps.docType;
+    const output = docType + ReactDOMServer.renderToStaticMarkup(element);
 
     chunk.contents = new Buffer(output);
     callback(null, chunk);
@@ -59,8 +60,6 @@ gulp.task('react-to-html', (callback) => {
   gulp.src(paths.relocate(config.common.paths.sources.reactHtml.default))
       .on('error', (err) => tasks.error('react-to-html', callback, err))
     .pipe(convertReactToHtml())
-      .on('error', (err) => tasks.error('react-to-html', callback, err))
-    .pipe(replaceExtension('.html'))
       .on('error', (err) => tasks.error('react-to-html', callback, err))
     .pipe(replaceExtension('.html'))
       .on('error', (err) => tasks.error('react-to-html', callback, err))
