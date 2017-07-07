@@ -7,5 +7,5 @@ npm-debug.log
 dist
 
 # DON'T YOU EVER REMOVE THESE LINES, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
-config/tasks/email.json
-config/tasks/ftp.json
+taskrunner/config/tasks/email.json
+taskrunner/config/tasks/ftp.json
