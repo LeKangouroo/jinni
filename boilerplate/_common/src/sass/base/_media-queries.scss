@@ -25,11 +25,6 @@ $mq-list:
 {
   @media (min-width: nth($mq, 2))
   {
-    body::before
-    {
-      content: "#{nth($mq, 1)}"; // NOTE: used for JavaScript logic based on device type
-      display: none;
-    }
     body::after
     {
       content: "#{nth($mq, 3)} (#{nth($mq, 2)})"; // NOTE: used for debug mode only
@@ -40,10 +35,6 @@ $mq-list:
 
 @if $debug == true
 {
-  body::before
-  {
-    display: block;
-  }
   body::after
   {
     display:     block;

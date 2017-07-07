@@ -4,3 +4,5 @@ tmp
 npm-debug.log
 .idea
 boilerplate/dist
+jinni*.tgz
+_sandbox/
