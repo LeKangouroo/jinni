@@ -2,7 +2,7 @@ import Jump from 'jump.js';
 
 
 /**
- * @description Returns informations about the current media
+ * Returns informations about the current media
  *
  * @function
  *
@@ -19,7 +19,7 @@ const findCurrentMedia = (window, medias) => medias.find(d => window.matchMedia(
 
 
 /**
- * @description Returns a promise which resolves with an instance of the Position interface
+ * Returns a promise which resolves with an instance of the Position interface
  *
  * @function
  *
@@ -45,7 +45,7 @@ const getGeolocation = (window) => new Promise((resolve, reject) => {
 
 
 /**
- * @description Returns the list of expected medias
+ * Returns the list of expected medias
  *
  * @function
  *
@@ -92,7 +92,7 @@ const getMediasList = () => ([
 
 
 /**
- * @description Scrolls the browser viewport to an element. This function is impure.
+ * Scrolls the browser viewport to an element. This function is impure.
  *
  * @function
  *
