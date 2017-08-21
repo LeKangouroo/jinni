@@ -1,6 +1,3 @@
-import Jump from 'jump.js';
-
-
 /**
  * Returns informations about the current media
  *
@@ -16,32 +13,6 @@ import Jump from 'jump.js';
  * @returns {(Object|undefined)} - An item of the list or undefined if no result found.
  */
 const findCurrentMedia = (window, medias) => medias.find(d => window.matchMedia(d.mediaQuery).matches);
-
-
-/**
- * Returns a promise which resolves with an instance of the Position interface
- *
- * @function
- *
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Position}
- *
- * @param {Object} window - The Window object of the browser
- *
- * @returns {Promise} - The promise
- */
-const getGeolocation = (window) => new Promise((resolve, reject) => {
-
-  if (window.navigator && window.navigator.geolocation)
-  {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => resolve(position),
-      (err) => reject(new Error(`error during geolocation process: ${err.message}`)));
-  }
-  else
-  {
-    reject(new Error("geolocation is not supported in this browser"));
-  }
-});
 
 
 /**
@@ -91,24 +62,10 @@ const getMediasList = () => ([
 ]);
 
 
-/**
- * Scrolls the browser viewport to an element. This function is impure.
- *
- * @function
- *
- * @param {Element}   element         - an element of the DOM
- * @param {Number}    [duration=1000] - the duration of the animation in milliseconds
- * @param {?Function} callback        - the callback function called when the scrolling animation ends
- */
-const scrollToElement = ({ element, duration = 1000, callback = undefined }) => Jump(element, { callback, duration });
-
-
 /*
  * Exports
  */
 export {
   findCurrentMedia,
-  getGeolocation,
-  getMediasList,
-  scrollToElement
+  getMediasList
 };
