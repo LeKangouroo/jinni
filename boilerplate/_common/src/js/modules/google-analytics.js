@@ -1,5 +1,5 @@
 /**
- * Initializes Google Analytics library and returns the instance
+ * Initializes Google Analytics library and returns the instance. This function is impure.
  *
  * @function
  *
@@ -29,7 +29,7 @@ const init = (options) => {
 
 
 /**
- * Sends an event hit
+ * Sends an event hit. This function is impure.
  *
  * @function
  *
@@ -52,7 +52,7 @@ const sendEvent = (ga, options) => {
 
 
 /**
- * Sends a page view hit
+ * Sends a page view hit. This function is impure.
  *
  * @param {Object}  ga            - the Google Analytics object
  * @param {Object}  options       - a set of options
