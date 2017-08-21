@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq';
+
 /**
  * Returns the data extracted from an HTMLFormElement instance
  *
@@ -6,38 +8,40 @@
  * @param {HTMLFormElement} form - the HTMLFormElement instance
  *
  * @returns {Object} an object with key-value pairs representing the data
- *
- *
- * TODO: handle NodeList use case properly
  */
 const getData = (form) => {
 
-  return getFieldsElements(form).reduce((output, field) => {
+  return Object.entries(getFieldsElementsMap(form)).reduce((output, field) => {
 
-    const name = field.name;
+    const name = field[0];
+    const elements = field[1];
 
     // NOTE: multiple elements have the same "name" attribute
-    if (field instanceof NodeList)
+    if (elements.length > 1)
     {
-      const checkedInputs = [].slice.call(field).filter(el => isCheckableInput(el) && el.checked);
+      const checkedInputs = elements.filter(el => isCheckableInput(el) && el.checked);
       const checkedRadio = checkedInputs.find(el => el.type === "radio");
 
       if (checkedRadio)
       {
-        output[name] = checkedRadio;
+        output[name] = checkedRadio.value;
+      }
+      else if (checkedInputs.length > 0)
+      {
+        output[name] = checkedInputs.map(el => el.value);
       }
       else
       {
-        output[name] = checkedInputs.length > 0 ? checkedInputs : undefined;
+        output[name] = undefined;
       }
     }
-    else if (isCheckableInput(field))
+    else if (isCheckableInput(elements[0]))
     {
-      output[name] = field.checked;
+      output[name] = elements[0].checked;
     }
     else
     {
-      output[name] = field.value;
+      output[name] = elements[0].value;
     }
 
     return output;
@@ -91,7 +95,7 @@ const getFieldsElementsMap = (form, hiddenFields = true) => getFieldsElements(fo
  *
  * @returns {string[]} - the names of the fields
  */
-const getFieldsNames = (form, hiddenFields = true) => getFieldsElements(form, hiddenFields).map(e => e.name);
+const getFieldsNames = (form, hiddenFields = true) => uniq(getFieldsElements(form, hiddenFields).map(e => e.name));
 
 
 /**
