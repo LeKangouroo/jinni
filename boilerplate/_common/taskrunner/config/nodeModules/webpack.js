@@ -73,6 +73,7 @@ const getConfiguration = () => {
         classes: PROJECT_DIR + '/src/js/classes',
         components: PROJECT_DIR + '/src/components',
         core: PROJECT_DIR + '/src/js/core',
+        modules: PROJECT_DIR + '/src/js/modules',
         sections: PROJECT_DIR + '/src/sections'
       }
     }

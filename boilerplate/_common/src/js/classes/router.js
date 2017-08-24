@@ -1,6 +1,5 @@
 import Rlite from 'rlite-router';
-import RouterException from './router-exception';
-import URI from 'urijs';
+import { unserializeURISearch } from 'modules/network/routing';
 
 /**
  * Provides client-side routing system and utility methods related to the URLs
@@ -30,35 +29,6 @@ class Router
     this.routes = routes;
   }
 
-  ///////////////////////////////////////////////////////////////////////
-  // PUBLIC STATIC METHODS
-  ///////////////////////////////////////////////////////////////////////
-
-  /**
-   * Parses query string parameters from a string and returns an object containing those parameters
-   * @param {String} queryString - the query string
-   * @returns {Object} - an object containing the query params
-   */
-  static parseQueryParams(queryString)
-  {
-    const uri = new URI();
-
-    uri.search(queryString);
-    return uri.search(true);
-  }
-
-  /**
-   * Converts an object of query parameters into a query string
-   * @param {Object} queryParams - an object containing the query params
-   * @returns {String} the query string
-   */
-  static serializeQueryParams(queryParams)
-  {
-    const uri = new URI();
-
-    uri.search(queryParams);
-    return uri.search();
-  }
 
   ///////////////////////////////////////////////////////////////////////
   // PUBLIC INSTANCE METHODS
@@ -71,15 +41,6 @@ class Router
   changeRoute(route)
   {
     this.location.hash = '#' + route;
-  }
-
-  /**
-   * Returns the query params of the current route
-   * @returns {Object} the query params
-   */
-  getQueryParams()
-  {
-    return Router.parseQueryParams(this.location.search);
   }
 
   /**
@@ -96,7 +57,7 @@ class Router
           data:   item.data,
           name:   item.name,
           params: r.params,
-          query:  this.getQueryParams(),
+          query:  unserializeURISearch(this.location.search),
           uri:    item.uri
         });
       });
@@ -151,35 +112,35 @@ class Router
   {
     if (typeof callback === "undefined")
     {
-      throw new RouterException('Callback function missing');
+      throw new Error("Callback function missing");
     }
     else if (typeof callback !== "function")
     {
-      throw new RouterException('Invalid callback function');
+      throw new Error("Invalid callback function");
     }
   }
   _validateLocation(location)
   {
     if (typeof location.constructor === "undefined" || location.constructor !== Location)
     {
-      throw new RouterException("an instance of the Location class is expected");
+      throw new Error("an instance of the Location class is expected");
     }
   }
   _validateRoutes(routes)
   {
     if (routes === null || typeof routes === "undefined" || routes.constructor !== Array)
     {
-      throw new RouterException('Invalid "routes" constructor argument');
+      throw new Error("Invalid 'routes' constructor argument");
     }
     for (let item of routes)
     {
       if (item === null || typeof item === "undefined" || item.constructor !== Object)
       {
-        throw new RouterException("Invalid route. See console for more details");
+        throw new Error("Invalid route. See console for more details");
       }
       else if (typeof item.name === "undefined" || typeof item.uri === "undefined")
       {
-        throw new RouterException('"name" or "uri" field missing in the route. See console for more details');
+        throw new Error("'name' or 'uri' field missing in the route. See console for more details");
       }
     }
   }
