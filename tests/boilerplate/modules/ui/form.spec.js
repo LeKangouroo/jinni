@@ -1,8 +1,11 @@
 const assert = require("assert");
+const entries = require("core-js/library/fn/object/entries");
 const form = require("../../../../boilerplate/_common/src/js/modules/ui/form");
 const JSDOM = require("jsdom").JSDOM;
 const HTMLFormElement = require("jsdom/lib/jsdom/living/generated/HTMLFormElement").interface;
 const HTMLInputElement = require("jsdom/lib/jsdom/living/generated/HTMLInputElement").interface;
+
+Object.prototype.entries = entries;
 
 global.HTMLFormElement = HTMLFormElement;
 global.HTMLInputElement = HTMLInputElement;
@@ -16,18 +19,18 @@ const createTestForm = () => {
 <body>
   <form>
     <div>
-      <input type="radio" name="gender" value="male">
+      <input type="radio" name="gender" value="male" checked="checked">
       <input type="radio" name="gender" value="female">
     </div>
     <div>
-      <input type="checkbox" name="skills" value="cooking">
+      <input type="checkbox" name="skills" value="cooking" checked="checked">
       <input type="checkbox" name="skills" value="flying">
-      <input type="checkbox" name="skills" value="cqc">
+      <input type="checkbox" name="skills" value="cqc" checked="checked">
     </div>
-    <input type="text" name="lastname">
-    <input type="text" name="firstname">
+    <input type="text" name="lastname" value="doe">
+    <input type="text" name="firstname" value="john">
     <input type="hidden" name="token" value="mytoken">
-    <textarea name="message"></textarea>
+    <textarea name="message">Hello World</textarea>
   </form>
 </body>
 </html>`);
@@ -146,6 +149,21 @@ describe("Modules > UI > Form", function() {
       };
 
       assert.deepStrictEqual(form.getFieldsElementsMap(f, false), expectedResult);
+    });
+  });
+
+  describe("getData()", function() {
+
+    it("should return the correct set of data", function() {
+
+      assert.deepStrictEqual(form.getData(createTestForm()), {
+        gender: "male",
+        skills: ["cooking", "cqc"],
+        lastname: "doe",
+        firstname: "john",
+        token: "mytoken",
+        message: "Hello World"
+      });
     });
   });
 });
