@@ -90,4 +90,17 @@ describe("Modules > UI > Form", function() {
       assert.strictEqual(form.isCheckableInput([]), false);
     });
   });
+
+  describe("getFieldNames()", function() {
+
+    it("should return the correct list", function() {
+
+      assert.deepStrictEqual(form.getFieldsNames(createTestForm()), ["gender", "skills", "lastname", "firstname", "token", "message"]);
+    });
+
+    it("should return the correct list without hidden inputs", function() {
+
+      assert.deepStrictEqual(form.getFieldsNames(createTestForm(), false), ["gender", "skills", "lastname", "firstname", "message"]);
+    });
+  });
 });
