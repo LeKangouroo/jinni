@@ -1,4 +1,77 @@
+import Rlite from 'rlite-router';
 import URI from 'urijs';
+
+
+/**
+ * Creates a simple router that can be used for single page applications
+ *
+ * @param {Window}    window            - the window object
+ * @param {Object[]}  routes            - a list of routes
+ * @param {string}    routes[].name     - the name of the route
+ * @param {string}    routes[].uri      - the URI of the route
+ * @param {*}         [routes[].data]   - (optional) some data associated to the route
+ *
+ * @returns {Object} the router
+ */
+const createRouter = (window, routes) => {
+
+  const prototype = {
+
+    changeRoute(route)
+    {
+      this.window.location.hash = '#' + route;
+    },
+    init()
+    {
+      this.rlite = new Rlite();
+      this.routes.forEach((route) => {
+
+        this.rlite.add(route.uri.substr(1), rliteRoute => {
+
+          this.callback({
+            data: route.data,
+            name: route.name,
+            params: rliteRoute.params,
+            query: unserializeURISearch(this.window.location.search),
+            uri: route.uri
+          });
+        });
+      });
+
+      const processHash = () => {
+
+        const hash = this.window.location.hash || "#";
+
+        if (!this.rlite.run(hash.slice(2)))
+        {
+          this.changeRoute(this.defaultRoute.uri);
+        }
+      };
+
+      this.window.addEventListener("hashchange", processHash);
+
+      processHash();
+    },
+    onRouteChange(cb)
+    {
+      this.callback = cb;
+    },
+    setDefaultRoute(name)
+    {
+      this.defaultRoute = this.routes.find(r => r.name === name);
+    }
+  };
+
+  return Object.create(prototype, {
+    routes: {
+      value: routes
+    },
+    window: {
+      value: window
+    }
+  });
+};
+
 
 /**
  * Converts an object of search parameters into a search string
@@ -24,6 +97,7 @@ const unserializeURISearch = (search) => URI().search(search).search(true);
  * Exports
  */
 export {
+  createRouter,
   serializeURISearch,
   unserializeURISearch
 };
