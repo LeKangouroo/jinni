@@ -32,7 +32,7 @@ const createRouter = (window, routes) => {
             data: route.data,
             name: route.name,
             params: rliteRoute.params,
-            query: unserializeURISearch(this.window.location.search),
+            search: unserializeURISearch(this.window.location.search),
             uri: route.uri
           });
         });
