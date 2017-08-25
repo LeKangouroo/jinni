@@ -10,7 +10,7 @@ describe("Modules > Network > Routing", function() {
       const search = { foo: "bar", toto: 4, isOK: true };
       const expectedResult = "?foo=bar&toto=4&isOK=true";
 
-      assert.deepStrictEqual(routing.serializeURISearch(search), expectedResult);
+      assert.strictEqual(routing.serializeURISearch(search), expectedResult);
     });
 
     it("should return the correct string with falsy values", function() {
@@ -18,7 +18,7 @@ describe("Modules > Network > Routing", function() {
       const search = { a: false, b: 0, c: null, d: undefined, e: "" };
       const expectedResult = "?a=false&b=0&c&e=";
 
-      assert.deepStrictEqual(routing.serializeURISearch(search), expectedResult);
+      assert.strictEqual(routing.serializeURISearch(search), expectedResult);
     });
 
     it("should return the correct string with nested lists", function() {
@@ -26,7 +26,7 @@ describe("Modules > Network > Routing", function() {
       const search = { a: [1,2,3], b: [1,2,3] };
       const expectedResult = "?a=1&a=2&a=3&b=1&b=2&b=3";
 
-      assert.deepStrictEqual(routing.serializeURISearch(search), expectedResult);
+      assert.strictEqual(routing.serializeURISearch(search), expectedResult);
     });
   });
 
