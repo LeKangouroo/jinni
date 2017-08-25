@@ -116,4 +116,36 @@ describe("Modules > UI > Form", function() {
       assert.strictEqual(form.getFieldsElements(createTestForm(), false).length, 8);
     });
   });
+
+  describe("getFieldsElementsMap()", function() {
+
+    it("should return the correct list", function() {
+
+      const f = createTestForm()
+      const expectedResult = {
+        gender: [].slice.call(f.querySelectorAll("*[name='gender']")),
+        skills: [].slice.call(f.querySelectorAll("*[name='skills']")),
+        lastname: [].slice.call(f.querySelectorAll("*[name='lastname']")),
+        firstname: [].slice.call(f.querySelectorAll("*[name='firstname']")),
+        token: [].slice.call(f.querySelectorAll("*[name='token']")),
+        message: [].slice.call(f.querySelectorAll("*[name='message']"))
+      };
+
+      assert.deepStrictEqual(form.getFieldsElementsMap(f), expectedResult);
+    });
+
+    it("should return the correct list without hidden inputs", function() {
+
+      const f = createTestForm()
+      const expectedResult = {
+        gender: [].slice.call(f.querySelectorAll("*[name='gender']")),
+        skills: [].slice.call(f.querySelectorAll("*[name='skills']")),
+        lastname: [].slice.call(f.querySelectorAll("*[name='lastname']")),
+        firstname: [].slice.call(f.querySelectorAll("*[name='firstname']")),
+        message: [].slice.call(f.querySelectorAll("*[name='message']"))
+      };
+
+      assert.deepStrictEqual(form.getFieldsElementsMap(f, false), expectedResult);
+    });
+  });
 });
