@@ -47,5 +47,13 @@ describe("Modules > Network > Routing", function() {
 
       assert.deepStrictEqual(routing.unserializeURISearch(search), expectedResult);
     });
+
+    it("should return an empty object when an empty string is given", function() {
+
+      const search = "";
+      const expectedResult = {};
+
+      assert.deepStrictEqual(routing.unserializeURISearch(search), expectedResult);
+    });
   });
 });
