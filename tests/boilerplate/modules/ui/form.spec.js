@@ -2,8 +2,10 @@ const assert = require("assert");
 const form = require("../../../../boilerplate/_common/src/js/modules/ui/form");
 const JSDOM = require("jsdom").JSDOM;
 const HTMLFormElement = require("jsdom/lib/jsdom/living/generated/HTMLFormElement").interface;
+const HTMLInputElement = require("jsdom/lib/jsdom/living/generated/HTMLInputElement").interface;
 
 global.HTMLFormElement = HTMLFormElement;
+global.HTMLInputElement = HTMLInputElement;
 
 const createTestForm = () => {
 
@@ -24,6 +26,7 @@ const createTestForm = () => {
     </div>
     <input type="text" name="lastname">
     <input type="text" name="firstname">
+    <input type="hidden" name="token" value="mytoken">
     <textarea name="message"></textarea>
   </form>
 </body>
@@ -46,6 +49,23 @@ describe("Modules > UI > Form", function() {
     it("should not validate that it's a form element", function() {
 
       assert.strictEqual(form.isFormElement({}), false);
+    });
+  });
+
+  describe("isHiddenInput()", function() {
+
+    it("should validate that it's a hidden input element", function() {
+
+      const input = createTestForm().querySelector("input[name='token']");
+
+      assert.strictEqual(form.isHiddenInput(input), true);
+    });
+
+    it("should not validate that it's a hidden input element", function() {
+
+      const input = createTestForm().querySelector("input[name='lastname']");
+
+      assert.strictEqual(form.isHiddenInput(input), false);
     });
   });
 });
