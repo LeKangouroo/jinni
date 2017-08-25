@@ -3,7 +3,7 @@ const media = require('../../../../boilerplate/_common/src/js/modules/device/med
 
 describe("Modules > Device > Media", function() {
 
-  describe("#getMediasList method", function() {
+  describe("getMediasList()", function() {
 
     it("should return the same value", function() {
 
