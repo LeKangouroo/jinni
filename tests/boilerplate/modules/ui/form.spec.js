@@ -68,4 +68,26 @@ describe("Modules > UI > Form", function() {
       assert.strictEqual(form.isHiddenInput(input), false);
     });
   });
+
+  describe("isCheckableInput()", function() {
+
+    it("should validate that a radio input is a checkable element", function() {
+
+      const input = createTestForm().querySelector("input[name='gender']");
+
+      assert.strictEqual(form.isCheckableInput(input), true);
+    });
+
+    it("should validate that a checkbox input is a checkable element", function() {
+
+      const input = createTestForm().querySelector("input[name='skills']");
+
+      assert.strictEqual(form.isCheckableInput(input), true);
+    });
+
+    it("should not validate that it's a checkable input element", function() {
+
+      assert.strictEqual(form.isCheckableInput([]), false);
+    });
+  });
 });
