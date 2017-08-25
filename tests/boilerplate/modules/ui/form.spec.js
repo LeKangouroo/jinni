@@ -103,4 +103,17 @@ describe("Modules > UI > Form", function() {
       assert.deepStrictEqual(form.getFieldsNames(createTestForm(), false), ["gender", "skills", "lastname", "firstname", "message"]);
     });
   });
+
+  describe("getFieldsElements()", function() {
+
+    it("should return the correct list", function() {
+
+      assert.strictEqual(form.getFieldsElements(createTestForm()).length, 9);
+    });
+
+    it("should return the correct list without hidden inputs", function() {
+
+      assert.strictEqual(form.getFieldsElements(createTestForm(), false).length, 8);
+    });
+  });
 });
