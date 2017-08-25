@@ -1,5 +1,3 @@
-import ResponseException from './response-exception';
-
 class Response
 {
   /**
@@ -66,7 +64,7 @@ class Response
   /**
    * Parses the response body as JSON and returns it
    * @returns {Object}
-   * @throws ResponseException
+   * @throws Error
    */
   json()
   {
@@ -76,7 +74,7 @@ class Response
     }
     catch (e)
     {
-      throw new ResponseException('error while parsing response body as JSON');
+      throw new Error("error while parsing response body as JSON");
     }
   }
 
