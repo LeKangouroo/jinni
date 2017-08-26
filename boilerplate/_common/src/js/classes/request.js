@@ -1,4 +1,3 @@
-import RequestException from './request-exception';
 import Response from './response';
 
 /**
@@ -28,7 +27,7 @@ class Request
 
   /**
    * Sends the request and returns a promise
-   * @returns {Promise} Passes the XMLHttpRequest instance to the resolve function or a RequestException to the reject function
+   * @returns {Promise} Passes the XMLHttpRequest instance to the resolve function or an error to the reject function
    */
   send()
   {
@@ -53,7 +52,7 @@ class Request
            */
           if (this.xhr.status === 0)
           {
-            reject(new RequestException('Unexpected XMLHTTPRequest error', this.xhr));
+            reject(new Error(`Unexpected XMLHTTPRequest status: ${this.xhr.statusText}`));
           }
           else
           {
