@@ -11,18 +11,14 @@ gulp.task('images', (callback) => {
 
   const src = paths.relocate(config.common.paths.sources.images);
   const dest = paths.relocate(config.common.paths.builds.images[argv.mode]);
-  const imageminConfig = {
-
-    use: [
-      imageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
-      imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
-    ],
-    verbose: true
-  };
+  const plugins = [
+    imageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
+    imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
+  ];
 
   gulp
     .src(src)
-    .pipe(imagemin(imageminConfig))
+    .pipe(imagemin(plugins, { verbose: true }))
       .on('error', (err) => tasks.error('images', callback, err))
     .pipe(gulp.dest(dest))
       .on('end', () => tasks.success('images', callback));
