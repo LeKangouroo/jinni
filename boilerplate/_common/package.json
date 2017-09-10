@@ -46,6 +46,7 @@
     "node-notifier": "5.1.2",
     "nodemailer": "4.1.0",
     "normalize.css": "7.0.0",
+    "preprocess": "3.1.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "rlite-router": "2.0.3",
@@ -55,7 +56,6 @@
     "svg4everybody": "2.1.9",
     "through2": "2.0.3",
     "urijs": "1.18.12",
-    "vinyl-ftp": "0.4.5",
     "webpack": "3.5.6",
     "webpack-stream": "3.2.0",
     "yargs": "8.0.2"
