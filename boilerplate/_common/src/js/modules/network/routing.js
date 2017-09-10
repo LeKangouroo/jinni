@@ -1,4 +1,4 @@
-import Rlite from 'rlite-router';
+import rlite from 'rlite-router';
 import URI from 'urijs';
 
 
@@ -23,29 +23,37 @@ const createRouter = (window, routes) => {
     },
     init()
     {
-      this.rlite = new Rlite();
-      this.routes.forEach((route) => {
-
-        this.rlite.add(route.uri.substr(1), rliteRoute => {
-
-          this.callback({
-            data: route.data,
-            name: route.name,
-            params: rliteRoute.params,
-            search: unserializeURISearch(this.window.location.search),
-            uri: route.uri
-          });
-        });
+      const formatRoute = (route, rliteRoute) => ({
+        data: route.data,
+        name: route.name,
+        params: rliteRoute.params,
+        search: unserializeURISearch(this.window.location.search),
+        uri: route.uri
       });
+
+      const routes = this.routes.reduce((output, r) => {
+
+        output[r.uri] = (params) => formatRoute(r, { params });
+        return output;
+
+      }, {});
+
+      const routeNotFound = (params) => {
+
+        if (!this.defaultRoute)
+        {
+          return null;
+        }
+        return formatRoute(this.defaultRoute, { params });
+      };
+
+      this.rlite = rlite(routeNotFound, routes);
 
       const processHash = () => {
 
         const hash = this.window.location.hash || "#";
 
-        if (!this.rlite.run(hash.slice(2)))
-        {
-          this.changeRoute(this.defaultRoute.uri);
-        }
+        this.callback(this.rlite(hash.slice(1)));
       };
 
       this.window.addEventListener("hashchange", processHash);

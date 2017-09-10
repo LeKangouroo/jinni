@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "A boilerplate generator for front end projects",
   "engines": {
-    "node": "6.7.*"
+    "node": "8"
   },
   "keywords": [
     "front",
