@@ -8,10 +8,9 @@ import watch from 'gulp-watch';
 runSequence.use(gulp);
 gulp.task('dev', (callback) => {
 
-  runSequence(['sass', 'svg', 'html', 'react-to-html', 'javascript'], 'livereload', () => {
+  runSequence(['sass', 'svg', 'html', 'javascript'], 'livereload', () => {
 
     watch(paths.relocate(config.common.paths.sources.html.watch), () => runSequence('html'));
-    watch(paths.relocate(config.common.paths.sources.reactHtml.watch), () => runSequence('react-to-html'));
     watch(paths.relocate(config.common.paths.sources.js.watch), () => runSequence('javascript'));
     watch(paths.relocate(config.common.paths.sources.sass.watch), () => runSequence('sass'));
     watch(paths.relocate(config.common.paths.sources.svg), () => runSequence('svg'));

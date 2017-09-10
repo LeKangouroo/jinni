@@ -2,23 +2,14 @@
   "sources": {
     "html": {
       "default": [
-        "!src/html/_react{,/**}",
+        "!src/html/_includes{,/**}",
         "src/html/**/*.html"
       ],
+      "directory": "src/html",
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
     "instrumentedTests": "tests/instrumented-tests/specs/*.js",
-    "reactHtml": {
-      "default": [
-        "!src/html/_react{,/**}",
-        "src/html/**/*.jsx"
-      ],
-      "watch": [
-        "src/html/**/*.jsx",
-        "src/html/_react/**/*"
-      ]
-    },
     "js": {
       "default": "src/js/*.js",
       "watch": [
