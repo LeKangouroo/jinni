@@ -72,9 +72,9 @@
     "email": "gulp --gulpfile taskrunner/gulpfile.babel.js email",
     "fclean": "npm run clean -- --dist",
     "help": "gulp --gulpfile taskrunner/gulpfile.babel.js --help",
-    "tests": "npm run tests:unit && npm run tests:instrumented",
-    "tests:instrumented": "gulp --gulpfile taskrunner/gulpfile.babel.js instrumented-tests",
-    "tests:unit": "gulp --gulpfile taskrunner/gulpfile.babel.js unit-tests",
+    "test": "npm run test:unit && npm run test:instrumented",
+    "test:instrumented": "gulp --gulpfile taskrunner/gulpfile.babel.js instrumented-tests",
+    "test:unit": "gulp --gulpfile taskrunner/gulpfile.babel.js unit-tests",
     "todos": "gulp --gulpfile taskrunner/gulpfile.babel.js todos",
     "zip": "gulp --gulpfile taskrunner/gulpfile.babel.js zip"
   }
