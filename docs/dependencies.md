@@ -21,7 +21,6 @@
 [SVG Sprite]:           https://github.com/jkphl/svg-sprite
 [SVG4Everybody]:        https://github.com/jonathantneal/svg4everybody
 [URI.js]:               https://github.com/medialize/URI.js
-[Vinyl FTP]:            https://github.com/morris/vinyl-ftp
 [Webpack]:              https://webpack.js.org
 [Yargs]:                http://yargs.js.org
 
@@ -46,7 +45,6 @@
 * [Pug] - A robust, elegant, feature rich template engine for Node.js.
 * [Selenium Webdriver] - A browser automation framework and ecosystem.
 * [SVG Sprite] - An SVG sprite generator (and more).
-* [Vinyl FTP] - An FTP client which supports streaming.
 * [Webpack] - A module bundler.
 * [Yargs] - Helps build interactive command line tools.
 

@@ -26,7 +26,6 @@ Here is the full list of available tasks :
 | clean              | removes build files from the project directory                   | yes        |
 | dev                | runs the development environment                                 | yes        |
 | email              | sends an email based on an email template                        | yes        |
-| ftp                | deploys the distributable code on an FTP server                  | yes        |
 | html               | processes HTML files                                             | no         |
 | images             | processes image files (i.e. optimization)                        | no         |
 | instrumented-tests | runs instrumented tests (browser interactions)                   | yes        |
