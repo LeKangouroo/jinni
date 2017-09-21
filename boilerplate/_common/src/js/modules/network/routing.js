@@ -1,4 +1,4 @@
-import rlite from 'rlite-router';
+import Rlite from 'rlite-router';
 import URI from 'urijs';
 
 
@@ -42,18 +42,18 @@ const createRouter = (window, routes) => {
 
         if (!this.defaultRoute)
         {
-          return null;
+          return undefined;
         }
         return formatRoute(this.defaultRoute, { params });
       };
 
-      this.rlite = rlite(routeNotFound, routes);
+      const rlite = Rlite(routeNotFound, routes);
 
       const processHash = () => {
 
         const hash = this.window.location.hash || "#";
 
-        this.callback(this.rlite(hash.slice(1)));
+        this.callback(rlite(hash.slice(1)));
       };
 
       this.window.addEventListener("hashchange", processHash);
