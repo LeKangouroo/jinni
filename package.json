@@ -30,7 +30,7 @@
     "test": "mocha --recursive --compilers js:babel-register tests"
   },
   "dependencies": {
-    "babel-preset-es2015": "6.24.1",
+    "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",
     "babel-register": "6.26.0",
     "chalk": "1.1.3",
