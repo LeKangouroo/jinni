@@ -39,16 +39,10 @@ To create a tarball (.tar.gz) of the dist/ directory
 $> npm run zip
 ```
 
-To get Git changelog
-
-```shell
-$> npm run changelog -- --start=<commit-id>
-```
-
 To send release email
 
 ```shell
-$> npm run email -- --changelog-start=<commit-id>
+$> npm run email
 ```
 
 To generate todo based on comments in the code
