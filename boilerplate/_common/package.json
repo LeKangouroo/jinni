@@ -71,8 +71,6 @@
     "build:preprod": "npm run fclean && gulp --gulpfile taskrunner/gulpfile.babel.js build --env=pre-production --mode=distributable",
     "build:prod": "npm run fclean && gulp --gulpfile taskrunner/gulpfile.babel.js build --env=production --mode=distributable",
     "clean": "gulp --gulpfile taskrunner/gulpfile.babel.js clean",
-    "deploy:preprod": "gulp --gulpfile taskrunner/gulpfile.babel.js ftp --env=pre-production",
-    "deploy:prod": "gulp --gulpfile taskrunner/gulpfile.babel.js ftp --env=production",
     "dev": "npm run clean && gulp --gulpfile taskrunner/gulpfile.babel.js dev",
     "email": "gulp --gulpfile taskrunner/gulpfile.babel.js email",
     "fclean": "npm run clean -- --dist",
