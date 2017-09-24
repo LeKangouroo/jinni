@@ -1,6 +1,5 @@
 [Home]: index.md
 [BrowserSync]: https://www.browsersync.io
-[Pug]: https://pugjs.org
 [Sass]: http://sass-lang.com
 
 [Home] > Features
@@ -30,7 +29,6 @@ Here is the full list of available tasks :
 | instrumented-tests | runs instrumented tests (browser interactions)                   | yes        |
 | javascript         | processes JavaScript files (transpiling, modules bundling, etc.) | yes        |
 | livereload         | starts a [BrowserSync] server                                    | no         |
-| pug                | processes [Pug] files                                            | no         |
 | sass               | processes [Sass] files                                           | no         |
 | static             | copies static files into the distributable code's directory      | no         |
 | svg                | generates a sprite from SVG icons                                | no         |
