@@ -1,6 +1,6 @@
 # Dependencies
 
-* [NodeJS](https://nodejs.org) (v6.7.x LTS)
+* [NodeJS](https://nodejs.org) (v8.x)
 
 
 # Available commands
@@ -16,14 +16,6 @@ To build the distributable version:
 ```shell
 $> npm run build:preprod
 $> npm run build:prod
-```
-
-To deploy dist on an FTP server (after npm run build)
-duplicate config/tasks/ftp.json.example and remove .example extension then:
-
-```shell
-$> npm run deploy:preprod
-$> npm run deploy:prod
 ```
 
 To remove build files
@@ -54,7 +46,7 @@ $> npm run todos # creates a TODO.md file in tmp/ directory
 To run tests
 
 ```shell
-$> npm run tests # all tests
-$> npm run tests:instrumented # instrumented tests only
-$> npm run tests:unit # unit tests only
+$> npm test # all tests
+$> npm run test:instrumented # instrumented tests only
+$> npm run test:unit # unit tests only
 ```

@@ -20,6 +20,3 @@ npm install -g jinni
 # Documentation
 
 Check out the [documentation] for more details
-
-# TODO
-* Update the documentation for Jinni 3.x

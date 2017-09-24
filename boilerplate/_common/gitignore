@@ -8,4 +8,3 @@ dist
 
 # DON'T YOU EVER REMOVE THESE LINES, OR YOU'LL GET YOUR HEAD CHOPPED OFF!
 taskrunner/config/tasks/email.json
-taskrunner/config/tasks/ftp.json

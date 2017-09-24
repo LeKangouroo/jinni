@@ -1,10 +1,10 @@
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [Babel]:                https://babeljs.io
-[Bourbon Neat]:         http://neat.bourbon.io
-[Bourbon]:              http://bourbon.io
 [BrowserSync]:          https://www.browsersync.io
 [Chai]:                 http://chaijs.com
+[CoreJS]:               https://github.com/zloirock/core-js
 [ESLint]:               http://eslint.org
+[Gridlex]:              https://github.com/devlint/gridlex
 [Gulp]:                 http://gulpjs.com
 [Home]:                 index.md
 [imagemin]:             https://github.com/imagemin/imagemin
@@ -14,10 +14,12 @@
 [Mocha]:                http://mochajs.org
 [Node Notifier]:        https://github.com/mikaelbr/node-notifier
 [Nodemailer]:           https://community.nodemailer.com
-[Pug]:                  https://pugjs.org
+[Normalize.css]:        https://github.com/necolas/normalize.css
+[Preprocess]:           https://github.com/jsoverson/preprocess
 [React]:                https://facebook.github.io/react
 [Rlite]:                https://github.com/chrisdavies/rlite
 [Selenium Webdriver]:   http://www.seleniumhq.org
+[Standard Version]:     https://github.com/conventional-changelog/standard-version
 [SVG Sprite]:           https://github.com/jkphl/svg-sprite
 [SVG4Everybody]:        https://github.com/jonathantneal/svg4everybody
 [URI.js]:               https://github.com/medialize/URI.js
@@ -42,17 +44,19 @@
 * [Mocha] - JavaScript testing framework
 * [Node Notifier] - A Node.js module for sending notifications on native Mac, Windows and Linux (or Growl as fallback).
 * [Nodemailer] - Send e-mails with Node.js.
-* [Pug] - A robust, elegant, feature rich template engine for Node.js.
+* [Preprocess] - Preprocess HTML, JavaScript, and other files with directives based off custom or ENV configuration
 * [Selenium Webdriver] - A browser automation framework and ecosystem.
+* [Standard Version] - Replacement for `npm version` with automatic CHANGELOG generation
 * [SVG Sprite] - An SVG sprite generator (and more).
 * [Webpack] - A module bundler.
 * [Yargs] - Helps build interactive command line tools.
 
 ### Browser dependencies:
 
-* [Bourbon] - A Lightweight Sass Tool Set.
-* [Bourbon Neat] - A lightweight, semantic grid framework built with [Bourbon].
+* [CoreJS] - Modular standard library for JavaScript. Includes polyfills for ECMAScript 5, ECMAScript 6: promises, symbols, collections, iterators, typed arrays, ECMAScript 7+ proposals, setImmediate, etc.
+* [Gridlex] - Based on Flexbox (CSS Flexible Box Layout Module), Gridlex is a very simple css grid system to quickly create modern layouts and submodules.
 * [Jump.js] - A modern smooth scrolling library.
+* [Normalize.css] - A modern alternative to CSS resets
 * [React] - A JavaScript library for building user interfaces
 * [Rlite] - Tiny, fast, light-weight JavaScript routing with zero dependencies.
 * [SVG4Everybody] - A Polyfill for SVG External Content feature.
