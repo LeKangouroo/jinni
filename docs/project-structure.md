@@ -20,9 +20,17 @@
 │   │   │   │       ├── icons
 │   │   │   │       │   └── svg
 │   │   │   │       └── metadata
+│   │   │   ├── html
+│   │   │   │   └── _includes
+│   │   │   │       └── common
 │   │   │   ├── js
 │   │   │   │   ├── classes
-│   │   │   │   └── core
+│   │   │   │   ├── core
+│   │   │   │   └── modules
+│   │   │   │       ├── analytics
+│   │   │   │       ├── device
+│   │   │   │       ├── network
+│   │   │   │       └── ui
 │   │   │   ├── sass
 │   │   │   │   ├── base
 │   │   │   │   ├── mixins
@@ -41,7 +49,6 @@
 │   │   │   ├── modules
 │   │   │   ├── tasks
 │   │   │   ├── templates
-│   │   │   │   └── changelog
 │   │   │   └── usage
 │   │   │       ├── commands
 │   │   │       └── options
@@ -53,34 +60,34 @@
 │   ├── classic
 │   │   └── src
 │   │       ├── html
-│   │       │   └── _react
-│   │       │       └── layouts
 │   │       ├── js
 │   │       └── sass
-│   │           ├── base
 │   │           └── components
 │   └── spa
 │       └── src
 │           ├── components
 │           │   └── example-component
 │           ├── html
-│           │   └── _react
-│           │       └── layouts
 │           ├── js
 │           │   └── core
 │           ├── sass
-│           │   └── base
 │           └── sections
 │               └── home
 ├── docs
-└── src
-    ├── assets
-    │   └── text
-    ├── bin
-    ├── modules
-    ├── scripts
-    └── usages
-        └── options
+├── src
+│   ├── assets
+│   │   └── text
+│   ├── bin
+│   ├── modules
+│   ├── scripts
+│   └── usages
+│       └── options
+└── tests
+    └── boilerplate
+        └── modules
+            ├── device
+            ├── network
+            └── ui
 ```
 
 ## Details
@@ -100,3 +107,7 @@ The `docs/` directory includes the documentation that you are reading. It's writ
 ### src/
 
 The `src/` directory contains the generator's source code. Basically, everything related to the `jin` command is there.
+
+### tests/
+
+The `tests/` directory contains the unit tests.

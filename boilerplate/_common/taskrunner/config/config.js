@@ -9,14 +9,12 @@ import PNGQuant from './nodeModules/imagemin/pngquant.json';
 import replacements from './common/replacements';
 import sass from './nodeModules/sass.json';
 import svgSprite from './nodeModules/svg-sprite.json';
-import versioning from './common/versioning.json';
 import webpack from './nodeModules/webpack';
 
 export default {
   common: {
     paths,
-    replacements,
-    versioning
+    replacements
   },
   nodeModules: {
     autoPrefixer,

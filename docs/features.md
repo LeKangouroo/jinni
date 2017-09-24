@@ -1,6 +1,5 @@
 [Home]: index.md
 [BrowserSync]: https://www.browsersync.io
-[Pug]: https://pugjs.org
 [Sass]: http://sass-lang.com
 
 [Home] > Features
@@ -22,7 +21,6 @@ Here is the full list of available tasks :
 |--------------------|------------------------------------------------------------------|------------|
 | api                | runs a fake REST API locally                                     | yes        |
 | build              | generates the distributable code                                 | yes        |
-| changelog          | outputs changes history from a certain git commit hash           | yes        |
 | clean              | removes build files from the project directory                   | yes        |
 | dev                | runs the development environment                                 | yes        |
 | email              | sends an email based on an email template                        | yes        |
@@ -31,7 +29,6 @@ Here is the full list of available tasks :
 | instrumented-tests | runs instrumented tests (browser interactions)                   | yes        |
 | javascript         | processes JavaScript files (transpiling, modules bundling, etc.) | yes        |
 | livereload         | starts a [BrowserSync] server                                    | no         |
-| pug                | processes [Pug] files                                            | no         |
 | sass               | processes [Sass] files                                           | no         |
 | static             | copies static files into the distributable code's directory      | no         |
 | svg                | generates a sprite from SVG icons                                | no         |

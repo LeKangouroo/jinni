@@ -1,6 +1,6 @@
 # Dependencies
 
-* [NodeJS](https://nodejs.org) (v6.7.x LTS)
+* [NodeJS](https://nodejs.org) (v8.x)
 
 
 # Available commands
@@ -18,14 +18,6 @@ $> npm run build:preprod
 $> npm run build:prod
 ```
 
-To deploy dist on an FTP server (after npm run build)
-duplicate config/tasks/ftp.json.example and remove .example extension then:
-
-```shell
-$> npm run deploy:preprod
-$> npm run deploy:prod
-```
-
 To remove build files
 
 ```shell
@@ -39,16 +31,10 @@ To create a tarball (.tar.gz) of the dist/ directory
 $> npm run zip
 ```
 
-To get Git changelog
-
-```shell
-$> npm run changelog -- --start=<commit-id>
-```
-
 To send release email
 
 ```shell
-$> npm run email -- --changelog-start=<commit-id>
+$> npm run email
 ```
 
 To generate todo based on comments in the code
@@ -60,7 +46,7 @@ $> npm run todos # creates a TODO.md file in tmp/ directory
 To run tests
 
 ```shell
-$> npm run tests # all tests
-$> npm run tests:instrumented # instrumented tests only
-$> npm run tests:unit # unit tests only
+$> npm test # all tests
+$> npm run test:instrumented # instrumented tests only
+$> npm run test:unit # unit tests only
 ```
