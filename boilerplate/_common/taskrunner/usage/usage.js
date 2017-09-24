@@ -1,6 +1,5 @@
 import api from './commands/api';
 import build from './commands/build';
-import changelog from './commands/changelog';
 import clean from './commands/clean';
 import dev from './commands/dev';
 import email from './commands/email';
@@ -12,7 +11,6 @@ const usage = yargs
   .usage('Usage: $0 <command> [options]')
   .command(api)
   .command(build)
-  .command(changelog)
   .command(clean)
   .command(dev)
   .command(email)

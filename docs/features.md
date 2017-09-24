@@ -22,7 +22,6 @@ Here is the full list of available tasks :
 |--------------------|------------------------------------------------------------------|------------|
 | api                | runs a fake REST API locally                                     | yes        |
 | build              | generates the distributable code                                 | yes        |
-| changelog          | outputs changes history from a certain git commit hash           | yes        |
 | clean              | removes build files from the project directory                   | yes        |
 | dev                | runs the development environment                                 | yes        |
 | email              | sends an email based on an email template                        | yes        |
