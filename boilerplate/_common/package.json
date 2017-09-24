@@ -60,6 +60,12 @@
     "webpack-stream": "3.2.0",
     "yargs": "8.0.2"
   },
+  "standard-version": {
+    "skip": {
+      "commit": true,
+      "tag": true
+    }
+  },
   "scripts": {
     "api": "gulp --gulpfile taskrunner/gulpfile.babel.js api",
     "build:preprod": "npm run fclean && gulp --gulpfile taskrunner/gulpfile.babel.js build --env=pre-production --mode=distributable",

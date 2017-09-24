@@ -1,6 +1,6 @@
 {
   "name": "jinni",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "A boilerplate generator for front end projects",
   "engines": {
     "node": "8"
@@ -25,6 +25,12 @@
   "homepage": "https://github.com/itadakimas/jinni#readme",
   "bin": {
     "jin": "./src/bin/cli.js"
+  },
+  "standard-version": {
+    "skip": {
+      "commit": true,
+      "tag": true
+    }
   },
   "scripts": {
     "release": "standard-version",
