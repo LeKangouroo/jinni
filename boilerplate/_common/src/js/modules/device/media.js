@@ -1,5 +1,5 @@
 /**
- * Returns informations about the current media
+ * Returns informations about the current media, based on a list of medias
  *
  * @function
  *
@@ -12,7 +12,7 @@
  *
  * @returns {(Object|undefined)} - An item of the list or undefined if no result found.
  */
-const findCurrentMedia = (window, medias) => medias.find(d => window.matchMedia(d.mediaQuery).matches);
+export const findCurrentMedia = (window, medias) => medias.find(d => window.matchMedia(d.mediaQuery).matches);
 
 
 /**
@@ -22,7 +22,7 @@ const findCurrentMedia = (window, medias) => medias.find(d => window.matchMedia(
  *
  * @returns {Array} - a list of medias
  */
-const getMediasList = () => ([
+export const getMediasList = () => ([
   {
     type:        "desktop",
     orientation: "",
@@ -62,10 +62,23 @@ const getMediasList = () => ([
 ]);
 
 
-/*
- * Exports
+/**
+ * Returns informations about the current media
+ *
+ * @function
+ *
+ * @param {Object}  window - The Window object of the browser
+ *
+ * @returns {(Object|undefined)} - Informations about the current media or undefined if the media is unknown.
  */
-export {
+export const getCurrentMedia = (window) => findCurrentMedia(window, getMediasList());
+
+
+/*
+ * Default exports
+ */
+export default {
   findCurrentMedia,
+  getCurrentMedia,
   getMediasList
 };
