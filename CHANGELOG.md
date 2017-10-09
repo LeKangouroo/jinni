@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.3.1"></a>
+## [3.3.1](https://github.com/itadakimas/jinni/compare/v3.3.0...v3.3.1) (2017-10-09)
+
+
+### Bug Fixes
+
+* uses React production build in distributable code ([1309893](https://github.com/itadakimas/jinni/commit/1309893))
+
+
+
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/itadakimas/jinni/compare/v3.2.1...v3.3.0) (2017-09-30)
 
