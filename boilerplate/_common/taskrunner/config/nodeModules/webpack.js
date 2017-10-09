@@ -87,6 +87,11 @@ const getConfiguration = () => {
     });
     config.plugins = [
       new webpack.optimize.CommonsChunkPlugin(WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG),
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify("production") // NOTE: if the string is not wrapped with quotes, it'll be considered as a variable
+        }
+      }),
       new webpack.optimize.UglifyJsPlugin()
     ];
   }
