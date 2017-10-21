@@ -14,6 +14,10 @@ export default {
         replacement: "DEV"
       },
       {
+        match: "GOOGLE_TAG_MANAGER_ID",
+        replacement: "XXX"
+      },
+      {
         match: "HTTP_ROOT_DIR",
         replacement: ""
       }
@@ -24,6 +28,10 @@ export default {
         replacement: "PRE-PRODUCTION"
       },
       {
+        match: "GOOGLE_TAG_MANAGER_ID",
+        replacement: "XXX"
+      },
+      {
         match: "HTTP_ROOT_DIR",
         replacement: ""
       }
@@ -32,6 +40,10 @@ export default {
       {
         match: "ENV",
         replacement: "PRODUCTION"
+      },
+      {
+        match: "GOOGLE_TAG_MANAGER_ID",
+        replacement: "XXX"
       },
       {
         match: "HTTP_ROOT_DIR",
