@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/itadakimas/jinni/compare/v3.4.0...v3.5.0) (2017-11-22)
+
+
+### Features
+
+* executes clean task during dev task execution ([98329c8](https://github.com/itadakimas/jinni/commit/98329c8))
+* replaces google tag manager with google analytics ([511eea8](https://github.com/itadakimas/jinni/commit/511eea8))
+* updates CLI commands usage ([60a5895](https://github.com/itadakimas/jinni/commit/60a5895))
+* updates README ([82f92bc](https://github.com/itadakimas/jinni/commit/82f92bc))
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/itadakimas/jinni/compare/v3.3.2...v3.4.0) (2017-10-27)
 
