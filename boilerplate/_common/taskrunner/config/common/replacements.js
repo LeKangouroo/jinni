@@ -14,7 +14,7 @@ export default {
         replacement: "DEV"
       },
       {
-        match: "GOOGLE_TAG_MANAGER_ID",
+        match: "GOOGLE_ANALYTICS_ID",
         replacement: "XXX"
       },
       {
@@ -28,7 +28,7 @@ export default {
         replacement: "PRE-PRODUCTION"
       },
       {
-        match: "GOOGLE_TAG_MANAGER_ID",
+        match: "GOOGLE_ANALYTICS_ID",
         replacement: "XXX"
       },
       {
@@ -42,7 +42,7 @@ export default {
         replacement: "PRODUCTION"
       },
       {
-        match: "GOOGLE_TAG_MANAGER_ID",
+        match: "GOOGLE_ANALYTICS_ID",
         replacement: "XXX"
       },
       {
