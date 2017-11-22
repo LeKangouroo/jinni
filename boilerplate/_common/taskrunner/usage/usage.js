@@ -2,7 +2,6 @@ import api from './commands/api';
 import build from './commands/build';
 import clean from './commands/clean';
 import dev from './commands/dev';
-import email from './commands/email';
 import todos from './commands/todos';
 import yargs from 'yargs';
 
@@ -13,7 +12,6 @@ const usage = yargs
   .command(build)
   .command(clean)
   .command(dev)
-  .command(email)
   .command(todos)
   .alias('help', 'h')
   .help();
