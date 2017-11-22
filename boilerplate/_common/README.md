@@ -11,42 +11,9 @@ To start development mode:
 $> npm run dev
 ```
 
-To build the distributable version:
+Search for help on all available commands :
 
 ```shell
-$> npm run build:preprod
-$> npm run build:prod
-```
-
-To remove build files
-
-```shell
-$> npm run clean # removes tmp/ directory
-$> npm run fclean # removes tmp/ and dist/ directories
-```
-
-To create a tarball (.tar.gz) of the dist/ directory
-
-```shell
-$> npm run zip
-```
-
-To send release email
-
-```shell
-$> npm run email
-```
-
-To generate todo based on comments in the code
-
-```shell
-$> npm run todos # creates a TODO.md file in tmp/ directory
-```
-
-To run tests
-
-```shell
-$> npm test # all tests
-$> npm run test:instrumented # instrumented tests only
-$> npm run test:unit # unit tests only
+$> npm run help # find help for all available commands
+$> npm run help dev # find help for a specific command
 ```
