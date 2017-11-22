@@ -33,6 +33,7 @@ gulp.task('build', ['sass', 'svg', 'html', 'javascript', 'static', 'images', 'to
     date: new Date().toISOString(),
     env: argv.env,
     lastCommit: false,
+    mode: argv.mode,
     name: pkg.name,
     version: pkg.version || null
   };
