@@ -31,6 +31,6 @@ Here is the full list of available tasks :
 | sass               | processes [Sass] files                                           | no         |
 | static             | copies static files into the distributable code's directory      | no         |
 | svg                | generates a sprite from SVG icons                                | no         |
-| todos              | generates a TODO.md file listing all //TODO comments             | yes        |
+| todos              | generates a TODO.md file listing all //TODO comments             | no         |
 | unit-tests         | runs unit tests and outputs the results in the terminal          | yes        |
 | zip                | creates an archive file of the distributable code                | yes        |
