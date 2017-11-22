@@ -13,7 +13,6 @@
 [Lodash]:               https://lodash.com
 [Mocha]:                http://mochajs.org
 [Node Notifier]:        https://github.com/mikaelbr/node-notifier
-[Nodemailer]:           https://community.nodemailer.com
 [Normalize.css]:        https://github.com/necolas/normalize.css
 [Preprocess]:           https://github.com/jsoverson/preprocess
 [React]:                https://facebook.github.io/react
@@ -43,7 +42,6 @@
 * [Lodash] - A modern JavaScript utility library.
 * [Mocha] - JavaScript testing framework
 * [Node Notifier] - A Node.js module for sending notifications on native Mac, Windows and Linux (or Growl as fallback).
-* [Nodemailer] - Send e-mails with Node.js.
 * [Preprocess] - Preprocess HTML, JavaScript, and other files with directives based off custom or ENV configuration
 * [Selenium Webdriver] - A browser automation framework and ecosystem.
 * [Standard Version] - Replacement for `npm version` with automatic CHANGELOG generation
