@@ -72,7 +72,8 @@
   },
   "scripts": {
     "api": "$npm_package_config_scripts_bin api",
-    "build": "$npm_package_config_scripts_bin build",
+    "build:pre-production": "$npm_package_config_scripts_bin build --env=pre-production --mode=distributable",
+    "build:production": "$npm_package_config_scripts_bin build --env=production --mode=distributable",
     "clean": "$npm_package_config_scripts_bin clean",
     "dev": "$npm_package_config_scripts_bin dev",
     "fclean": "npm run clean -- --dist",
