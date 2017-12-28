@@ -20,12 +20,16 @@ gulp.task('html', (callback) => {
       .on('error', (err) => tasks.error('html', callback, err))
     .pipe(through.obj((file, enc, cb) => {
 
+      const context = {
+        ENV: argv.env
+      };
+
       const options = {
         srcDir: paths.relocate(config.common.paths.sources.html.directory),
         type: "html"
       };
 
-      file.contents = Buffer.from(preprocess(file.contents, null, options));
+      file.contents = Buffer.from(preprocess(file.contents, context, options));
       cb(null, file);
     }))
       .on('error', (err) => tasks.error('html', callback, err))

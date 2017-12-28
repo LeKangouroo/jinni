@@ -1,46 +1,40 @@
+/*
+ * Imports
+ */
+
 import argv  from '../../modules/argv';
 import glob from 'glob';
+import mergeWith from 'lodash/mergeWith';
 import path from 'path';
 import paths from '../common/paths.json';
 import pathsModule from '../../modules/paths';
 import webpack from 'webpack';
 
-/*
- * Constants
- */
-const PROJECT_DIR = pathsModule.relocate('./');
-const WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG = {
-  name: 'common',
-  minChunks: (module) => isVendor(module),
-  filename: 'common.js'
-};
 
 /*
  * Functions
  */
-const isVendor = (module) => {
 
-  return module.resource && module.resource.indexOf('node_modules') > -1;
-};
+const merge = (object, ...sources) => mergeWith(object, ...sources, (objValue, srcValue) => {
 
-const getEntries = (globPath) => {
-
-  const files = glob.sync(globPath);
-  const entries = {};
-
-  for (let i = 0; i < files.length; i++)
+  if (Array.isArray(objValue))
   {
-    let entry = files[i];
-    entries[path.basename(entry, path.extname(entry))] = entry;
+    return objValue.concat(srcValue);
   }
-  return entries;
-};
+  return undefined;
+});
+
+const getEntries = (globPath) => glob.sync(globPath).reduce((entries, entry) => Object.assign({}, entries, {
+  [`${path.basename(entry, path.extname(entry))}`]: entry
+}), {});
 
 const getConfiguration = () => {
 
-  const config = {
+  const PROJECT_DIR = pathsModule.relocate('./');
+  const VENDOR_PATH_REGEXP = /(node_modules)/;
+  const COMMON_CONFIG = {
     devtool: 'source-map',
-    entry: getEntries(PROJECT_DIR + '/' + paths.sources.js.default),
+    entry: getEntries(`${PROJECT_DIR}/${paths.sources.js.default}`),
     output: {
       filename: '[name].js'
     },
@@ -48,24 +42,36 @@ const getConfiguration = () => {
       loaders: [
         {
           test:    /\.jsx?$/,
-          exclude: /(node_modules)/,
+          exclude: VENDOR_PATH_REGEXP,
           loader:  'babel-loader',
-          query:   { cacheDirectory: PROJECT_DIR + '/tmp/_babel' }
+          query:   { cacheDirectory: `${PROJECT_DIR}/tmp/_babel` }
         },
         {
           test:    /\.json$/,
-          exclude: /(node_modules)/,
+          exclude: VENDOR_PATH_REGEXP,
           loader:  'json-loader'
         },
         {
           test:    /\.html$/,
-          exclude: /(node_modules)/,
+          exclude: VENDOR_PATH_REGEXP,
           loader:  'html-loader?attrs=false'
         }
       ]
     },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'common',
+        minChunks: (module) => module.resource && VENDOR_PATH_REGEXP.test(module.resource),
+        filename: 'common.js'
+      })
+    ],
     resolve: {
       alias: {
+
+        /*
+         * Vendors
+         */
+        vue: "vue/dist/vue.esm.js",
 
         /*
          * Directories
@@ -78,30 +84,30 @@ const getConfiguration = () => {
       }
     }
   };
+
   if (argv.mode === 'distributable')
   {
-    config.module.loaders.push({
-      test: /\.js$/,
-      exclude: /(node_modules)/,
-      loader: 'strip-loader?strip[]=console.log'
-    });
-    config.plugins = [
-      new webpack.optimize.CommonsChunkPlugin(WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG),
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify("production") // NOTE: if the string is not wrapped with quotes, it'll be considered as a variable
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin()
-    ];
+    return Object.freeze(merge({}, COMMON_CONFIG, {
+      module: {
+        loaders: [
+          {
+            test: /\.js$/,
+            exclude: VENDOR_PATH_REGEXP,
+            loader: 'strip-loader?strip[]=console.log'
+          }
+        ]
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          "process.env": {
+            NODE_ENV: JSON.stringify("production") // NOTE: if the string is not wrapped with quotes, it'll be considered as a variable
+          }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+      ]
+    }));
   }
-  else
-  {
-    config.plugins = [
-      new webpack.optimize.CommonsChunkPlugin(WEBPACK_COMMONS_CHUNK_PLUGIN_CONFIG)
-    ];
-  }
-  return config;
+  return Object.freeze(COMMON_CONFIG);
 };
 
 export default getConfiguration;

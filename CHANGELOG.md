@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.5.1"></a>
+## [3.5.1](https://github.com/itadakimas/jinni/compare/v3.5.0...v3.5.1) (2017-12-28)
+
+
+### Bug Fixes
+
+* adds missing flags for npm build scripts ([91127f0](https://github.com/itadakimas/jinni/commit/91127f0))
+* refactors Webpack config file ([f219b08](https://github.com/itadakimas/jinni/commit/f219b08))
+
+
+
 <a name="3.5.0"></a>
 # [3.5.0](https://github.com/itadakimas/jinni/compare/v3.4.0...v3.5.0) (2017-11-22)
 

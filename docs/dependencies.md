@@ -15,13 +15,13 @@
 [Node Notifier]:        https://github.com/mikaelbr/node-notifier
 [Normalize.css]:        https://github.com/necolas/normalize.css
 [Preprocess]:           https://github.com/jsoverson/preprocess
-[React]:                https://facebook.github.io/react
 [Rlite]:                https://github.com/chrisdavies/rlite
 [Selenium Webdriver]:   http://www.seleniumhq.org
 [Standard Version]:     https://github.com/conventional-changelog/standard-version
 [SVG Sprite]:           https://github.com/jkphl/svg-sprite
 [SVG4Everybody]:        https://github.com/jonathantneal/svg4everybody
 [URI.js]:               https://github.com/medialize/URI.js
+[Vue.js]:               https://vuejs.org
 [Webpack]:              https://webpack.js.org
 [Yargs]:                http://yargs.js.org
 
@@ -55,7 +55,7 @@
 * [Gridlex] - Based on Flexbox (CSS Flexible Box Layout Module), Gridlex is a very simple css grid system to quickly create modern layouts and submodules.
 * [Jump.js] - A modern smooth scrolling library.
 * [Normalize.css] - A modern alternative to CSS resets
-* [React] - A JavaScript library for building user interfaces
 * [Rlite] - Tiny, fast, light-weight JavaScript routing with zero dependencies.
 * [SVG4Everybody] - A Polyfill for SVG External Content feature.
 * [URI.js] - Javascript URL mutation library.
+* [Vue.js] - A JavaScript library for building user interfaces
