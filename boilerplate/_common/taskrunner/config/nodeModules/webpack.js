@@ -69,6 +69,11 @@ const getConfiguration = () => {
       alias: {
 
         /*
+         * Vendors
+         */
+        vue: "vue/dist/vue.esm.js",
+
+        /*
          * Directories
          */
         classes: PROJECT_DIR + '/src/js/classes',

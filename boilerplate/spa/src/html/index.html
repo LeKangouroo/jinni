@@ -2,11 +2,13 @@
 <html>
   <head>
     <!-- @include _includes/common/metas.html -->
-    <title>Document</title>
+    <title><!-- @if ENV!="production" -->[@@ENV]&nbsp;<!-- @endif -->Home</title>
     <!-- @include _includes/common/css.html -->
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" :class="{ 'is-loading': isLoading }">
+      <component :is="currentSection"/>
+    </div>
     <!-- @include _includes/common/js.html -->
   </body>
 </html>

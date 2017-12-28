@@ -1,15 +1,14 @@
-import events from 'core/events';
-import HomeSection from 'sections/home/home.jsx';
-import { createRouter } from 'modules/network/routing';
+import { createRouter } from "modules/network/routing";
+import events from "core/events";
 
 const routes = [
-  { name: 'home', uri: '/home', data: { component: HomeSection } }
+  { name: "home", uri: "/home" }
 ];
 
 const router = createRouter(window, routes);
 
-router.setDefaultRoute('home');
+router.setDefaultRoute("home");
 
-router.onRouteChange((route) => events.notifyObservers('router:update', route));
+router.onRouteChange((route) => events.notifyObservers("router:update", route));
 
 export default router;
