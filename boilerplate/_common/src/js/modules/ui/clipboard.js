@@ -1,4 +1,6 @@
-export const copyData = (window, data, options = {}) => {
+const noop = () => {};
+
+export const copyData = (window, data, options = {}, cb = noop) => {
 
   const defaultOptions = { mimeType: "text/html" };
   const { document } = window;
@@ -8,6 +10,7 @@ export const copyData = (window, data, options = {}) => {
     e.clipboardData.setData(opts.mimeType, data);
     e.preventDefault();
     document.removeEventListener("copy", onCopy);
+    cb(e);
   };
   document.addEventListener("copy", onCopy);
   document.execCommand("copy");
