@@ -14,5 +14,4 @@ export const copyData = (window, data, options = {}, cb = noop) => {
   };
   document.addEventListener("copy", onCopy);
   document.execCommand("copy");
-  return data;
 };

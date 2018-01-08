@@ -55,12 +55,18 @@ describe("Modules > UI > Clipboard", function() {
       });
     });
 
-    it("should copy some data even without callback function", function() {
+    it("should copy some data even without callback function", function(done) {
 
       const window = getWindow();
+      const { document } = window;
 
-      window.document.execCommand = getExecCommandMock(window);
-      assert.strictEqual(clipboard.copyData(window, "world"), "world");
+      document.execCommand = getExecCommandMock(window);
+      document.addEventListener("copy", (e) => {
+
+        assert.strictEqual(e.type, "copy");
+        done();
+      });
+      clipboard.copyData(window, "test");
     });
   });
 });
