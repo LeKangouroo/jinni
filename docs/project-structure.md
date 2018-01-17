@@ -48,12 +48,12 @@
 │   │   │   │   └── tasks
 │   │   │   ├── modules
 │   │   │   ├── tasks
-│   │   │   ├── templates
 │   │   │   └── usage
 │   │   │       ├── commands
 │   │   │       └── options
 │   │   └── tests
 │   │       ├── instrumented-tests
+│   │       │   ├── fixtures
 │   │       │   └── specs
 │   │       └── unit-tests
 │   │           └── specs
