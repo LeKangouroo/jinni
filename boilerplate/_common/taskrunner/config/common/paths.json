@@ -9,7 +9,6 @@
       "watch": "src/html/**/*.html"
     },
     "images": "src/**/*.{jpg,png,gif}",
-    "instrumentedTests": "tests/instrumented-tests/specs/*.js",
     "js": {
       "default": "src/js/*.js",
       "watch": [

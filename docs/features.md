@@ -6,12 +6,11 @@
 
 # Features
 
-Features have been developed around [Gulp](http://gulpjs.com),
+Some features have been developed around [Gulp](http://gulpjs.com),
 a task runner which offers flexibility and modularity.
 
-All tasks are available in the `boilerplate/taskrunner/tasks/` directory,
-and some of them are encapsulated using [npm scripts](https://docs.npmjs.com/misc/scripts)
-in order to provide a more generic API.
+All tasks are available in the `boilerplate/taskrunner/tasks/` directory, or directly defined
+using [npm scripts](https://docs.npmjs.com/misc/scripts).
 
 <br>
 

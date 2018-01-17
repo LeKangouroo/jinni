@@ -16,7 +16,7 @@
 [Normalize.css]:        https://github.com/necolas/normalize.css
 [Preprocess]:           https://github.com/jsoverson/preprocess
 [Rlite]:                https://github.com/chrisdavies/rlite
-[Selenium Webdriver]:   http://www.seleniumhq.org
+[Cypress]:              https://www.cypress.io
 [Standard Version]:     https://github.com/conventional-changelog/standard-version
 [SVG Sprite]:           https://github.com/jkphl/svg-sprite
 [SVG4Everybody]:        https://github.com/jonathantneal/svg4everybody
@@ -35,6 +35,7 @@
 * [Babel] - A compiler for writing next generation JavaScript.
 * [BrowserSync] - A tool for keeping multiple browsers & devices in sync when building websites.
 * [Chai] - JavaScript assertion library for node and the browser.
+* [Cypress] - Fast, easy and reliable testing for anything that runs in a browser.
 * [ESLint] - A tool that helps to detect errors and potential problems in JavaScript code.
 * [Gulp] - A task runner based on Node streams.
 * [imagemin] - An image minifier.
@@ -43,7 +44,6 @@
 * [Mocha] - JavaScript testing framework
 * [Node Notifier] - A Node.js module for sending notifications on native Mac, Windows and Linux (or Growl as fallback).
 * [Preprocess] - Preprocess HTML, JavaScript, and other files with directives based off custom or ENV configuration
-* [Selenium Webdriver] - A browser automation framework and ecosystem.
 * [Standard Version] - Replacement for `npm version` with automatic CHANGELOG generation
 * [SVG Sprite] - An SVG sprite generator (and more).
 * [Webpack] - A module bundler.
