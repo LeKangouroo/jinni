@@ -1,9 +1,9 @@
 import chalk from 'chalk';
-import gulpUtil from 'gulp-util';
+import fancyLog from 'fancy-log';
 
-export const log = function() { gulpUtil.log.apply(null, arguments) };
+export const log = (...args) => fancyLog.apply(null, args);
 
-export const raw = function() { console.log.apply(null, arguments) };
+export const raw = (...args) => console.log.apply(null, args);
 
 export const error = (msg) => log(chalk.red(`[ERROR] ${msg}`));
 
