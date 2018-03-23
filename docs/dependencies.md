@@ -1,7 +1,6 @@
 [Autoprefixer]:         https://github.com/postcss/autoprefixer
 [Babel]:                https://babeljs.io
 [BrowserSync]:          https://www.browsersync.io
-[Chai]:                 http://chaijs.com
 [CoreJS]:               https://github.com/zloirock/core-js
 [ESLint]:               http://eslint.org
 [Gridlex]:              https://github.com/devlint/gridlex
@@ -34,7 +33,6 @@
 * [Autoprefixer] - Parses CSS and adds vendor prefixes to rules.
 * [Babel] - A compiler for writing next generation JavaScript.
 * [BrowserSync] - A tool for keeping multiple browsers & devices in sync when building websites.
-* [Chai] - JavaScript assertion library for node and the browser.
 * [Cypress] - Fast, easy and reliable testing for anything that runs in a browser.
 * [ESLint] - A tool that helps to detect errors and potential problems in JavaScript code.
 * [Gulp] - A task runner based on Node streams.
