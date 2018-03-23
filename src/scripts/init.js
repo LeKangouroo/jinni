@@ -10,7 +10,6 @@ const ncp = require('ncp').ncp;
 const os = require('os');
 const path = require('path');
 const packageNameValidator = require('validate-npm-package-name');
-const rimraf = require('rimraf');
 const spawn = require('child_process').spawn;
 
 
@@ -98,28 +97,33 @@ const fail = (msg, err) => {
 
 const generateBoilerplate = (params) => {
 
-  return new Promise((resolve, reject) => {
+  const NCP_OPTIONS = { stopOnErr: true };
+  const copyBaseFiles = params => new Promise((resolve, reject) => {
 
-    const NCP_OPTIONS = { stopOnErr: true };
-
-    ncp(`${params.root}/_common`, params.cwd, NCP_OPTIONS, (err) => {
+    ncp(`${params.root}/types/base`, params.cwd, NCP_OPTIONS, (err) => {
 
       if (err)
       {
         return reject(err);
       }
-      ncp(`${params.root}/${params.answers.boilerplateType}`, params.cwd, NCP_OPTIONS, (err) => {
-
-        if (err)
-        {
-          return reject(err);
-        }
-        fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
-        fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
-        resolve(params);
-      });
+      resolve(params);
     });
   });
+  const copySpecificFiles = params => new Promise((resolve, reject) => {
+
+    ncp(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, NCP_OPTIONS, (err) => {
+
+      if (err)
+      {
+        return reject(err);
+      }
+      fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
+      fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
+      resolve(params);
+    });
+  });
+
+  return copyBaseFiles(params).then(copySpecificFiles);
 };
 
 const install = () => {
