@@ -4,12 +4,14 @@
 // TODO: rewrites this using import syntax when it's available in Node
 const chalk = require('chalk');
 const fs = require('fs');
+const fse = require('fs-extra');
 const inquirer = require('inquirer');
 const logger = require('../modules/logger');
-const ncp = require('ncp').ncp;
+const merge = require('lodash/merge');
 const os = require('os');
 const path = require('path');
 const packageNameValidator = require('validate-npm-package-name');
+const promises = require('../modules/promises');
 const spawn = require('child_process').spawn;
 
 
@@ -21,6 +23,7 @@ const BOILERPLATE_DIR = path.resolve(__dirname, '../../boilerplate');
 const CWD = process.cwd();
 const EXIT_SUCCESS = 0;
 const EXIT_FAILURE = 1;
+const PACKAGE_FILE_PATH = path.resolve(CWD, './package.json');
 
 
 /*
@@ -78,6 +81,11 @@ const askQuestions = () => {
           value: 'spa'
         }
       ]
+    },
+    {
+      type: 'confirm',
+      name: 'api',
+      message: 'Do you need a fake REST API? (powered by json-server)'
     }
   ]);
 };
@@ -97,21 +105,9 @@ const fail = (msg, err) => {
 
 const generateBoilerplate = (params) => {
 
-  const NCP_OPTIONS = { stopOnErr: true };
   const copyBaseFiles = params => new Promise((resolve, reject) => {
 
-    ncp(`${params.root}/types/base`, params.cwd, NCP_OPTIONS, (err) => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      resolve(params);
-    });
-  });
-  const copySpecificFiles = params => new Promise((resolve, reject) => {
-
-    ncp(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, NCP_OPTIONS, (err) => {
+    fse.copy(`${params.root}/types/base`, params.cwd, err => {
 
       if (err)
       {
@@ -119,11 +115,42 @@ const generateBoilerplate = (params) => {
       }
       fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
       fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
-      resolve(params);
+      resolve();
+    });
+  });
+  const copyBoilerplateTypeFiles = params => new Promise((resolve, reject) => {
+
+    fse.copy(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, { overwrite: false }, err => {
+
+      if (err)
+      {
+        return reject(err);
+      }
+      resolve();
+    });
+  });
+  const copyRESTApiFiles = params => new Promise((resolve, reject) => {
+
+    fse.copy(`${params.root}/features/api`, params.cwd, { overwrite: false }, (err) => {
+
+      if (err)
+      {
+        return reject(err);
+      }
+      resolve();
     });
   });
 
-  return copyBaseFiles(params).then(copySpecificFiles);
+  return new Promise((resolve, reject) => {
+
+    const generationPromise = promises.seq([
+      copyBaseFiles(params),
+      copyBoilerplateTypeFiles(params),
+      params.answers.api ? copyRESTApiFiles(params) : Promise.resolve()
+    ]);
+
+    generationPromise.then(() => resolve(params)).catch(reject);
+  });
 };
 
 const install = () => {
@@ -158,14 +185,21 @@ const savePackage = (params) => {
 
   return new Promise((resolve, reject) => {
 
-    const PACKAGE_FILE_PATH = path.resolve(params.cwd, './package.json');
-    const PACKAGE = require(PACKAGE_FILE_PATH);
+    let pkg = require(PACKAGE_FILE_PATH);
 
-    PACKAGE.name = params.answers.projectName;
-    PACKAGE.description = params.answers.projectDescription;
-    PACKAGE.author = params.answers.author;
+    pkg.name = params.answers.projectName;
+    pkg.description = params.answers.projectDescription;
+    pkg.author = params.answers.author;
 
-    fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(PACKAGE, null, 2), (err) => {
+    /*
+     * REST API feature
+     */
+    if (params.answers.api)
+    {
+      merge(pkg, require(`${params.root}/features/api/package.json`));
+    }
+
+    fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {
 
       if (err)
       {

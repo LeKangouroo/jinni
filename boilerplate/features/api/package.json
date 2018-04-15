@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "json-server": "0.12.0"
+  },
+  "scripts": {
+    "api": "$npm_package_config_scripts_bin api"
+  }
+}
