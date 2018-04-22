@@ -86,6 +86,16 @@ const askQuestions = () => {
       type: 'confirm',
       name: 'api',
       message: 'Do you need a fake REST API? (powered by json-server)'
+    },
+    {
+      type: 'confirm',
+      name: 'instrumentedTests',
+      message: 'Do you need to use instrumented tests in a browser? (powered by cypress)'
+    },
+    {
+      type: 'confirm',
+      name: 'unitTests',
+      message: 'Do you need to use unit tests? (powered by mocha)'
     }
   ]);
 };
@@ -120,7 +130,7 @@ const generateBoilerplate = (params) => {
   });
   const copyBoilerplateTypeFiles = params => new Promise((resolve, reject) => {
 
-    fse.copy(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, { overwrite: false }, err => {
+    fse.copy(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, err => {
 
       if (err)
       {
@@ -131,7 +141,29 @@ const generateBoilerplate = (params) => {
   });
   const copyRESTApiFiles = params => new Promise((resolve, reject) => {
 
-    fse.copy(`${params.root}/features/api`, params.cwd, { overwrite: false }, (err) => {
+    fse.copy(`${params.root}/features/api`, params.cwd, err => {
+
+      if (err)
+      {
+        return reject(err);
+      }
+      resolve();
+    });
+  });
+  const copyInstrumentedTestsFiles = params => new Promise((resolve, reject) => {
+
+    fse.copy(`${params.root}/features/instrumented-tests`, params.cwd, err => {
+
+      if (err)
+      {
+        return reject(err);
+      }
+      resolve();
+    });
+  });
+  const copyUnitTestsFiles = params => new Promise((resolve, reject) => {
+
+    fse.copy(`${params.root}/features/unit-tests`, params.cwd, { overwrite: false }, (err) => {
 
       if (err)
       {
@@ -146,9 +178,10 @@ const generateBoilerplate = (params) => {
     const generationPromise = promises.seq([
       copyBaseFiles(params),
       copyBoilerplateTypeFiles(params),
-      params.answers.api ? copyRESTApiFiles(params) : Promise.resolve()
+      params.answers.api ? copyRESTApiFiles(params) : Promise.resolve(),
+      params.answers.instrumentedTests ? copyInstrumentedTestsFiles(params) : Promise.resolve(),
+      params.answers.unitTests ? copyUnitTestsFiles(params) : Promise.resolve()
     ]);
-
     generationPromise.then(() => resolve(params)).catch(reject);
   });
 };
@@ -199,6 +232,14 @@ const savePackage = (params) => {
       merge(pkg, require(`${params.root}/features/api/package.json`));
     }
 
+    /*
+     * Instrumented tests feature
+     */
+    if (params.answers.instrumentedTests)
+    {
+      merge(pkg, require(`${params.root}/features/instrumented-tests/package.json`));
+    }
+
     fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {
 
       if (err)
@@ -223,10 +264,10 @@ askQuestions()
 ).then(
   (context) => savePackage(context),
   (err) => fail('an error occured during boilerplate generation phase', err)
-).then(
+)/*.then(
   () => install(),
   (err) => fail('an error occured during package generation phase', err)
-).then(
+)*/.then(
   () => bye(),
   (err) => fail('an error occured during installation phase', err)
 );

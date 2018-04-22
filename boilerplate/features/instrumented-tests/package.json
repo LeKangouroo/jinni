@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cypress": "1.4.1"
+  },
+  "scripts": {
+    "instrumented-tests": "cypress run",
+    "instrumented-tests:browser": "cypress open"
+  }
+}

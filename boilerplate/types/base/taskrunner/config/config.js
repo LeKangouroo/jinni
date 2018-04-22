@@ -14,7 +14,8 @@ import webpack from './nodeModules/webpack';
 /*
  * Optional configurations
  */
-const JSON_SERVER_CONFIG_PATH = __dirname + '/nodeModules/json-server.json';
+const JSON_SERVER_CONFIG_PATH = `${__dirname}/nodeModules/json-server.json`;
+const MOCHA_CONFIG_PATH = `${__dirname}/nodeModules/mocha.js`;
 
 /*
  * Base configuration
@@ -28,7 +29,6 @@ const config = {
     autoPrefixer,
     browserSync,
     imagemin: { PNGQuant, JPEGRecompress },
-    mocha,
     sass,
     svgSprite,
     webpack
@@ -44,6 +44,14 @@ const config = {
 if (fs.existsSync(JSON_SERVER_CONFIG_PATH))
 {
   config.nodeModules.jsonServer = require(JSON_SERVER_CONFIG_PATH);
+}
+
+/*
+ * Unit tests feature configuration
+ */
+if (fs.existsSync(MOCHA_CONFIG_PATH))
+{
+  config.nodeModules.mocha = require(MOCHA_CONFIG_PATH);
 }
 
 export default config;
