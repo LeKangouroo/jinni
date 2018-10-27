@@ -102,7 +102,7 @@ const askQuestions = () => {
 
 const bye = () => {
 
-  logger.log(chalk.green('\n\nYour wish has been granted!\n'));
+  logger.raw(chalk.green('\n\nYour wish has been granted!\n'));
   process.exit(EXIT_SUCCESS);
 };
 
@@ -162,7 +162,7 @@ const install = () => {
 
   return new Promise((resolve, reject) => {
 
-    logger.log('\nThanks my friend! Now, let the magic happen...\n\n');
+    logger.raw('\nThanks my friend! Now, let the magic happen...\n\n');
 
     const cmd = (os.type() === 'Windows_NT') ? 'npm.cmd' : 'npm';
     const proc = spawn(cmd, ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
@@ -244,10 +244,10 @@ askQuestions()
 ).then(
   (context) => savePackage(context),
   (err) => fail('an error occured during boilerplate generation phase', err)
-)/*.then(
+).then(
   () => install(),
   (err) => fail('an error occured during package generation phase', err)
-)*/.then(
+).then(
   () => bye(),
   (err) => fail('an error occured during installation phase', err)
 );
