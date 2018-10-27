@@ -25,7 +25,6 @@
     "gulp-gzip": "1.4.0",
     "gulp-if": "2.0.2",
     "gulp-imagemin": "3.3.0",
-    "gulp-mocha": "3.0.1",
     "gulp-postcss": "6.2.0",
     "gulp-replace-task": "0.11.0",
     "gulp-sass": "3.1.0",
@@ -39,7 +38,6 @@
     "json-loader": "0.5.7",
     "jump.js": "1.0.2",
     "lodash": "4.17.4",
-    "mocha": "3.5.1",
     "node-notifier": "5.1.2",
     "normalize.css": "7.0.0",
     "preprocess": "3.1.0",
@@ -73,7 +71,6 @@
     "fclean": "npm run clean -- --dist",
     "help": "$npm_package_config_scripts_bin --help",
     "release": "standard-version",
-    "unit-tests": "$npm_package_config_scripts_bin unit-tests",
     "zip": "$npm_package_config_scripts_bin zip"
   }
 }

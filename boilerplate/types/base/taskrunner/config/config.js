@@ -3,7 +3,6 @@ import browserSync from './nodeModules/browser-sync.json';
 import clean from './tasks/clean.json';
 import fs from 'fs';
 import JPEGRecompress from './nodeModules/imagemin/jpeg-recompress.json';
-import mocha from './nodeModules/mocha';
 import paths from './common/paths.json';
 import PNGQuant from './nodeModules/imagemin/pngquant.json';
 import replacements from './common/replacements';

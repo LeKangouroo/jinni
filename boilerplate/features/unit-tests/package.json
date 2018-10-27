@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "gulp-mocha": "3.0.1",
+    "mocha": "3.5.1"
+  },
+  "scripts": {
+    "test": "$npm_package_config_scripts_bin unit-tests"
+  }
+}

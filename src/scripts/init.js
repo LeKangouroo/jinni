@@ -115,62 +115,34 @@ const fail = (msg, err) => {
 
 const generateBoilerplate = (params) => {
 
-  const copyBaseFiles = params => new Promise((resolve, reject) => {
+  const copyOptions = { overwrite: false };
 
-    fse.copy(`${params.root}/types/base`, params.cwd, err => {
+  const copyBaseFiles = params => new Promise(resolve => {
 
-      if (err)
-      {
-        return reject(err);
-      }
-      fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
-      fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
-      resolve();
-    });
+    fse.copySync(`${params.root}/types/base`, params.cwd);
+    fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
+    fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
+    resolve();
   });
-  const copyBoilerplateTypeFiles = params => new Promise((resolve, reject) => {
+  const copyBoilerplateTypeFiles = params => new Promise(resolve => {
 
-    fse.copy(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, err => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      resolve();
-    });
+    fse.copySync(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, copyOptions);
+    resolve();
   });
-  const copyRESTApiFiles = params => new Promise((resolve, reject) => {
+  const copyRESTApiFiles = params => new Promise(resolve => {
 
-    fse.copy(`${params.root}/features/api`, params.cwd, err => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      resolve();
-    });
+    fse.copySync(`${params.root}/features/api`, params.cwd, copyOptions);
+    resolve();
   });
-  const copyInstrumentedTestsFiles = params => new Promise((resolve, reject) => {
+  const copyInstrumentedTestsFiles = params => new Promise(resolve => {
 
-    fse.copy(`${params.root}/features/instrumented-tests`, params.cwd, err => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      resolve();
-    });
+    fse.copySync(`${params.root}/features/instrumented-tests`, params.cwd, copyOptions);
+    resolve();
   });
-  const copyUnitTestsFiles = params => new Promise((resolve, reject) => {
+  const copyUnitTestsFiles = params => new Promise(resolve => {
 
-    fse.copy(`${params.root}/features/unit-tests`, params.cwd, { overwrite: false }, (err) => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      resolve();
-    });
+    fse.copySync(`${params.root}/features/unit-tests`, params.cwd, copyOptions);
+    resolve();
   });
 
   return new Promise((resolve, reject) => {
@@ -240,6 +212,14 @@ const savePackage = (params) => {
       merge(pkg, require(`${params.root}/features/instrumented-tests/package.json`));
     }
 
+    /*
+     * Unit tests feature
+     */
+    if (params.answers.unitTests)
+    {
+      merge(pkg, require(`${params.root}/features/unit-tests/package.json`));
+    }
+
     fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {
 
       if (err)
@@ -255,8 +235,8 @@ const savePackage = (params) => {
 /*
  * Execution
  */
-logger.log(ASCII_ART);
-logger.log("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
+logger.raw(ASCII_ART);
+logger.raw("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
 askQuestions()
 .then(
   (answers) => generateBoilerplate({answers: answers, cwd: CWD, root: BOILERPLATE_DIR}),
