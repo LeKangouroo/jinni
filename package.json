@@ -34,6 +34,7 @@
   },
   "scripts": {
     "release": "standard-version",
+    "setup": "npm install -g",
     "test": "mocha --recursive --compilers js:babel-register tests"
   },
   "dependencies": {
