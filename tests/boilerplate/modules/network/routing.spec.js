@@ -1,5 +1,5 @@
 const assert = require("assert");
-const routing = require("../../../../boilerplate/_common/src/js/modules/network/routing");
+const routing = require("../../../../boilerplate/types/base/src/js/modules/network/routing");
 
 describe("Modules > Network > Routing", function() {
 
