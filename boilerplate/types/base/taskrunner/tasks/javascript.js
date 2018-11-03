@@ -5,23 +5,11 @@ import gulp from 'gulp';
 import gulpIf from 'gulp-if';
 import paths from '../modules/paths';
 import replace from 'gulp-replace-task';
-import runSequence from 'run-sequence';
 import tasks from '../modules/tasks';
 import webpack from 'webpack';
 import webpackStream from 'webpack-stream';
 
-runSequence.use(gulp);
-
-gulp.task('javascript', (callback) => {
-
-  runSequence('javascript-lint', 'javascript-build', () => {
-
-    global.browserSync.reload();
-    tasks.success('javascript', callback);
-  });
-});
-
-gulp.task('javascript-build', (callback) => {
+const buildTask = callback => {
 
   return webpackStream(config.nodeModules.webpack(), webpack)
       .on('error', (err) => tasks.error('javascript', callback, err))
@@ -31,9 +19,9 @@ gulp.task('javascript-build', (callback) => {
       .on('error', (err) => tasks.error('javascript', callback, err))
     .pipe(gulp.dest(paths.relocate(config.common.paths.builds.js[argv.mode])))
       .on('error', (err) => tasks.error('javascript', callback, err));
-});
+};
 
-gulp.task('javascript-lint', (callback) => {
+const lintTask = callback => {
 
   const isDistributableBuild = argv.mode === 'distributable';
 
@@ -44,4 +32,13 @@ gulp.task('javascript-lint', (callback) => {
     .pipe(eslint.format())
     .pipe(gulpIf(isDistributableBuild, eslint.failAfterError()))
       .on('error', (err) => tasks.error('javascript', callback, err));
-});
+};
+
+const onComplete = callback => {
+
+  global.browserSync.reload();
+  tasks.success('javascript', callback);
+};
+
+exports.isPublic = false;
+exports.func = gulp.series(lintTask, buildTask, onComplete);

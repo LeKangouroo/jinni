@@ -39,32 +39,39 @@ const getConfiguration = () => {
       filename: '[name].js'
     },
     module: {
-      loaders: [
+      rules: [
         {
-          test:    /\.jsx?$/,
+          test: /\.jsx?$/,
           exclude: VENDOR_PATH_REGEXP,
-          loader:  'babel-loader',
-          query:   { cacheDirectory: `${PROJECT_DIR}/tmp/_babel` }
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: `${PROJECT_DIR}/tmp/_babel`
+            }
+          }
         },
         {
-          test:    /\.json$/,
+          test: /\.html$/,
           exclude: VENDOR_PATH_REGEXP,
-          loader:  'json-loader'
-        },
-        {
-          test:    /\.html$/,
-          exclude: VENDOR_PATH_REGEXP,
-          loader:  'html-loader?attrs=false'
+          use: {
+            loader: 'html-loader',
+            options: {
+              attrs: false
+            }
+          }
         }
       ]
     },
-    plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        minChunks: (module) => module.resource && VENDOR_PATH_REGEXP.test(module.resource),
-        filename: 'common.js'
-      })
-    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendors: {
+            name: "vendors",
+            test: module => module.resource && VENDOR_PATH_REGEXP.test(module.resource)
+          }
+        }
+      }
+    },
     resolve: {
       alias: {
 
@@ -88,15 +95,6 @@ const getConfiguration = () => {
   if (argv.mode === 'distributable')
   {
     return Object.freeze(merge({}, COMMON_CONFIG, {
-      module: {
-        loaders: [
-          {
-            test: /\.js$/,
-            exclude: VENDOR_PATH_REGEXP,
-            loader: 'strip-loader?strip[]=console.log'
-          }
-        ]
-      },
       plugins: [
         new webpack.DefinePlugin({
           "process.env": {

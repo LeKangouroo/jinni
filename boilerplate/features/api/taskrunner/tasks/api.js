@@ -1,9 +1,9 @@
 import config from '../config/config';
-import gulp from 'gulp';
 import jsonServer from 'json-server';
 import logger from '../modules/logger';
 
-gulp.task('api', (callback) => {
+exports.isPublic = true;
+exports.func = callback => {
 
   const jsonServerConfig = config.nodeModules.jsonServer;
   const server = jsonServer.create();
@@ -16,4 +16,4 @@ gulp.task('api', (callback) => {
     logger.success(`API REST available at http://localhost:${jsonServerConfig.port}`);
     callback();
   });
-});
+};

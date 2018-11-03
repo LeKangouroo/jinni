@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "cypress": "1.4.1"
+    "cypress": "3.1.1"
   },
   "scripts": {
     "instrumented-tests": "cypress run",

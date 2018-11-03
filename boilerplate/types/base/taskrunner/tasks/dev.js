@@ -1,20 +1,27 @@
+import { func as cleanTask } from './clean';
+import { func as htmlTask } from './html';
+import { func as javascriptTask } from './javascript';
+import { func as livereloadTask } from './livereload';
+import { func as sassTask } from './sass';
+import { func as svgTask } from './svg';
+import { parallel, series, watch } from 'gulp';
+import { relocate } from '../modules/paths';
 import config from '../config/config';
-import gulp from 'gulp';
 import logger from '../modules/logger';
-import paths from '../modules/paths';
-import runSequence from 'run-sequence';
-import watch from 'gulp-watch';
 
-runSequence.use(gulp);
-gulp.task('dev', (callback) => {
+function onComplete(callback)
+{
+  watch(relocate(config.common.paths.sources.html.watch), htmlTask);
+  watch(relocate(config.common.paths.sources.js.watch), javascriptTask);
+  watch(relocate(config.common.paths.sources.sass.watch), sassTask);
+  watch(relocate(config.common.paths.sources.svg), svgTask);
+  callback();
+  logger.success("👍  Everything looks good. You're ready to go!");
+}
 
-  runSequence('clean', ['sass', 'svg', 'html', 'javascript'], 'livereload', () => {
-
-    watch(paths.relocate(config.common.paths.sources.html.watch), () => runSequence('html'));
-    watch(paths.relocate(config.common.paths.sources.js.watch), () => runSequence('javascript'));
-    watch(paths.relocate(config.common.paths.sources.sass.watch), () => runSequence('sass'));
-    watch(paths.relocate(config.common.paths.sources.svg), () => runSequence('svg'));
-    callback();
-    logger.success("👍  Everything looks good. You're ready to go!");
-  });
-});
+export const isPublic = true;
+export const func = series(
+  cleanTask,
+  parallel(sassTask, svgTask, htmlTask, javascriptTask),
+  livereloadTask,
+  onComplete);

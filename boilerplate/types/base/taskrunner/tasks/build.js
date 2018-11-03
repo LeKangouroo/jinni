@@ -1,14 +1,20 @@
+import { func as htmlTask } from './html';
+import { func as imagesTask } from './images';
+import { func as javascriptTask } from './javascript';
+import { func as sassTask } from './sass';
+import { func as staticTask } from './static';
+import { func as svgTask } from './svg';
+import { func as todosTask } from './todos';
+import { parallel, series } from 'gulp';
 import argv from '../modules/argv';
-import git from '../modules/git';
-import gulp from 'gulp';
 import fs from 'fs';
+import git from '../modules/git';
 import logger from '../modules/logger';
 import paths from '../modules/paths';
 import pkg from '../../package.json';
 
-
-const saveBuildData = (filePath, data) => {
-
+function saveBuildData(filePath, data)
+{
   return new Promise((resolve, reject) => {
 
     const DIST_DIRECTORY = paths.relocate('dist');
@@ -24,11 +30,11 @@ const saveBuildData = (filePath, data) => {
       resolve();
     });
   });
-};
+}
 
-
-gulp.task('build', ['sass', 'svg', 'html', 'javascript', 'static', 'images', 'todos'], (callback) => {
-
+function onComplete(callback)
+{
+  const BUILD_DATA_FILE = paths.relocate('dist/build.json');
   const BUILD_DATA = {
     date: new Date().toISOString(),
     env: argv.env,
@@ -37,7 +43,6 @@ gulp.task('build', ['sass', 'svg', 'html', 'javascript', 'static', 'images', 'to
     name: pkg.name,
     version: pkg.version || null
   };
-  const BUILD_DATA_FILE = paths.relocate('dist/build.json');
 
   git
     .getHeadCommit()
@@ -56,4 +61,9 @@ gulp.task('build', ['sass', 'svg', 'html', 'javascript', 'static', 'images', 'to
         .then(() => callback())
         .catch(() => callback());
     });
-});
+}
+
+export const isPublic = true;
+export const func = series(
+    parallel(sassTask, svgTask, htmlTask, javascriptTask, staticTask, imagesTask, todosTask),
+    onComplete);
