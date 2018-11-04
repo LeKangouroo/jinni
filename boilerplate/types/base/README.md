@@ -1,6 +1,6 @@
 # Dependencies
 
-* [NodeJS](https://nodejs.org) (v8.x)
+* [NodeJS](https://nodejs.org) (v10.x)
 
 
 # Available commands
