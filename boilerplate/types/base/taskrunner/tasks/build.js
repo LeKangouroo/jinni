@@ -32,7 +32,7 @@ function saveBuildData(filePath, data)
   });
 }
 
-function onComplete(callback)
+function onBuildTaskComplete(callback)
 {
   const BUILD_DATA_FILE = paths.relocate('dist/build.json');
   const BUILD_DATA = {
@@ -66,4 +66,4 @@ function onComplete(callback)
 export const isPublic = true;
 export const func = series(
     parallel(sassTask, svgTask, htmlTask, javascriptTask, staticTask, imagesTask, todosTask),
-    onComplete);
+    onBuildTaskComplete);

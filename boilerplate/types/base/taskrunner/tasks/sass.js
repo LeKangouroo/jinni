@@ -7,16 +7,18 @@ import postCSS from 'gulp-postcss';
 import sass from 'gulp-sass';
 import tasks from '../modules/tasks.js';
 
-exports.isPublic = false;
-exports.func = callback => {
-
+function sassTask(callback)
+{
   src(paths.relocate(config.common.paths.sources.sass.default))
-      .on('error', (err) => tasks.error('sass', callback, err))
+    .on('error', (err) => tasks.error('sass', callback, err))
     .pipe(sass(config.nodeModules.sass[argv.mode]))
-      .on('error', (err) => tasks.error('sass', callback, err))
+    .on('error', (err) => tasks.error('sass', callback, err))
     .pipe(postCSS([ autoPrefixer(config.nodeModules.autoPrefixer) ]))
-      .on('error', (err) => tasks.error('sass', callback, err))
+    .on('error', (err) => tasks.error('sass', callback, err))
     .pipe(dest(paths.relocate(config.common.paths.builds.css[argv.mode])))
-      .on('end', () => tasks.success('sass', callback))
+    .on('end', () => tasks.success('sass', callback))
     .pipe(global.browserSync.stream());
-};
+}
+
+export const isPublic = false;
+export const func = sassTask;

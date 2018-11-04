@@ -9,7 +9,7 @@ import { relocate } from '../modules/paths';
 import config from '../config/config';
 import logger from '../modules/logger';
 
-function onComplete(callback)
+function onDevTaskComplete(callback)
 {
   watch(relocate(config.common.paths.sources.html.watch), htmlTask);
   watch(relocate(config.common.paths.sources.js.watch), javascriptTask);
@@ -24,4 +24,4 @@ export const func = series(
   cleanTask,
   parallel(sassTask, svgTask, htmlTask, javascriptTask),
   livereloadTask,
-  onComplete);
+  onDevTaskComplete);

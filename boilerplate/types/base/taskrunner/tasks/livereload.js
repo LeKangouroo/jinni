@@ -6,11 +6,13 @@ const b = browserSync.create();
 
 global.browserSync = b;
 
-exports.isPublic = false;
-exports.func = callback => {
-
+function livereloadTask(callback)
+{
   const cfg = config.nodeModules.browserSync;
 
   cfg.server.baseDir = cfg.server.baseDir.map((path) => paths.relocate(path));
   b.init(cfg, callback);
-};
+}
+
+export const isPublic = false;
+export const func = livereloadTask;

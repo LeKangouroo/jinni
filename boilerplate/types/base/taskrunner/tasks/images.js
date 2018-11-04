@@ -7,9 +7,8 @@ import imageminPNGQuant from 'imagemin-pngquant';
 import paths from '../modules/paths';
 import tasks from '../modules/tasks';
 
-exports.isPublic = false;
-exports.func = callback => {
-
+function imagesTask(callback)
+{
   const sources = paths.relocate(config.common.paths.sources.images);
   const dest = paths.relocate(config.common.paths.builds.images[argv.mode]);
   const plugins = [
@@ -19,7 +18,10 @@ exports.func = callback => {
 
   src(sources)
     .pipe(imagemin(plugins, { verbose: true }))
-      .on('error', (err) => tasks.error('images', callback, err))
+    .on('error', (err) => tasks.error('images', callback, err))
     .pipe(gulp.dest(dest))
-      .on('end', () => tasks.success('images', callback));
-};
+    .on('end', () => tasks.success('images', callback));
+}
+
+export const isPublic = false;
+export const func = imagesTask;

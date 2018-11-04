@@ -2,9 +2,8 @@ import config from '../config/config';
 import jsonServer from 'json-server';
 import logger from '../modules/logger';
 
-exports.isPublic = true;
-exports.func = callback => {
-
+function apiTask(callback)
+{
   const jsonServerConfig = config.nodeModules.jsonServer;
   const server = jsonServer.create();
 
@@ -16,4 +15,7 @@ exports.func = callback => {
     logger.success(`API REST available at http://localhost:${jsonServerConfig.port}`);
     callback();
   });
-};
+}
+
+export const isPublic = true;
+export const func = apiTask;
