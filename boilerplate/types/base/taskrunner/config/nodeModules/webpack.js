@@ -2,7 +2,8 @@ import {
   getEntries,
   getMode,
   getVendorPattern,
-  isVendorModule
+  isVendorModule,
+  merge
 } from "../../modules/webpack-utils";
 import argv from "../../modules/argv";
 import paths from "../common/paths.json";
@@ -84,8 +85,7 @@ export default () => {
           "process.env": {
             NODE_ENV: JSON.stringify("production") // NOTE: if the string is not wrapped with quotes, it"ll be considered as a variable
           }
-        }),
-        new webpack.optimize.UglifyJsPlugin()
+        })
       ]
     }));
   }

@@ -1,4 +1,4 @@
-import { src } from 'gulp';
+import { dest, src } from 'gulp';
 import config from '../config/config';
 import paths from '../modules/paths';
 import tasks from '../modules/tasks';
@@ -12,7 +12,7 @@ function staticTask(callback)
 
   src(source, options)
     .on('error', (err) => tasks.error('static', callback, err))
-    .pipe(gulp.dest(paths.relocate(config.common.paths.static.destination)))
+    .pipe(dest(paths.relocate(config.common.paths.static.destination)))
     .on('error', (err) => tasks.error('static', callback, err))
     .on('end', () => tasks.success('static', callback));
 }
