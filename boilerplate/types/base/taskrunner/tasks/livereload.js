@@ -8,7 +8,7 @@ global.browserSync = b;
 
 function livereloadTask(callback)
 {
-  const cfg = config.nodeModules.browserSync;
+  const cfg = config.vendors.browserSync;
 
   cfg.server.baseDir = cfg.server.baseDir.map((path) => paths.relocate(path));
   b.init(cfg, callback);

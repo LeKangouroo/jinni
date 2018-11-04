@@ -12,8 +12,8 @@ function imagesTask(callback)
   const sources = paths.relocate(config.common.paths.sources.images);
   const destination = paths.relocate(config.common.paths.builds.images[argv.mode]);
   const plugins = [
-    imageminPNGQuant(config.nodeModules.imagemin.PNGQuant),
-    imageminJPEGRecompress(config.nodeModules.imagemin.JPEGRecompress)
+    imageminPNGQuant(config.vendors.imagemin.PNGQuant),
+    imageminJPEGRecompress(config.vendors.imagemin.JPEGRecompress)
   ];
 
   src(sources)

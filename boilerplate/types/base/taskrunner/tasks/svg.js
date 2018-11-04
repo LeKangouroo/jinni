@@ -15,12 +15,12 @@ function onComplete(callback)
 function svgTask(callback)
 {
   const destination = paths.relocate(config.common.paths.builds.svg[argv.mode]);
-  const output = destination + '/' + config.nodeModules.svgSprite.mode.symbol.sprite;
+  const output = destination + '/' + config.vendors.svgSprite.mode.symbol.sprite;
   const sources = paths.relocate(config.common.paths.sources.svg);
 
   del.sync(output, {force: true});
   src(sources)
-    .pipe(svgSprite(config.nodeModules.svgSprite))
+    .pipe(svgSprite(config.vendors.svgSprite))
     .on('error', (err) => tasks.error('svg', callback))
     .pipe(dest(destination))
     .on('error', (err) => tasks.error('svg', callback))

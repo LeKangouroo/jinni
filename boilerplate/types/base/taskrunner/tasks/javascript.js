@@ -11,7 +11,7 @@ import webpackStream from 'webpack-stream';
 
 function javascriptBuildTask(callback)
 {
-  return webpackStream(config.nodeModules.webpack(), webpack)
+  return webpackStream(config.vendors.webpack(), webpack)
     .on('error', (err) => tasks.error('javascript', callback, err))
     .pipe(replace({ patterns: config.common.replacements.patterns.common }))
     .on('error', (err) => tasks.error('javascript', callback, err))
