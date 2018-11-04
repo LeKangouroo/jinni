@@ -1,9 +1,8 @@
 {
   "dependencies": {
-    "gulp-mocha": "6.0.0",
     "mocha": "5.2.0"
   },
   "scripts": {
-    "test": "$npm_package_config_scripts_bin unit-tests"
+    "test": "mocha --bail --timeout 10000 --require @babel/register --recursive tests/unit-tests/specs"
   }
 }

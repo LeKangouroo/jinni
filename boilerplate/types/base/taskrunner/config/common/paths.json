@@ -24,8 +24,7 @@
     "todos": [
       "!src/vendors/**",
       "src/**/*.{js,jsx,html,scss,sass}"
-    ],
-    "unitTests": "tests/unit-tests/specs/*.js"
+    ]
   },
   "builds": {
     "css": {
