@@ -1,11 +1,8 @@
 {
-  "config": {
-    "api_port": "3080"
-  },
   "dependencies": {
     "json-server": "0.14.0"
   },
   "scripts": {
-    "api": "json-server --watch taskrunner/config/nodeModules/json-server-db.json --port $npm_package_config_api_port"
+    "api": "json-server --watch --config taskrunner/config/vendors/json-server/config.json taskrunner/config/vendors/json-server/db.json"
   }
 }
