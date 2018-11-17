@@ -65,7 +65,6 @@
     "clean": "$npm_package_config_scripts_bin clean",
     "dev": "$npm_package_config_scripts_bin dev",
     "fclean": "npm run clean -- --dist",
-    "help": "$npm_package_config_scripts_bin --help",
     "release": "standard-version",
     "zip": "$npm_package_config_scripts_bin zip"
   }

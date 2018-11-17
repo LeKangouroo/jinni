@@ -10,6 +10,4 @@ export default yargs
   .command(build)
   .command(clean)
   .command(dev)
-  .command(zip)
-  .alias('help', 'h')
-  .help();
+  .command(zip);
