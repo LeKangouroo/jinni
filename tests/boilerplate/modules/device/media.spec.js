@@ -2,7 +2,7 @@ const {
   findCurrentMedia,
   getCurrentMedia,
   getMediasList
-} = require("../../../../boilerplate/_common/src/js/modules/device/media");
+} = require("../../../../boilerplate/types/base/src/js/modules/device/media");
 
 const assert = require("assert");
 const mediaQuery = require("css-mediaquery");

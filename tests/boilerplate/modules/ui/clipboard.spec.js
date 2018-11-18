@@ -1,5 +1,5 @@
 const assert = require("assert");
-const clipboard = require("../../../../boilerplate/_common/src/js/modules/ui/clipboard");
+const clipboard = require("../../../../boilerplate/types/base/src/js/modules/ui/clipboard");
 const JSDOM = require("jsdom").JSDOM;
 
 const getWindow = () => (new JSDOM("<!doctype html><html><head></head><body></body></html>")).window;

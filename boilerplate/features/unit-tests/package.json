@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mocha": "5.2.0"
+  },
+  "scripts": {
+    "test": "mocha --bail --timeout 10000 --require @babel/register --recursive tests/unit-tests/specs"
+  }
+}

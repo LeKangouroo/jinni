@@ -13,75 +13,85 @@
 ```
 .
 ├── boilerplate
-│   ├── _common
-│   │   ├── src
-│   │   │   ├── assets
-│   │   │   │   └── images
-│   │   │   │       ├── icons
-│   │   │   │       │   └── svg
-│   │   │   │       └── metadata
-│   │   │   ├── html
-│   │   │   │   └── _includes
-│   │   │   │       └── common
-│   │   │   ├── js
-│   │   │   │   ├── classes
-│   │   │   │   ├── core
-│   │   │   │   └── modules
-│   │   │   │       ├── analytics
-│   │   │   │       ├── device
-│   │   │   │       ├── network
-│   │   │   │       └── ui
-│   │   │   ├── sass
-│   │   │   │   ├── base
-│   │   │   │   ├── mixins
-│   │   │   │   ├── variables
-│   │   │   │   └── vendors
-│   │   │   └── vendors
-│   │   ├── taskrunner
-│   │   │   ├── assets
-│   │   │   │   └── images
-│   │   │   │       └── notifications
-│   │   │   ├── config
-│   │   │   │   ├── common
-│   │   │   │   ├── nodeModules
-│   │   │   │   │   └── imagemin
-│   │   │   │   └── tasks
-│   │   │   ├── modules
-│   │   │   ├── tasks
-│   │   │   └── usage
-│   │   │       ├── commands
-│   │   │       └── options
-│   │   └── tests
-│   │       ├── instrumented-tests
-│   │       │   ├── fixtures
-│   │       │   └── specs
-│   │       └── unit-tests
-│   │           └── specs
-│   ├── classic
-│   │   └── src
-│   │       ├── html
-│   │       ├── js
-│   │       └── sass
-│   │           └── components
-│   └── spa
-│       └── src
-│           ├── components
-│           │   └── example-component
-│           ├── html
-│           ├── js
-│           │   └── core
-│           ├── sass
-│           └── sections
-│               └── home
+│   ├── features
+│   │   ├── api
+│   │   │   └── taskrunner
+│   │   │       └── config
+│   │   │           └── vendors
+│   │   │               └── json-server
+│   │   ├── instrumented-tests
+│   │   │   └── tests
+│   │   │       └── instrumented-tests
+│   │   │           ├── fixtures
+│   │   │           └── specs
+│   │   └── unit-tests
+│   │       └── tests
+│   │           └── unit-tests
+│   │               └── specs
+│   └── types
+│       ├── base
+│       │   ├── src
+│       │   │   ├── assets
+│       │   │   │   └── images
+│       │   │   │       ├── icons
+│       │   │   │       │   └── svg
+│       │   │   │       └── metadata
+│       │   │   ├── html
+│       │   │   │   └── _includes
+│       │   │   │       └── common
+│       │   │   ├── js
+│       │   │   │   ├── classes
+│       │   │   │   ├── core
+│       │   │   │   └── modules
+│       │   │   │       ├── analytics
+│       │   │   │       ├── device
+│       │   │   │       ├── network
+│       │   │   │       └── ui
+│       │   │   ├── sass
+│       │   │   │   ├── base
+│       │   │   │   ├── mixins
+│       │   │   │   ├── variables
+│       │   │   │   └── vendors
+│       │   │   └── vendors
+│       │   └── taskrunner
+│       │       ├── assets
+│       │       │   └── images
+│       │       │       └── notifications
+│       │       ├── config
+│       │       │   ├── common
+│       │       │   ├── tasks
+│       │       │   └── vendors
+│       │       │       └── imagemin
+│       │       ├── modules
+│       │       ├── tasks
+│       │       └── usage
+│       │           ├── commands
+│       │           └── options
+│       ├── classic
+│       │   └── src
+│       │       ├── html
+│       │       ├── js
+│       │       └── sass
+│       │           └── components
+│       └── spa
+│           └── src
+│               ├── components
+│               │   └── example-component
+│               ├── html
+│               ├── js
+│               │   └── core
+│               ├── sass
+│               └── sections
+│                   └── home
 ├── docs
 ├── src
-│   ├── assets
-│   │   └── text
-│   ├── bin
-│   ├── modules
-│   ├── scripts
-│   └── usages
-│       └── options
+│   ├── assets
+│   │   └── text
+│   ├── bin
+│   ├── modules
+│   ├── scripts
+│   └── usages
+│       └── options
 └── tests
     └── boilerplate
         └── modules
