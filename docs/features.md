@@ -6,12 +6,11 @@
 
 # Features
 
-Features have been developed around [Gulp](http://gulpjs.com),
+Some features have been developed around [Gulp](http://gulpjs.com),
 a task runner which offers flexibility and modularity.
 
-All tasks are available in the `boilerplate/taskrunner/tasks/` directory,
-and some of them are encapsulated using [npm scripts](https://docs.npmjs.com/misc/scripts)
-in order to provide a more generic API.
+All tasks are available in the `boilerplate/taskrunner/tasks/` directory, or directly defined
+using [npm scripts](https://docs.npmjs.com/misc/scripts).
 
 <br>
 
@@ -32,5 +31,5 @@ Here is the full list of available tasks :
 | static             | copies static files into the distributable code's directory      | no         |
 | svg                | generates a sprite from SVG icons                                | no         |
 | todos              | generates a TODO.md file listing all //TODO comments             | no         |
-| unit-tests         | runs unit tests and outputs the results in the terminal          | yes        |
+| test               | runs unit tests and outputs the results in the terminal          | yes        |
 | zip                | creates an archive file of the distributable code                | yes        |

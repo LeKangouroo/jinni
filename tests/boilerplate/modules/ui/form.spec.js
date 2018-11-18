@@ -1,6 +1,6 @@
 const assert = require("assert");
 const entries = require("core-js/library/fn/object/entries");
-const form = require("../../../../boilerplate/_common/src/js/modules/ui/form");
+const form = require("../../../../boilerplate/types/base/src/js/modules/ui/form");
 const JSDOM = require("jsdom").JSDOM;
 const HTMLFormElement = require("jsdom/lib/jsdom/living/generated/HTMLFormElement").interface;
 const HTMLInputElement = require("jsdom/lib/jsdom/living/generated/HTMLInputElement").interface;

@@ -4,13 +4,14 @@
 // TODO: rewrites this using import syntax when it's available in Node
 const chalk = require('chalk');
 const fs = require('fs');
+const fse = require('fs-extra');
 const inquirer = require('inquirer');
 const logger = require('../modules/logger');
-const ncp = require('ncp').ncp;
+const merge = require('lodash/merge');
 const os = require('os');
 const path = require('path');
 const packageNameValidator = require('validate-npm-package-name');
-const rimraf = require('rimraf');
+const promises = require('../modules/promises');
 const spawn = require('child_process').spawn;
 
 
@@ -22,6 +23,7 @@ const BOILERPLATE_DIR = path.resolve(__dirname, '../../boilerplate');
 const CWD = process.cwd();
 const EXIT_SUCCESS = 0;
 const EXIT_FAILURE = 1;
+const PACKAGE_FILE_PATH = path.resolve(CWD, './package.json');
 
 
 /*
@@ -79,13 +81,28 @@ const askQuestions = () => {
           value: 'spa'
         }
       ]
+    },
+    {
+      type: 'confirm',
+      name: 'api',
+      message: 'Do you need a fake REST API? (powered by json-server)'
+    },
+    {
+      type: 'confirm',
+      name: 'instrumentedTests',
+      message: 'Do you need to use instrumented tests in a browser? (powered by cypress)'
+    },
+    {
+      type: 'confirm',
+      name: 'unitTests',
+      message: 'Do you need to use unit tests? (powered by mocha)'
     }
   ]);
 };
 
 const bye = () => {
 
-  logger.log(chalk.green('\n\nYour wish has been granted!\n'));
+  logger.raw(chalk.green('\n\nYour wish has been granted!\n'));
   process.exit(EXIT_SUCCESS);
 };
 
@@ -98,27 +115,46 @@ const fail = (msg, err) => {
 
 const generateBoilerplate = (params) => {
 
+  const copyOptions = { overwrite: false };
+
+  const copyBaseFiles = params => new Promise(resolve => {
+
+    fse.copySync(`${params.root}/types/base`, params.cwd);
+    fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
+    fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
+    resolve();
+  });
+  const copyBoilerplateTypeFiles = params => new Promise(resolve => {
+
+    fse.copySync(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, copyOptions);
+    resolve();
+  });
+  const copyRESTApiFiles = params => new Promise(resolve => {
+
+    fse.copySync(`${params.root}/features/api`, params.cwd, copyOptions);
+    resolve();
+  });
+  const copyInstrumentedTestsFiles = params => new Promise(resolve => {
+
+    fse.copySync(`${params.root}/features/instrumented-tests`, params.cwd, copyOptions);
+    resolve();
+  });
+  const copyUnitTestsFiles = params => new Promise(resolve => {
+
+    fse.copySync(`${params.root}/features/unit-tests`, params.cwd, copyOptions);
+    resolve();
+  });
+
   return new Promise((resolve, reject) => {
 
-    const NCP_OPTIONS = { stopOnErr: true };
-
-    ncp(`${params.root}/_common`, params.cwd, NCP_OPTIONS, (err) => {
-
-      if (err)
-      {
-        return reject(err);
-      }
-      ncp(`${params.root}/${params.answers.boilerplateType}`, params.cwd, NCP_OPTIONS, (err) => {
-
-        if (err)
-        {
-          return reject(err);
-        }
-        fs.renameSync(`${params.cwd}/gitignore`, `${params.cwd}/.gitignore`);
-        fs.renameSync(`${params.cwd}/npmrc`, `${params.cwd}/.npmrc`);
-        resolve(params);
-      });
-    });
+    const generationPromise = promises.seq([
+      copyBaseFiles(params),
+      copyBoilerplateTypeFiles(params),
+      params.answers.api ? copyRESTApiFiles(params) : Promise.resolve(),
+      params.answers.instrumentedTests ? copyInstrumentedTestsFiles(params) : Promise.resolve(),
+      params.answers.unitTests ? copyUnitTestsFiles(params) : Promise.resolve()
+    ]);
+    generationPromise.then(() => resolve(params)).catch(reject);
   });
 };
 
@@ -126,7 +162,7 @@ const install = () => {
 
   return new Promise((resolve, reject) => {
 
-    logger.log('\nThanks my friend! Now, let the magic happen...\n\n');
+    logger.raw('\nThanks my friend! Now, let the magic happen...\n\n');
 
     const cmd = (os.type() === 'Windows_NT') ? 'npm.cmd' : 'npm';
     const proc = spawn(cmd, ['install'], { stdio: ['ignore', process.stdout, process.stderr] });
@@ -154,14 +190,37 @@ const savePackage = (params) => {
 
   return new Promise((resolve, reject) => {
 
-    const PACKAGE_FILE_PATH = path.resolve(params.cwd, './package.json');
-    const PACKAGE = require(PACKAGE_FILE_PATH);
+    let pkg = require(PACKAGE_FILE_PATH);
 
-    PACKAGE.name = params.answers.projectName;
-    PACKAGE.description = params.answers.projectDescription;
-    PACKAGE.author = params.answers.author;
+    pkg.name = params.answers.projectName;
+    pkg.description = params.answers.projectDescription;
+    pkg.author = params.answers.author;
 
-    fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(PACKAGE, null, 2), (err) => {
+    /*
+     * REST API feature
+     */
+    if (params.answers.api)
+    {
+      merge(pkg, require(`${params.root}/features/api/package.json`));
+    }
+
+    /*
+     * Instrumented tests feature
+     */
+    if (params.answers.instrumentedTests)
+    {
+      merge(pkg, require(`${params.root}/features/instrumented-tests/package.json`));
+    }
+
+    /*
+     * Unit tests feature
+     */
+    if (params.answers.unitTests)
+    {
+      merge(pkg, require(`${params.root}/features/unit-tests/package.json`));
+    }
+
+    fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {
 
       if (err)
       {
@@ -176,8 +235,8 @@ const savePackage = (params) => {
 /*
  * Execution
  */
-logger.log(ASCII_ART);
-logger.log("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
+logger.raw(ASCII_ART);
+logger.raw("Hi! My name is Genie. Before I grant your wish, I'll need some informations about your project.\n");
 askQuestions()
 .then(
   (answers) => generateBoilerplate({answers: answers, cwd: CWD, root: BOILERPLATE_DIR}),
