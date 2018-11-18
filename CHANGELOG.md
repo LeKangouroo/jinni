@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.6.0"></a>
+# [3.6.0](https://github.com/itadakimas/jinni/compare/v3.5.1...v3.6.0) (2018-11-18)
+
+
+### Features
+
+* adds clipboard module to the project and adds the unit tests ([c9ac3da](https://github.com/itadakimas/jinni/commit/c9ac3da))
+* replaces selenium webdriver with cypress ([e4571b7](https://github.com/itadakimas/jinni/commit/e4571b7))
+* updates dependencies and refactors code to support Gulp 4 ([6448b08](https://github.com/itadakimas/jinni/commit/6448b08))
+
+
+
 <a name="3.5.1"></a>
 ## [3.5.1](https://github.com/itadakimas/jinni/compare/v3.5.0...v3.5.1) (2017-12-28)
 
