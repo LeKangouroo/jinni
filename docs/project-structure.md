@@ -13,76 +13,76 @@
 ```
 .
 ├── boilerplate
-│   ├── features
-│   │   ├── api
-│   │   │   └── taskrunner
-│   │   │       └── config
-│   │   │           └── vendors
-│   │   │               └── json-server
-│   │   ├── instrumented-tests
-│   │   │   └── tests
-│   │   │       └── instrumented-tests
-│   │   │           ├── fixtures
-│   │   │           └── specs
-│   │   └── unit-tests
-│   │       └── tests
-│   │           └── unit-tests
-│   │               └── specs
-│   └── types
-│       ├── base
-│       │   ├── src
-│       │   │   ├── assets
-│       │   │   │   └── images
-│       │   │   │       ├── icons
-│       │   │   │       │   └── svg
-│       │   │   │       └── metadata
-│       │   │   ├── html
-│       │   │   │   └── _includes
-│       │   │   │       └── common
-│       │   │   ├── js
-│       │   │   │   ├── classes
-│       │   │   │   ├── core
-│       │   │   │   └── modules
-│       │   │   │       ├── analytics
-│       │   │   │       ├── device
-│       │   │   │       ├── network
-│       │   │   │       └── ui
-│       │   │   ├── sass
-│       │   │   │   ├── base
-│       │   │   │   ├── mixins
-│       │   │   │   ├── variables
-│       │   │   │   └── vendors
-│       │   │   └── vendors
-│       │   └── taskrunner
-│       │       ├── assets
-│       │       │   └── images
-│       │       │       └── notifications
-│       │       ├── config
-│       │       │   ├── common
-│       │       │   ├── tasks
-│       │       │   └── vendors
-│       │       │       └── imagemin
-│       │       ├── modules
-│       │       ├── tasks
-│       │       └── usage
-│       │           ├── commands
-│       │           └── options
-│       ├── classic
-│       │   └── src
-│       │       ├── html
-│       │       ├── js
-│       │       └── sass
-│       │           └── components
-│       └── spa
-│           └── src
-│               ├── components
-│               │   └── example-component
-│               ├── html
-│               ├── js
-│               │   └── core
-│               ├── sass
-│               └── sections
-│                   └── home
+│   ├── features
+│   │   ├── api
+│   │   │   └── taskrunner
+│   │   │       └── config
+│   │   │           └── vendors
+│   │   │               └── json-server
+│   │   ├── instrumented-tests
+│   │   │   └── tests
+│   │   │       └── instrumented-tests
+│   │   │           ├── fixtures
+│   │   │           └── specs
+│   │   └── unit-tests
+│   │       └── tests
+│   │           └── unit-tests
+│   │               └── specs
+│   └── types
+│       ├── base
+│       │   ├── src
+│       │   │   ├── assets
+│       │   │   │   └── images
+│       │   │   │       ├── icons
+│       │   │   │       │   └── svg
+│       │   │   │       └── metadata
+│       │   │   ├── html
+│       │   │   │   └── _includes
+│       │   │   │       └── common
+│       │   │   ├── js
+│       │   │   │   ├── classes
+│       │   │   │   ├── core
+│       │   │   │   └── modules
+│       │   │   │       ├── analytics
+│       │   │   │       ├── device
+│       │   │   │       ├── network
+│       │   │   │       └── ui
+│       │   │   ├── sass
+│       │   │   │   ├── base
+│       │   │   │   ├── mixins
+│       │   │   │   ├── variables
+│       │   │   │   └── vendors
+│       │   │   └── vendors
+│       │   └── taskrunner
+│       │       ├── assets
+│       │       │   └── images
+│       │       │       └── notifications
+│       │       ├── config
+│       │       │   ├── common
+│       │       │   ├── tasks
+│       │       │   └── vendors
+│       │       │       └── imagemin
+│       │       ├── modules
+│       │       ├── tasks
+│       │       └── usage
+│       │           ├── commands
+│       │           └── options
+│       ├── classic
+│       │   └── src
+│       │       ├── html
+│       │       ├── js
+│       │       └── sass
+│       │           └── components
+│       └── spa
+│           └── src
+│               ├── components
+│               │   └── example-component
+│               ├── html
+│               ├── js
+│               │   └── core
+│               ├── sass
+│               └── sections
+│                   └── home
 ├── docs
 ├── src
 │   ├── assets
@@ -104,11 +104,12 @@
 
 ### boilerplate/
 
-The `boilerplate/` directory includes the complete codebase for your projects. It has 3 subdirectories :
+The `boilerplate/` directory includes the complete codebase for your projects. :
 
-1. `boilerplate/_common/` contains files that are not specific to a type of boilerplate.
-2. `boilerplate/classic` contains files for classic websites only.
-3. `boilerplate/spa` contains files for Single Page Applications only. [Vue.js] is the selected framework.
+1. `boilerplate/types/base/` contains files that are not specific to a type of boilerplate.
+2. `boilerplate/types/classic` contains files for classic websites only.
+3. `boilerplate/types/spa` contains files for Single Page Applications only. [Vue.js] is the selected framework.
+4. `boilerplate/features` contains files of the additional features selected during setup
 
 ### docs/
 
