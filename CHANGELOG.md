@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.6.2"></a>
+## [3.6.2](https://github.com/itadakimas/jinni/compare/v3.6.1...v3.6.2) (2018-12-24)
+
+
+### Bug Fixes
+
+* updates README files ([d508cf4](https://github.com/itadakimas/jinni/commit/d508cf4))
+
+
+
 <a name="3.6.1"></a>
 ## [3.6.1](https://github.com/itadakimas/jinni/compare/v3.6.0...v3.6.1) (2018-11-18)
 
