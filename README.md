@@ -7,7 +7,7 @@ A boilerplate generator for front end projects.
 
 [![Build Status](https://travis-ci.org/itadakimas/jinni.svg?branch=master)](https://travis-ci.org/itadakimas/jinni)
 
-![Scene for Disney's Aladdin movie](http://i.giphy.com/tpTOw6sljB2U.gif)
+![Scene from Disney's Aladdin movie](http://i.giphy.com/tpTOw6sljB2U.gif)
 
 ## Dependencies
 
