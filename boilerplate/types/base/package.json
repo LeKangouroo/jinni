@@ -3,8 +3,9 @@
   "description": "REPLACED_USING_WIZARD",
   "version": "1.0.0",
   "author": "REPLACED_USING_WIZARD",
+  "type": "module",
   "engines": {
-    "node": "10"
+    "node": "14"
   },
   "private": true,
   "dependencies": {
