@@ -1,4 +1,4 @@
-import uniq from 'lodash/uniq';
+import uniq from 'lodash/uniq.js';
 
 /**
  * Returns the data extracted from an HTMLFormElement instance
