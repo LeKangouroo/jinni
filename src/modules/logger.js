@@ -1,20 +1,10 @@
-const chalk = require("chalk");
-const fancyLog = require("fancy-log");
+import chalk from "chalk";
+import fancyLog from "fancy-log";
 
-const log = (...args) => fancyLog.apply(null, args);
-const raw = (...args) => console.log.apply(null, args);
-const error = (msg) => log(chalk.red(`[ERROR] ${msg}`));
-const info = (msg) => log(chalk.blue(`[INFO] ${msg}`));
-const success = (msg) => log(chalk.green(`[SUCCESS] ${msg}`));
-const trace = (err) => console.trace(err);
-const warning = (msg) => log(chalk.yellow(`[WARNING] ${msg}`));
-
-module.exports = {
-  log,
-  error,
-  info,
-  raw,
-  success,
-  trace,
-  warning
-};
+export const log = (...args) => fancyLog.apply(null, args);
+export const raw = (...args) => console.log.apply(null, args);
+export const error = (msg) => log(chalk.red(`[ERROR] ${msg}`));
+export const info = (msg) => log(chalk.blue(`[INFO] ${msg}`));
+export const success = (msg) => log(chalk.green(`[SUCCESS] ${msg}`));
+export const trace = (err) => console.trace(err);
+export const warning = (msg) => log(chalk.yellow(`[WARNING] ${msg}`));
