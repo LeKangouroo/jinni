@@ -1,3 +1,4 @@
+// TODO: remove polyfills
 import "core/polyfills";
 import events from "core/events";
 import homeSection from "sections/home/home";

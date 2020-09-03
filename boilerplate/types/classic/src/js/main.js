@@ -1,3 +1,4 @@
+// TODO: remove polyfills
 import 'core/polyfills';
 import SVG4Everybody from 'svg4everybody';
 

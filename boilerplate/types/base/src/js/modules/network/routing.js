@@ -51,7 +51,7 @@ const createRouter = (window, routes) => {
 
       const processHash = () => {
 
-        const hash = this.window.location.hash || "#";
+        const hash = this.window.location.hash ?? "#";
 
         this.callback(rlite(hash.slice(1)));
       };

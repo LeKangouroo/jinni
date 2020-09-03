@@ -1,17 +1,14 @@
-import './usage/usage';
-import fs from 'fs';
-import path from 'path';
+import './usage/usage.js';
 
-fs.readdirSync('./tasks/')
-  .map(file => path.basename(file, path.extname(file)))
-  .map(name => ({ name, data: require(`./tasks/${name}`) }))
-  //.filter(task => task.data.isPublic)
-  .forEach(task => exports[task.name] = task.data.func);
-
-exports.foo = cb => {
-
-  console.log("foo");
-  console.dir(exports);
-
-  cb();
-};
+export * as build from './tasks/build.js';
+export * as clean from './tasks/clean.js';
+export * as dev from './tasks/dev.js';
+export * as html from './tasks/html.js';
+export * as images from './tasks/images.js';
+export * as javascript from './tasks/javascript.js';
+export * as livereload from './tasks/livereload.js';
+export * as sass from './tasks/sass.js';
+export * as staticServer from './tasks/staticFiles.js';
+export * as svg from './tasks/svg.js';
+export * as todos from './tasks/todos.js';
+export * as zip from './tasks/zip.js';

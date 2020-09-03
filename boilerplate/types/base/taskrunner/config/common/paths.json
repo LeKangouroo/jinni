@@ -52,7 +52,7 @@
       "distributable": "dist"
     }
   },
-  "static": {
+  "staticFiles": {
     "base": "src",
     "source": [
       "!src/**/*.{jpg,png,gif}",
