@@ -1,13 +1,14 @@
-import { func as cleanTask } from './clean';
-import { func as htmlTask } from './html';
-import { func as javascriptTask } from './javascript';
-import { func as livereloadTask } from './livereload';
-import { func as sassTask } from './sass';
-import { func as svgTask } from './svg';
-import { parallel, series, watch } from 'gulp';
-import { relocate } from '../modules/paths';
-import config from '../config/config';
-import logger from '../modules/logger';
+import config from "../config/config.js";
+import logger from "../modules/logger.js";
+
+import { func as cleanTask } from "./clean.js";
+import { func as htmlTask } from "./html.js";
+import { func as javascriptTask } from "./javascript.js";
+import { func as livereloadTask } from "./livereload.js";
+import { func as sassTask } from "./sass.js";
+import { func as svgTask } from "./svg.js";
+import { parallel, series, watch } from "gulp";
+import { relocate } from "../modules/paths.js";
 
 function onDevTaskComplete(callback)
 {
