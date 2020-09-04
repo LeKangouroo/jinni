@@ -1,3 +1,3 @@
 export default {
-  quality: "65-80"
+  quality: [0.65, 0.80]
 }
