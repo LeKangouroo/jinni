@@ -1,14 +1,11 @@
 import argv from "../../modules/argv.js";
+import concat from "ramda/src/concat.js";
+import mergeDeepWith from "ramda/src/mergeDeepWith.js";
 import paths from "../common/paths.js";
 import pathsModule from "../../modules/paths.js";
 import webpack from "webpack";
 
-import {
-  getEntries,
-  getMode,
-  isVendorModule,
-  merge
-} from "../../modules/webpack-utils.js";
+import { getEntries, getMode, isVendorModule } from "../../modules/webpack-utils.js";
 
 export default () => {
 
@@ -55,7 +52,8 @@ export default () => {
 
   if (MODE === "production")
   {
-    return Object.freeze(merge({}, COMMON_CONFIG, {
+    // NOTE: this merges the common config with production config, and concatenates array values (i.e. plugins)
+    return Object.freeze(mergeDeepWith(concat, COMMON_CONFIG, {
       plugins: [
         new webpack.DefinePlugin({
           "process.env": {

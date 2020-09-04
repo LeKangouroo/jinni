@@ -1,5 +1,4 @@
 import glob from "glob";
-import mergeWith from "lodash/mergeWith.js";
 import path from "path";
 
 export const getEntries = (globPath) => glob
@@ -12,5 +11,3 @@ export const getMode = argv => argv.mode === "distributable" ? "production" : "d
 export const getVendorPattern = () => /(node_modules)/;
 
 export const isVendorModule = module => module.resource && getVendorPattern().test(module.resource);
-
-export const merge = (object, ...sources) => mergeWith(object, ...sources, (objValue, srcValue) => Array.isArray(objValue) ? objValue.concat(srcValue) : undefined);
