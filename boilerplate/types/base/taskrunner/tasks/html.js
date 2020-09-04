@@ -1,12 +1,11 @@
 import argv from "../modules/argv.js";
 import config from "../config/config.js";
+import gulp from "gulp";
 import paths from "../modules/paths.js";
+import pp from "preprocess";
 import replace from "gulp-replace-task";
 import tasks from "../modules/tasks.js";
 import through from "through2";
-
-import { dest, src } from "gulp";
-import { preprocess } from "preprocess";
 
 function onComplete(callback)
 {
@@ -16,7 +15,7 @@ function onComplete(callback)
 
 function htmlTask(callback)
 {
-  src(paths.relocate(config.common.paths.sources.html.default))
+  gulp.src(paths.relocate(config.common.paths.sources.html.default))
     .on("error", (err) => tasks.error("html", callback, err))
     .pipe(through.obj((file, enc, cb) => {
 
@@ -29,7 +28,7 @@ function htmlTask(callback)
         type: "html"
       };
 
-      file.contents = Buffer.from(preprocess(file.contents, context, options));
+      file.contents = Buffer.from(pp.preprocess(file.contents, context, options));
       cb(null, file);
     }))
     .on("error", (err) => tasks.error("html", callback, err))
@@ -37,10 +36,9 @@ function htmlTask(callback)
     .on("error", (err) => tasks.error("html", callback, err))
     .pipe(replace({ patterns: config.common.replacements.patterns[argv.env] }))
     .on("error", (err) => tasks.error("html", callback, err))
-    .pipe(dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.builds.html[argv.mode])))
     .on("error", (err) => tasks.error("html", callback, err))
     .on("end", () => tasks.success("html", onComplete.bind(null, callback)));
 }
 
-export const isPublic = false;
-export const func = htmlTask;
+export default htmlTask;

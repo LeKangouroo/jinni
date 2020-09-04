@@ -1,4 +1,4 @@
-import assign from "lodash/assign";
+import assign from "lodash/assign.js";
 import fs from "fs";
 import logger from "./logger.js";
 import notifier from "node-notifier";

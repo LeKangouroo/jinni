@@ -15,5 +15,4 @@ function livereloadTask(callback)
   b.init(cfg, callback);
 }
 
-export const isPublic = false;
-export const func = livereloadTask;
+export default livereloadTask;

@@ -1,8 +1,7 @@
 import config from "../config/config.js";
+import gulp from "gulp";
 import paths from "../modules/paths.js";
 import tasks from "../modules/tasks.js";
-
-import { dest, src } from "gulp";
 
 function staticFilesTask(callback)
 {
@@ -11,12 +10,11 @@ function staticFilesTask(callback)
   };
   const source = paths.relocate(config.common.paths.staticFiles.source);
 
-  src(source, options)
+  gulp.src(source, options)
     .on("error", (err) => tasks.error("staticFiles", callback, err))
-    .pipe(dest(paths.relocate(config.common.paths.staticFiles.destination)))
+    .pipe(gulp.dest(paths.relocate(config.common.paths.staticFiles.destination)))
     .on("error", (err) => tasks.error("staticFiles", callback, err))
     .on("end", () => tasks.success("staticFiles", callback));
 }
 
-export const isPublic = false;
-export const func = staticFilesTask;
+export default staticFilesTask;

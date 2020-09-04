@@ -40,5 +40,4 @@ function cleanTask(callback)
   .catch((err) => onError(err, callback));
 }
 
-export const isPublic = true;
-export const func = cleanTask;
+export default cleanTask;

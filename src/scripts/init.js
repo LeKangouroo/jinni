@@ -1,3 +1,5 @@
+// TODO: use checkbox type for additional features
+
 /*
  * Dependencies
  */

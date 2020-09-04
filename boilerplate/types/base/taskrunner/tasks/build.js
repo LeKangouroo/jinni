@@ -1,18 +1,18 @@
 import argv from "../modules/argv.js";
 import fs from "fs";
 import git from "../modules/git.js";
+import gulp from "gulp";
+import htmlTask from "./html.js";
+import imagesTask from "./images.js";
+import javascriptTask from "./javascript.js";
 import logger from "../modules/logger.js";
 import path from "path";
 import paths from "../modules/paths.js";
+import sassTask from "./sass.js";
+import staticFilesTask from "./staticFiles.js";
+import svgTask from "./svg.js";
+import todosTask from "./todos.js";
 
-import { parallel, series } from "gulp";
-import { func as htmlTask } from "./html.js";
-import { func as imagesTask } from "./images.js";
-import { func as javascriptTask } from "./javascript.js";
-import { func as sassTask } from "./sass.js";
-import { func as staticFilesTask } from "./staticFiles.js";
-import { func as svgTask } from "./svg.js";
-import { func as todosTask } from "./todos.js";
 import { readJSON } from "../modules/json.js";
 import { fileURLToPath } from "url";
 
@@ -71,7 +71,6 @@ function onBuildTaskComplete(options, callback)
     });
 }
 
-export const isPublic = true;
-export const func = series(
-    parallel(sassTask, svgTask, htmlTask, javascriptTask, staticFilesTask, imagesTask, todosTask),
+export default gulp.series(
+    gulp.parallel(sassTask, svgTask, htmlTask, javascriptTask, staticFilesTask, imagesTask, todosTask),
     (cb) => onBuildTaskComplete({ argv, pkg }, cb));
