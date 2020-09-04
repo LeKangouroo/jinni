@@ -22,7 +22,6 @@
     "gulp-if": "3.0.0",
     "gulp-imagemin": "7.1.0",
     "gulp-postcss": "8.0.0",
-    "gulp-replace-task": "0.11.0",
     "gulp-sass": "4.1.0",
     "gulp-svg-sprite": "1.5.0",
     "gulp-tar": "3.1.0",
@@ -52,7 +51,7 @@
     "scripts_bin": "gulp --gulpfile taskrunner/gulpfile.js"
   },
   "scripts": {
-    "build:pre-production": "$npm_package_config_scripts_bin build --env=pre-production --mode=distributable",
+    "build:preproduction": "$npm_package_config_scripts_bin build --env=preproduction --mode=distributable",
     "build:production": "$npm_package_config_scripts_bin build --env=production --mode=distributable",
     "clean": "$npm_package_config_scripts_bin clean",
     "dev": "$npm_package_config_scripts_bin dev",

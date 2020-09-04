@@ -3,6 +3,7 @@ import homeSection from "sections/home/home";
 import router from "core/router";
 import Vue from "vue";
 
+console.log("environment: /*@echo ENV*/");
 console.log("main.js file loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
