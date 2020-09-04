@@ -1,13 +1,13 @@
-import assign from 'lodash/assign';
-import fs from 'fs';
-import logger from './logger';
-import notifier from 'node-notifier';
-import paths from './paths';
+import assign from "lodash/assign.js";
+import fs from "fs";
+import logger from "./logger.js";
+import notifier from "node-notifier";
+import paths from "./paths.js";
 
 const DEFAULT_OPTIONS = {
   icon: null,
-  title: '[NO TITLE]',
-  message: '[NO MESSAGE]'
+  title: "[NO TITLE]",
+  message: "[NO MESSAGE]"
 };
 
 export const notify = (options) => {

@@ -1,18 +1,10 @@
-const assert = require("assert");
-const entries = require("core-js/library/fn/object/entries");
-const form = require("../../../../boilerplate/types/base/src/js/modules/ui/form");
-const JSDOM = require("jsdom").JSDOM;
-const HTMLFormElement = require("jsdom/lib/jsdom/living/generated/HTMLFormElement").interface;
-const HTMLInputElement = require("jsdom/lib/jsdom/living/generated/HTMLInputElement").interface;
-
-Object.prototype.entries = entries;
-
-global.HTMLFormElement = HTMLFormElement;
-global.HTMLInputElement = HTMLInputElement;
+import assert from "assert";
+import * as form from "../../../../boilerplate/types/base/src/js/modules/ui/form.js";
+import jsdom from "jsdom";
 
 const createTestForm = () => {
 
-  const dom = new JSDOM(`
+  const dom = new jsdom.JSDOM(`
 <!doctype html>
 <html>
 <head></head>
@@ -36,6 +28,9 @@ const createTestForm = () => {
 </html>`);
 
   const document = dom.window.document;
+
+  global.HTMLFormElement = dom.window.HTMLFormElement;
+  global.HTMLInputElement = dom.window.HTMLInputElement;
 
   return document.querySelector("form");
 };

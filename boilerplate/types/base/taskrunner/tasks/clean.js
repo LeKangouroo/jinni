@@ -1,13 +1,13 @@
-import argv from '../modules/argv';
-import config from '../config/config';
-import del from 'del';
-import errno from 'errno';
-import logger from '../modules/logger';
-import paths from '../modules/paths';
+import argv from "../modules/argv.js";
+import config from "../config/config.js";
+import del from "del";
+import errno from "errno";
+import logger from "../modules/logger.js";
+import paths from "../modules/paths.js";
 
 function onError(err, callback)
 {
-  logger.error('"clean" task failed!');
+  logger.error("'clean' task failed!");
   logger.log(`\t- Path: ${ err.path }`);
   logger.log(`\t- Cause: ${ errno.code[err.code].description }`);
   logger.trace(err);
@@ -16,7 +16,7 @@ function onError(err, callback)
 
 function onSuccess(deletedItems, callback)
 {
-  logger.success('"clean" task completed successfully!');
+  logger.success("'clean' task completed successfully!");
   if (deletedItems.length > 0)
   {
     logger.info("Deleted items:");
@@ -40,5 +40,4 @@ function cleanTask(callback)
   .catch((err) => onError(err, callback));
 }
 
-export const isPublic = true;
-export const func = cleanTask;
+export default cleanTask;

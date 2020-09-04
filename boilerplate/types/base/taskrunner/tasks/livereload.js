@@ -1,9 +1,10 @@
-import browserSync from 'browser-sync';
-import config from '../config/config';
-import paths from '../modules/paths';
+import browserSync from "browser-sync";
+import config from "../config/config.js";
+import paths from "../modules/paths.js";
 
 const b = browserSync.create();
 
+// TODO: avoid using a global variable
 global.browserSync = b;
 
 function livereloadTask(callback)
@@ -14,5 +15,4 @@ function livereloadTask(callback)
   b.init(cfg, callback);
 }
 
-export const isPublic = false;
-export const func = livereloadTask;
+export default livereloadTask;

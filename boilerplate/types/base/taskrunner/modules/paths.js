@@ -1,5 +1,5 @@
-import isString from 'lodash/isString';
-import path from 'path';
+import isString from "lodash/isString.js";
+import path from "path";
 
 const relocateGlob = (glob) => {
 
@@ -9,7 +9,7 @@ const relocateGlob = (glob) => {
   }
 
   // NOTE: if path is excluded
-  if (glob.charAt(0) === '!')
+  if (glob.charAt(0) === "!")
   {
     return "!" + path.resolve("../", glob.substring(1));
   }
@@ -26,7 +26,7 @@ export const relocate = (value) => {
   {
     return value.map((glob) => relocateGlob(glob));
   }
-  throw new TypeError('unexpected value type');
+  throw new TypeError("unexpected value type");
 };
 
 export default {

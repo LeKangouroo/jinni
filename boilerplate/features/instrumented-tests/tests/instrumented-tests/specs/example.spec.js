@@ -12,7 +12,7 @@ describe("Custom test", () => {
 
       cy.get("input[name='q']").type(data.search);
       cy.get("#topbar-search").submit();
-      cy.get("a[href='/tutoriels/linux/makefile-953']")
+      cy.get("a[href='/tutoriels/makefile-953']")
     });
   });
 

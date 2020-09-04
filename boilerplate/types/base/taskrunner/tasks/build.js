@@ -1,23 +1,30 @@
-import { func as htmlTask } from './html';
-import { func as imagesTask } from './images';
-import { func as javascriptTask } from './javascript';
-import { func as sassTask } from './sass';
-import { func as staticTask } from './static';
-import { func as svgTask } from './svg';
-import { func as todosTask } from './todos';
-import { parallel, series } from 'gulp';
-import argv from '../modules/argv';
-import fs from 'fs';
-import git from '../modules/git';
-import logger from '../modules/logger';
-import paths from '../modules/paths';
-import pkg from '../../package.json';
+import argv from "../modules/argv.js";
+import fs from "fs";
+import git from "../modules/git.js";
+import gulp from "gulp";
+import htmlTask from "./html.js";
+import imagesTask from "./images.js";
+import javascriptTask from "./javascript.js";
+import logger from "../modules/logger.js";
+import path from "path";
+import paths from "../modules/paths.js";
+import sassTask from "./sass.js";
+import staticFilesTask from "./staticFiles.js";
+import svgTask from "./svg.js";
+import todosTask from "./todos.js";
+
+import { readJSON } from "../modules/json.js";
+import { fileURLToPath } from "url";
+
+const currentFilePath = fileURLToPath(import.meta.url);
+const pkgPath = path.join(currentFilePath, "..", "..", "..", "package.json");
+const pkg = readJSON(pkgPath);
 
 function saveBuildData(filePath, data)
 {
   return new Promise((resolve, reject) => {
 
-    const DIST_DIRECTORY = paths.relocate('dist');
+    const DIST_DIRECTORY = paths.relocate("dist");
 
     fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
 
@@ -32,16 +39,17 @@ function saveBuildData(filePath, data)
   });
 }
 
-function onBuildTaskComplete(callback)
+function onBuildTaskComplete(options, callback)
 {
-  const BUILD_DATA_FILE = paths.relocate('dist/build.json');
+  const { pkg, argv } = options;
+  const BUILD_DATA_FILE = paths.relocate("dist/build.json");
   const BUILD_DATA = {
     date: new Date().toISOString(),
     env: argv.env,
     lastCommit: false,
     mode: argv.mode,
     name: pkg.name,
-    version: pkg.version || null
+    version: pkg.version ?? null
   };
 
   git
@@ -55,7 +63,7 @@ function onBuildTaskComplete(callback)
     })
     .catch((err) => {
 
-      logger.warning('Git HEAD commit retrieving failed. See details below:');
+      logger.warning("Git HEAD commit retrieving failed. See details below:");
       logger.trace(err.message);
       saveBuildData(BUILD_DATA_FILE, BUILD_DATA)
         .then(() => callback())
@@ -63,7 +71,6 @@ function onBuildTaskComplete(callback)
     });
 }
 
-export const isPublic = true;
-export const func = series(
-    parallel(sassTask, svgTask, htmlTask, javascriptTask, staticTask, imagesTask, todosTask),
-    onBuildTaskComplete);
+export default gulp.series(
+    gulp.parallel(sassTask, svgTask, htmlTask, javascriptTask, staticFilesTask, imagesTask, todosTask),
+    (cb) => onBuildTaskComplete({ argv, pkg }, cb));

@@ -1,14 +1,15 @@
+import argv from "../../modules/argv.js";
+import paths from "../common/paths.js";
+import pathsModule from "../../modules/paths.js";
+import webpack from "webpack";
+
 import {
   getEntries,
   getMode,
   getVendorPattern,
   isVendorModule,
   merge
-} from "../../modules/webpack-utils";
-import argv from "../../modules/argv";
-import paths from "../common/paths.json";
-import pathsModule from "../../modules/paths";
-import webpack from "webpack";
+} from "../../modules/webpack-utils.js";
 
 export default () => {
 

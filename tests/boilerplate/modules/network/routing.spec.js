@@ -1,5 +1,5 @@
-const assert = require("assert");
-const routing = require("../../../../boilerplate/types/base/src/js/modules/network/routing");
+import assert from "assert";
+import * as routing from "../../../../boilerplate/types/base/src/js/modules/network/routing.js";
 
 describe("Modules > Network > Routing", function() {
 

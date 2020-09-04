@@ -1,6 +1,6 @@
 import glob from "glob";
+import mergeWith from "lodash/mergeWith.js";
 import path from "path";
-import mergeWith from "lodash/mergeWith";
 
 export const getEntries = (globPath) => glob
   .sync(globPath)

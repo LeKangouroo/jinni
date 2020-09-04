@@ -1,5 +1,5 @@
-import env from '../options/env';
-import mode from '../options/mode';
+import env from '../options/env.js';
+import mode from '../options/mode.js';
 
 export default {
   command: 'build',
