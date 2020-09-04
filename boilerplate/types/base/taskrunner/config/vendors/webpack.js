@@ -6,7 +6,6 @@ import webpack from "webpack";
 import {
   getEntries,
   getMode,
-  getVendorPattern,
   isVendorModule,
   merge
 } from "../../modules/webpack-utils.js";
@@ -21,20 +20,6 @@ export default () => {
     entry: getEntries(`${PROJECT_DIR}/${paths.sources.js.default}`),
     output: {
       filename: "[name].js"
-    },
-    module: {
-      rules: [
-        {
-          test: /\.html$/,
-          exclude: getVendorPattern(),
-          use: {
-            loader: "html-loader",
-            options: {
-              attributes: false
-            }
-          }
-        }
-      ]
     },
     optimization: {
       splitChunks: {

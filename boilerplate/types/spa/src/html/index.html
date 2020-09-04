@@ -9,6 +9,12 @@
     <div id="app" :class="{ 'is-loading': isLoading }">
       <component :is="currentSection"/>
     </div>
+    <template id="home-section-template">
+      <!-- @include ../sections/home/home.html -->
+    </template>
+    <template id="example-component-template">
+      <!-- @include ../components/example-component/example-component.html -->
+    </template>
     <!-- @include _includes/common/js.html -->
   </body>
 </html>

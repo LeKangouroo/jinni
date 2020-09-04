@@ -4,7 +4,6 @@ import {
 from "components/components";
 
 import events from "core/events";
-import template from "./home.html";
 
 export default {
 
@@ -14,7 +13,7 @@ export default {
   data: () => ({
     name: "HomeSection"
   }),
-  template,
+  template: "#home-section-template",
   mounted()
   {
     console.log("home section mounted");
