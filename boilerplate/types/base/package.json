@@ -9,11 +9,7 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/core": "7.1.2",
-    "@babel/preset-env": "7.1.0",
-    "@babel/register": "7.0.0",
     "autoprefixer": "9.8.6",
-    "babel-loader": "8.0.4",
     "browser-sync": "2.26.12",
     "chalk": "4.1.0",
     "core-js": "2.5.7",
@@ -57,7 +53,7 @@
     }
   },
   "config": {
-    "scripts_bin": "gulp --gulpfile taskrunner/gulpfile.babel.js"
+    "scripts_bin": "gulp --gulpfile taskrunner/gulpfile.js"
   },
   "scripts": {
     "build:pre-production": "$npm_package_config_scripts_bin build --env=pre-production --mode=distributable",

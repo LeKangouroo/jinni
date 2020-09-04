@@ -25,22 +25,12 @@ export default () => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
-          exclude: getVendorPattern(),
-          use: {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: `${PROJECT_DIR}/tmp/_babel`
-            }
-          }
-        },
-        {
           test: /\.html$/,
           exclude: getVendorPattern(),
           use: {
             loader: "html-loader",
             options: {
-              attrs: false
+              attributes: false
             }
           }
         }
