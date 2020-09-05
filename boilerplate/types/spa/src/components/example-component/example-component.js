@@ -1,8 +1,6 @@
-import template from "./example-component.html";
-
 export default {
 
-  template,
+  template: "#example-component-template",
   mounted() {
 
     console.log("example component mounted");

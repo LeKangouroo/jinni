@@ -1,9 +1,9 @@
-import isString from "lodash/isString.js";
+import is from "ramda/src/is.js";
 import path from "path";
 
 const relocateGlob = (glob) => {
 
-  if (!isString(glob))
+  if (!is(String, glob))
   {
     throw new TypeError(`invalid glob value: ${glob}`);
   }
@@ -18,7 +18,7 @@ const relocateGlob = (glob) => {
 
 export const relocate = (value) => {
 
-  if (isString(value))
+  if (is(String, value))
   {
     return relocateGlob(value);
   }

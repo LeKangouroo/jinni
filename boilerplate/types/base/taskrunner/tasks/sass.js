@@ -7,9 +7,12 @@ import postCSS from "gulp-postcss";
 import sass from "gulp-sass";
 import tasks from "../modules/tasks.js";
 
+import { process } from "../modules/preprocess-utils.js";
+
 function sassTask(callback)
 {
   gulp.src(paths.relocate(config.common.paths.sources.sass.default))
+    .pipe(process(argv.env, { type: "scss" }))
     .on("error", (err) => tasks.error("sass", callback, err))
     .pipe(sass(config.vendors.sass[argv.mode]))
     .on("error", (err) => tasks.error("sass", callback, err))

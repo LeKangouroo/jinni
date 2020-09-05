@@ -8,7 +8,7 @@ import fs from "fs";
 import fse from "fs-extra";
 import inquirer from "inquirer";
 import * as logger from "../modules/logger.js";
-import merge from "lodash/merge.js";
+import mergeDeepRight from "ramda/src/mergeDeepRight.js";
 import os from "os";
 import path from "path";
 import packageNameValidator from "validate-npm-package-name";
@@ -205,7 +205,7 @@ const savePackage = (params) => {
      */
     if (params.answers.api)
     {
-      merge(pkg, readJSON(`${params.root}/features/api/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/api/package.json`));
     }
 
     /*
@@ -213,7 +213,7 @@ const savePackage = (params) => {
      */
     if (params.answers.instrumentedTests)
     {
-      merge(pkg, readJSON(`${params.root}/features/instrumented-tests/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/instrumented-tests/package.json`));
     }
 
     /*
@@ -221,7 +221,7 @@ const savePackage = (params) => {
      */
     if (params.answers.unitTests)
     {
-      merge(pkg, readJSON(`${params.root}/features/unit-tests/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/unit-tests/package.json`));
     }
 
     fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {

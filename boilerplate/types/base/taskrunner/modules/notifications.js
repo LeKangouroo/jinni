@@ -1,6 +1,6 @@
-import assign from "lodash/assign.js";
 import fs from "fs";
 import logger from "./logger.js";
+import mergeDeepRight from "ramda/src/mergeDeepRight.js";
 import notifier from "node-notifier";
 import paths from "./paths.js";
 
@@ -24,7 +24,7 @@ export const notify = (options) => {
     options.icon = null;
     //logger.error(e);
   }
-  notifier.notify(assign({}, DEFAULT_OPTIONS, options), (err) => {
+  notifier.notify(mergeDeepRight(DEFAULT_OPTIONS, options), (err) => {
 
     if (err)
     {

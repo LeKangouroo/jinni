@@ -1,14 +1,10 @@
-// TODO: remove polyfills
-import "core/polyfills";
 import events from "core/events";
 import homeSection from "sections/home/home";
 import router from "core/router";
-import SVG4Everybody from "svg4everybody"; // TODO: remove this dependency
 import Vue from "vue";
 
+console.log("environment: /*@echo ENV*/");
 console.log("main.js file loaded");
-
-SVG4Everybody(); // TODO: remove this dependency
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -35,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       events.addObserver("section:loaded", () => {
 
         this.isLoading = false;
-        SVG4Everybody();
       });
 
       events.addObserver("section:destroyed", () => {
