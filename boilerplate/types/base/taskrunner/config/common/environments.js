@@ -3,7 +3,6 @@ import argv from "../../modules/argv.js";
 const common = {
   CACHE_BUST: Date.now(),
   ENV: argv.env,
-  HTTP_ROOT_DIR: "",
   MODE: argv.mode
 };
 

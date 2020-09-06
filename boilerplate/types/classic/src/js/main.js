@@ -1,5 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+import { getEnvironmentVariables, initDevOverlay } from "core/dev.js";
 
-  console.log("environment: /*@echo ENV*/");
-  console.log('main.js loaded');
+console.table(getEnvironmentVariables());
+document.addEventListener("DOMContentLoaded", function() {
+
+  console.log("DOMContentLoaded event fired");
+  initDevOverlay();
 });
