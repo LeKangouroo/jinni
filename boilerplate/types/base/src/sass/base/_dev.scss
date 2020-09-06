@@ -1,0 +1,105 @@
+body[data-mode="development"] .dev
+{
+  display: block;
+}
+
+.dev
+{
+  --dev-color-warning: #FFD722; //#C2AB6B;
+  --dev-color-warning-dark: #E3BF1E; //#B09B61;
+  --dev-color-warning-shadow: #A38915;
+  --dev-transition-duration: 0.3s;
+  --dev-transition-easing: ease-in-out;
+
+  display: none;
+  height: 100%;
+  transition: opacity var(--dev-transition-duration) var(--dev-transition-easing);
+  width: 100%;
+  position: fixed;
+    left: 0;
+    top: 0;
+}
+.dev.is-hidden
+{
+  opacity: 0;
+  pointer-events: none;
+
+  .dev-banner
+  {
+    transform: translateY(-100%);
+  }
+  .dev-footer
+  {
+    transform: translateY(100%);
+  }
+}
+.dev-banner
+{
+  align-items: center;
+  border-bottom: 3px solid var(--dev-color-warning-dark);
+  border-top: 3px solid var(--dev-color-warning-dark);
+  box-shadow: #000A 0 0 10px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  position: relative;
+  transition: transform var(--dev-transition-duration) var(--dev-transition-easing);
+  width: 100%;
+  background: repeating-linear-gradient(
+      45deg,
+      var(--dev-color-warning),
+      var(--dev-color-warning) 20px,
+      var(--dev-color-warning-dark) 20px,
+      var(--dev-color-warning-dark) 30px,
+      var(--dev-color-warning) 30px);
+}
+.dev-banner-message
+{
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: var(--dev-color-warning-shadow) 0 0.1ch 0.1ch;
+}
+.dev-banner-message-emoji
+{
+  font-family: var(--font-emojis);
+  margin-right: 0.2ch;
+}
+.dev-banner-close
+{
+  @include reset-button;
+
+  cursor: pointer;
+  font-family: var(--font-emojis);
+  transform: translateY(-50%);
+  transition: transform var(--dev-transition-duration) var(--dev-transition-easing);
+  position: absolute;
+    right: 20px;
+    top: 50%;
+}
+.dev-banner-close:hover
+{
+  transform: translateY(-50%) rotate(180deg);
+}
+.dev-footer
+{
+  background: #000C;
+  padding: 5px 10px;
+  transition: transform var(--dev-transition-duration) var(--dev-transition-easing);
+  width: 100%;
+  position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.dev-footer-variable
+{
+  color: white;
+}
+.dev-footer-variable-name
+{
+  color: var(--dev-color-warning);
+}
+.dev-footer-separator
+{
+  color: grey;
+}

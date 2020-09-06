@@ -3,12 +3,13 @@ import homeSection from "sections/home/home";
 import router from "core/router";
 import Vue from "vue";
 
-console.log("environment: /*@echo ENV*/");
-console.log("main.js file loaded");
+import { getEnvironmentVariables, initDevOverlay } from "core/dev.js";
 
+console.table(getEnvironmentVariables());
 document.addEventListener("DOMContentLoaded", () => {
 
-  console.log("DOMContentLoaded event callback called");
+  console.log("DOMContentLoaded event fired");
+  initDevOverlay();
 
   new Vue({
     el: "#app",
