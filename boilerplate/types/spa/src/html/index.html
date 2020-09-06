@@ -2,13 +2,20 @@
 <html>
   <head>
     <!-- @include _includes/common/metas.html -->
-    <title><!-- @if ENV!="production" -->[@@ENV]&nbsp;<!-- @endif -->Home</title>
+    <title><!-- @if ENV!="production" -->[<!-- @echo ENV -->]&nbsp;<!-- @endif -->Home</title>
     <!-- @include _includes/common/css.html -->
   </head>
-  <body>
+  <body data-mode="<!-- @echo MODE -->">
     <div id="app" :class="{ 'is-loading': isLoading }">
       <component :is="currentSection"/>
     </div>
+    <template id="home-section-template">
+      <!-- @include ../sections/home/home.html -->
+    </template>
+    <template id="example-component-template">
+      <!-- @include ../components/example-component/example-component.html -->
+    </template>
+    <!-- @include _includes/common/dev.html -->
     <!-- @include _includes/common/js.html -->
   </body>
 </html>

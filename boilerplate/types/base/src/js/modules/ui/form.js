@@ -1,4 +1,4 @@
-import uniq from 'lodash/uniq';
+import uniq from "ramda/src/uniq.js";
 
 /**
  * Returns the data extracted from an HTMLFormElement instance

@@ -1,15 +1,15 @@
-import isString from 'lodash/isString';
-import path from 'path';
+import is from "ramda/src/is.js";
+import path from "path";
 
 const relocateGlob = (glob) => {
 
-  if (!isString(glob))
+  if (!is(String, glob))
   {
     throw new TypeError(`invalid glob value: ${glob}`);
   }
 
   // NOTE: if path is excluded
-  if (glob.charAt(0) === '!')
+  if (glob.charAt(0) === "!")
   {
     return "!" + path.resolve("../", glob.substring(1));
   }
@@ -18,7 +18,7 @@ const relocateGlob = (glob) => {
 
 export const relocate = (value) => {
 
-  if (isString(value))
+  if (is(String, value))
   {
     return relocateGlob(value);
   }
@@ -26,7 +26,7 @@ export const relocate = (value) => {
   {
     return value.map((glob) => relocateGlob(glob));
   }
-  throw new TypeError('unexpected value type');
+  throw new TypeError("unexpected value type");
 };
 
 export default {

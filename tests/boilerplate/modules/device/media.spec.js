@@ -1,11 +1,11 @@
-const {
+import {
   findCurrentMedia,
   getCurrentMedia,
   getMediasList
-} = require("../../../../boilerplate/types/base/src/js/modules/device/media");
+} from "../../../../boilerplate/types/base/src/js/modules/device/media.js";
 
-const assert = require("assert");
-const mediaQuery = require("css-mediaquery");
+import assert from "assert";
+import mediaQuery from "css-mediaquery";
 
 describe("Modules > Device > Media", () => {
 

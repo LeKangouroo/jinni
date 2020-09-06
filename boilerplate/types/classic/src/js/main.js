@@ -1,8 +1,8 @@
-import 'core/polyfills';
-import SVG4Everybody from 'svg4everybody';
+import { getEnvironmentVariables, initDevOverlay } from "core/dev.js";
 
-SVG4Everybody();
-document.addEventListener('DOMContentLoaded', function() {
+console.table(getEnvironmentVariables());
+document.addEventListener("DOMContentLoaded", function() {
 
-  console.log('main.js loaded');
+  console.log("DOMContentLoaded event fired");
+  initDevOverlay();
 });

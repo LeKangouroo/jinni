@@ -3,7 +3,7 @@
  * @param {Promise[]} promises - a list of promises
  * @returns {Promise} - a promise
  */
-const seq = (promises) => new Promise((resolve, reject) => {
+export const seq = (promises) => new Promise((resolve, reject) => {
 
   let fulfilledPromisesCount = 0;
 
@@ -23,7 +23,3 @@ const seq = (promises) => new Promise((resolve, reject) => {
 
   promises.forEach(p => p.then(handleFulfilledPromise).catch(reject));
 });
-
-module.exports = {
-  seq
-};

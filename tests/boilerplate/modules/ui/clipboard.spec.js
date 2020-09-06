@@ -1,8 +1,8 @@
-const assert = require("assert");
-const clipboard = require("../../../../boilerplate/types/base/src/js/modules/ui/clipboard");
-const JSDOM = require("jsdom").JSDOM;
+import assert from "assert";
+import * as clipboard from "../../../../boilerplate/types/base/src/js/modules/ui/clipboard.js";
+import jsdom from "jsdom";
 
-const getWindow = () => (new JSDOM("<!doctype html><html><head></head><body></body></html>")).window;
+const getWindow = () => (new jsdom.JSDOM("<!doctype html><html><head></head><body></body></html>")).window;
 
 const getClipboardDataMock = () => {
 

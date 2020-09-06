@@ -1,5 +1,5 @@
-const version = require('./_version');
+import version from "./_version.js";
 
-module.exports = {
+export default {
   version
 };

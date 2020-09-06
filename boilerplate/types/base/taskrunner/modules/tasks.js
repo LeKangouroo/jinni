@@ -1,5 +1,5 @@
-import logger from './logger';
-import notifications from './notifications';
+import logger from "./logger.js";
+import notifications from "./notifications.js";
 
 export const error = (taskName, callback, err) => {
 

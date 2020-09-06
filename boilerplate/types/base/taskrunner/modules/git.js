@@ -1,16 +1,18 @@
-import { exec } from 'child_process';
+import { exec } from "child_process";
 
 export const getHeadCommit = () => {
 
   return new Promise((resolve, reject) => {
 
-    exec('git rev-parse --verify HEAD --short', (err, stdout) => {
+    const command = "git rev-parse --verify HEAD --short";
+
+    exec(command, (err, stdout) => {
 
       if (err)
       {
         return reject(err);
       }
-      resolve(stdout.replace(/\n/g, ''));
+      resolve(stdout.replace(/\n/g, ""));
     });
   });
 };

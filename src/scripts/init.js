@@ -1,29 +1,33 @@
+// TODO: use checkbox type for additional features
+
 /*
  * Dependencies
  */
-// TODO: rewrites this using import syntax when it's available in Node
-const chalk = require('chalk');
-const fs = require('fs');
-const fse = require('fs-extra');
-const inquirer = require('inquirer');
-const logger = require('../modules/logger');
-const merge = require('lodash/merge');
-const os = require('os');
-const path = require('path');
-const packageNameValidator = require('validate-npm-package-name');
-const promises = require('../modules/promises');
-const spawn = require('child_process').spawn;
-
+import chalk from "chalk";
+import fs from "fs";
+import fse from "fs-extra";
+import inquirer from "inquirer";
+import * as logger from "../modules/logger.js";
+import mergeDeepRight from "ramda/src/mergeDeepRight.js";
+import os from "os";
+import path from "path";
+import packageNameValidator from "validate-npm-package-name";
+import * as promises from "../modules/promises.js";
+import { spawn } from "child_process";
+import { fileURLToPath } from "url";
+import { readJSON } from "../modules/json.js";
 
 /*
  * Constants
  */
-const ASCII_ART = fs.readFileSync(path.resolve(__dirname, '../assets/text/ascii.txt'), { encoding: 'utf8' });
-const BOILERPLATE_DIR = path.resolve(__dirname, '../../boilerplate');
+const CURRENT_FILE_PATH = fileURLToPath(import.meta.url);
+const ASCII_ART_FILE_PATH =  path.join(CURRENT_FILE_PATH, "..", "..", "assets", "text", "ascii.txt");
+const ASCII_ART = fs.readFileSync(ASCII_ART_FILE_PATH, "utf8");
+const BOILERPLATE_DIR = path.join(CURRENT_FILE_PATH, "..", "..", "..", "boilerplate");
 const CWD = process.cwd();
 const EXIT_SUCCESS = 0;
 const EXIT_FAILURE = 1;
-const PACKAGE_FILE_PATH = path.resolve(CWD, './package.json');
+const PACKAGE_FILE_PATH = path.resolve(CWD, "package.json");
 
 
 /*
@@ -190,7 +194,7 @@ const savePackage = (params) => {
 
   return new Promise((resolve, reject) => {
 
-    let pkg = require(PACKAGE_FILE_PATH);
+    let pkg = readJSON(PACKAGE_FILE_PATH);
 
     pkg.name = params.answers.projectName;
     pkg.description = params.answers.projectDescription;
@@ -201,7 +205,7 @@ const savePackage = (params) => {
      */
     if (params.answers.api)
     {
-      merge(pkg, require(`${params.root}/features/api/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/api/package.json`));
     }
 
     /*
@@ -209,7 +213,7 @@ const savePackage = (params) => {
      */
     if (params.answers.instrumentedTests)
     {
-      merge(pkg, require(`${params.root}/features/instrumented-tests/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/instrumented-tests/package.json`));
     }
 
     /*
@@ -217,7 +221,7 @@ const savePackage = (params) => {
      */
     if (params.answers.unitTests)
     {
-      merge(pkg, require(`${params.root}/features/unit-tests/package.json`));
+      pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/unit-tests/package.json`));
     }
 
     fs.writeFile(PACKAGE_FILE_PATH, JSON.stringify(pkg, null, 2), (err) => {

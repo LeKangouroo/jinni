@@ -1,23 +1,19 @@
-import autoPrefixer from './vendors/auto-prefixer.json';
-import browserSync from './vendors/browser-sync.json';
-import clean from './tasks/clean.json';
-import JPEGRecompress from './vendors/imagemin/jpeg-recompress.json';
-import paths from './common/paths.json';
-import PNGQuant from './vendors/imagemin/pngquant.json';
-import replacements from './common/replacements';
-import sass from './vendors/sass.json';
-import svgSprite from './vendors/svg-sprite.json';
-import webpack from './vendors/webpack';
+import browserSync from "./vendors/browser-sync.js";
+import clean from "./tasks/clean.js";
+import mozjpeg from "./vendors/imagemin/mozjpeg.js";
+import pngquant from "./vendors/imagemin/pngquant.js";
+import paths from "./common/paths.js";
+import sass from "./vendors/sass.js";
+import svgSprite from "./vendors/svg-sprite.js";
+import webpack from "./vendors/webpack.js";
 
 export default {
   common: {
-    paths,
-    replacements
+    paths
   },
   vendors: {
-    autoPrefixer,
     browserSync,
-    imagemin: { PNGQuant, JPEGRecompress },
+    imagemin: { mozjpeg, pngquant },
     sass,
     svgSprite,
     webpack

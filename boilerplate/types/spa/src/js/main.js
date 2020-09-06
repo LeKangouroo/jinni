@@ -1,17 +1,15 @@
-import "core/polyfills";
 import events from "core/events";
 import homeSection from "sections/home/home";
 import router from "core/router";
-import SVG4Everybody from "svg4everybody";
 import Vue from "vue";
 
-console.log("main.js file loaded");
+import { getEnvironmentVariables, initDevOverlay } from "core/dev.js";
 
-SVG4Everybody();
-
+console.table(getEnvironmentVariables());
 document.addEventListener("DOMContentLoaded", () => {
 
-  console.log("DOMContentLoaded event callback called");
+  console.log("DOMContentLoaded event fired");
+  initDevOverlay();
 
   new Vue({
     el: "#app",
@@ -34,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       events.addObserver("section:loaded", () => {
 
         this.isLoading = false;
-        SVG4Everybody();
       });
 
       events.addObserver("section:destroyed", () => {

@@ -1,27 +1,27 @@
-import { func as cleanTask } from './clean';
-import { func as htmlTask } from './html';
-import { func as javascriptTask } from './javascript';
-import { func as livereloadTask } from './livereload';
-import { func as sassTask } from './sass';
-import { func as svgTask } from './svg';
-import { parallel, series, watch } from 'gulp';
-import { relocate } from '../modules/paths';
-import config from '../config/config';
-import logger from '../modules/logger';
+import cleanTask from "./clean.js";
+import config from "../config/config.js";
+import gulp from "gulp";
+import htmlTask from "./html.js";
+import javascriptTask from "./javascript.js";
+import livereloadTask from "./livereload.js";
+import logger from "../modules/logger.js";
+import sassTask from "./sass.js";
+import svgTask from "./svg.js";
+
+import { relocate } from "../modules/paths.js";
 
 function onDevTaskComplete(callback)
 {
-  watch(relocate(config.common.paths.sources.html.watch), htmlTask);
-  watch(relocate(config.common.paths.sources.js.watch), javascriptTask);
-  watch(relocate(config.common.paths.sources.sass.watch), sassTask);
-  watch(relocate(config.common.paths.sources.svg), svgTask);
+  gulp.watch(relocate(config.common.paths.sources.html.watch), htmlTask);
+  gulp.watch(relocate(config.common.paths.sources.js.watch), javascriptTask);
+  gulp.watch(relocate(config.common.paths.sources.sass.watch), sassTask);
+  gulp.watch(relocate(config.common.paths.sources.svg), svgTask);
   callback();
   logger.success("👍  Everything looks good. You're ready to go!");
 }
 
-export const isPublic = true;
-export const func = series(
+export default gulp.series(
   cleanTask,
-  parallel(sassTask, svgTask, htmlTask, javascriptTask),
+  gulp.parallel(sassTask, svgTask, htmlTask, javascriptTask),
   livereloadTask,
   onDevTaskComplete);

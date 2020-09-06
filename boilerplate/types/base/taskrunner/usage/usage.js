@@ -1,8 +1,8 @@
-import build from './commands/build';
-import clean from './commands/clean';
-import dev from './commands/dev';
 import yargs from 'yargs';
-import zip from './commands/zip';
+import build from './commands/build.js';
+import clean from './commands/clean.js';
+import dev from './commands/dev.js';
+import zip from './commands/zip.js';
 
 export default yargs
   .locale('en')

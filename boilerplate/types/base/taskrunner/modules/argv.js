@@ -1,3 +1,3 @@
-import usage from '../usage/usage';
+import usage from "../usage/usage.js";
 
 export default usage.argv;

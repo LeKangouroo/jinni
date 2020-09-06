@@ -1,6 +1,22 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [4.0.0](https://github.com/LeKangouroo/jinni/compare/v3.6.1...v4.0.0) (2020-09-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* some dependencies have been removed / replaced from the generator and the boilerplates
+
+### Features
+
+*  Upgrade to Node v14 and refactor code ([64f4f56](https://github.com/LeKangouroo/jinni/commit/64f4f566a7a2c1fa692b1e436f4600725601bbe0))
+
+
+### Bug Fixes
+
+* updates README files ([d508cf4](https://github.com/LeKangouroo/jinni/commit/d508cf42262c507f8e3cfaf6a71ff8ef6bdfe01e))
 
 <a name="3.6.2"></a>
 ## [3.6.2](https://github.com/itadakimas/jinni/compare/v3.6.1...v3.6.2) (2018-12-24)

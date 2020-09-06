@@ -25,29 +25,10 @@ $mq-list:
 {
   @media (min-width: nth($mq, 2))
   {
-    body::after
+    .dev-footer-breakpoint::after
     {
       content: "#{nth($mq, 3)} (#{nth($mq, 2)})"; // NOTE: used for debug mode only
-      display: none;
     }
-  }
-}
-
-@if $debug == true
-{
-  body::after
-  {
-    display:     block;
-    position:    fixed;
-      bottom:    0;
-      right:     0;
-    background:  rgba(#000000, 0.8);
-    text-align:  center;
-    color:       #FFFFFF;
-    padding:     10px;
-    z-index:     1000;
-    font-size:   10px;
-    font-family: sans-serif;
   }
 }
 
