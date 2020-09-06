@@ -1,5 +1,7 @@
-import { createRouter } from "modules/network/routing.js";
 import events from "core/events.js";
+
+import { createRouter } from "modules/network/routing.js";
+import { getEnvironmentVariables } from "core/dev.js";
 
 const getTitle = (sectionName, env) => env === "production"
   ? `${sectionName} - ${window.location.hostname}`
@@ -10,7 +12,7 @@ const routes = [
     name: "home",
     uri: "/home",
     data: {
-      title: getTitle("Accueil", "/* @echo ENV*/")
+      title: getTitle("Accueil", getEnvironmentVariables().environment)
     }
   }
 ];
