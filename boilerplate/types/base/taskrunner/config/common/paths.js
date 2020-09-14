@@ -6,19 +6,18 @@ export default {
         "src/html/**/*.html"
       ],
       directory: "src/html",
-      watch: "src/html/**/*.html"
+      watch: "src/**/*.html"
     },
     images: "src/**/*.{jpg,png,gif}",
     js: {
       default: "src/js/*.js",
       watch: [
-        "!src/{sections,components}/**/*.scss",
-        "src/{js,sections,components}/**/*"
+        "src/**/*.js"
       ]
     },
     sass: {
-        default: "src/sass/*.scss",
-        watch: "src/**/*.scss"
+      default: "src/sass/*.scss",
+      watch: "src/**/*.scss"
     },
     svg: "src/assets/images/icons/svg/*.svg",
     todos: [
