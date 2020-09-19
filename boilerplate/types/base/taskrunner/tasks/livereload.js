@@ -9,7 +9,7 @@ global.browserSync = b;
 
 function livereloadTask(callback)
 {
-  const cfg = config.vendors.browserSync;
+  const cfg = config.vendors.browserSync.getConfig();
 
   cfg.server.baseDir = cfg.server.baseDir.map((path) => paths.relocate(path));
   b.init(cfg, callback);

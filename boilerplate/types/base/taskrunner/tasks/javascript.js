@@ -12,7 +12,7 @@ import { process } from "../modules/preprocess-utils.js";
 
 function javascriptBuildTask(callback)
 {
-  return webpackStream(config.vendors.webpack(), webpack)
+  return webpackStream(config.vendors.webpack.getConfig(), webpack)
     .on("error", (err) => tasks.error("javascript", callback, err))
     .pipe(process(argv.env))
     .on("error", (err) => tasks.error("javascript", callback, err))
