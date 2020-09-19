@@ -5,10 +5,11 @@ import paths from "../modules/paths.js";
 import tasks from "../modules/tasks.js";
 
 import { process } from "../modules/preprocess-utils.js";
+import { reload } from "./livereload.js";
 
 function onComplete(callback)
 {
-  global.browserSync.reload(); // TODO: avoid using a global variable
+  reload();
   callback();
 }
 

@@ -9,6 +9,7 @@ import webpack from "webpack";
 import webpackStream from "webpack-stream";
 
 import { process } from "../modules/preprocess-utils.js";
+import { reload } from "./livereload.js";
 
 function javascriptBuildTask(callback)
 {
@@ -34,7 +35,7 @@ function javascriptLintTask(callback)
 
 function javascriptTaskComplete(callback)
 {
-  global.browserSync.reload(); // TODO: avoid using a global variable
+  reload();
   tasks.success("javascript", callback);
 }
 

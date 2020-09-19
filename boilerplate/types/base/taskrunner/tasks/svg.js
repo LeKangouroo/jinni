@@ -6,10 +6,12 @@ import paths from "../modules/paths.js";
 import svgSprite from "gulp-svg-sprite";
 import tasks from "../modules/tasks.js";
 
+import { reload } from "./livereload.js";
+
 function onComplete(callback)
 {
   tasks.success("svg", callback);
-  global.browserSync.reload();
+  reload();
 }
 
 function svgTask(callback)

@@ -7,6 +7,7 @@ import postCSS from "gulp-postcss";
 import sass from "gulp-sass";
 import tasks from "../modules/tasks.js";
 
+import { getStream } from "./livereload.js";
 import { process } from "../modules/preprocess-utils.js";
 
 function sassTask(callback)
@@ -20,7 +21,7 @@ function sassTask(callback)
     .on("error", (err) => tasks.error("sass", callback, err))
     .pipe(gulp.dest(paths.relocate(config.common.paths.builds.css[argv.mode])))
     .on("end", () => tasks.success("sass", callback))
-    .pipe(global.browserSync.stream()); // TODO: eviter la variable globale
+    .pipe(getStream());
 }
 
 export default sassTask;
