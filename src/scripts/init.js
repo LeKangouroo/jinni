@@ -1,5 +1,3 @@
-// TODO: use checkbox type for additional features
-
 /*
  * Dependencies
  */
@@ -87,19 +85,26 @@ const askQuestions = () => {
       ]
     },
     {
-      type: 'confirm',
-      name: 'api',
-      message: 'Do you need a fake REST API? (powered by json-server)'
-    },
-    {
-      type: 'confirm',
-      name: 'instrumentedTests',
-      message: 'Do you need to use instrumented tests in a browser? (powered by cypress)'
-    },
-    {
-      type: 'confirm',
-      name: 'unitTests',
-      message: 'Do you need to use unit tests? (powered by mocha)'
+      type: "checkbox",
+      name: "additionalFeatures",
+      message: "Which of these additional features do you need?",
+      choices: [
+        {
+          name: "Fake REST API (powered by json-server)",
+          short: "Fake REST API",
+          value: "api"
+        },
+        {
+          name: "Instrumented tests (powered by cypress)",
+          short: "Instrumented tests",
+          value: "instrumentedTests"
+        },
+        {
+          name: "Unit tests (powered by mocha)",
+          short: "Unit tests",
+          value: "unitTests"
+        }
+      ]
     }
   ]);
 };
@@ -120,7 +125,6 @@ const fail = (msg, err) => {
 const generateBoilerplate = (params) => {
 
   const copyOptions = { overwrite: false };
-
   const copyBaseFiles = params => new Promise(resolve => {
 
     fse.copySync(`${params.root}/types/base`, params.cwd);
@@ -133,32 +137,38 @@ const generateBoilerplate = (params) => {
     fse.copySync(`${params.root}/types/${params.answers.boilerplateType}`, params.cwd, copyOptions);
     resolve();
   });
-  const copyRESTApiFiles = params => new Promise(resolve => {
+  const copyFeature = (params, featureName) => new Promise(resolve => {
 
-    fse.copySync(`${params.root}/features/api`, params.cwd, copyOptions);
+    fse.copySync(`${params.root}/features/${featureName}`, params.cwd, copyOptions);
     resolve();
   });
-  const copyInstrumentedTestsFiles = params => new Promise(resolve => {
 
-    fse.copySync(`${params.root}/features/instrumented-tests`, params.cwd, copyOptions);
-    resolve();
-  });
-  const copyUnitTestsFiles = params => new Promise(resolve => {
+  let steps = [
+    copyBaseFiles(params),
+    copyBoilerplateTypeFiles(params)
+  ];
 
-    fse.copySync(`${params.root}/features/unit-tests`, params.cwd, copyOptions);
-    resolve();
-  });
+  if (isApiFeatureEnabled(params.answers))
+  {
+    steps.push(copyFeature(params, "api"));
+  }
+
+  if (isInstrumentedTestsFeatureEnabled(params.answers))
+  {
+    steps.push(copyFeature(params, "instrumented-tests"));
+  }
+
+  if (isUnitTestsFeatureEnabled(params.answers))
+  {
+    steps.push(copyFeature(params, "unit-tests"));
+  }
 
   return new Promise((resolve, reject) => {
 
-    const generationPromise = promises.seq([
-      copyBaseFiles(params),
-      copyBoilerplateTypeFiles(params),
-      params.answers.api ? copyRESTApiFiles(params) : Promise.resolve(),
-      params.answers.instrumentedTests ? copyInstrumentedTestsFiles(params) : Promise.resolve(),
-      params.answers.unitTests ? copyUnitTestsFiles(params) : Promise.resolve()
-    ]);
-    generationPromise.then(() => resolve(params)).catch(reject);
+    promises
+      .seq(steps)
+      .then(() => resolve(params))
+      .catch(reject);
   });
 };
 
@@ -190,6 +200,12 @@ const install = () => {
   });
 };
 
+const isApiFeatureEnabled = answers => answers.additionalFeatures.includes("api");
+
+const isInstrumentedTestsFeatureEnabled = answers => answers.additionalFeatures.includes("instrumentedTests");
+
+const isUnitTestsFeatureEnabled = answers => answers.additionalFeatures.includes("unitTests");
+
 const savePackage = (params) => {
 
   return new Promise((resolve, reject) => {
@@ -200,26 +216,17 @@ const savePackage = (params) => {
     pkg.description = params.answers.projectDescription;
     pkg.author = params.answers.author;
 
-    /*
-     * REST API feature
-     */
-    if (params.answers.api)
+    if (isApiFeatureEnabled(params.answers))
     {
       pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/api/package.json`));
     }
 
-    /*
-     * Instrumented tests feature
-     */
-    if (params.answers.instrumentedTests)
+    if (isInstrumentedTestsFeatureEnabled(params.answers))
     {
       pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/instrumented-tests/package.json`));
     }
 
-    /*
-     * Unit tests feature
-     */
-    if (params.answers.unitTests)
+    if (isUnitTestsFeatureEnabled(params.answers))
     {
       pkg = mergeDeepRight(pkg, readJSON(`${params.root}/features/unit-tests/package.json`));
     }

@@ -4,15 +4,20 @@ import paths from "../modules/paths.js";
 
 const b = browserSync.create();
 
-// TODO: avoid using a global variable
-global.browserSync = b;
-
-function livereloadTask(callback)
+export function getStream()
 {
-  const cfg = config.vendors.browserSync;
+  return b.stream();
+}
+
+export function reload()
+{
+  b.reload();
+}
+
+export default function livereloadTask(callback)
+{
+  const cfg = config.vendors.browserSync.getConfig();
 
   cfg.server.baseDir = cfg.server.baseDir.map((path) => paths.relocate(path));
   b.init(cfg, callback);
-}
-
-export default livereloadTask;
+};

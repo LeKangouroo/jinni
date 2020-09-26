@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/LeKangouroo/jinni/compare/v4.0.0...v4.1.0) (2020-09-26)
+
+
+### Features
+
+* use checkbox type for additional features selection ([76ad929](https://github.com/LeKangouroo/jinni/commit/76ad92903bbc0d0c12ece710ae720e9fa4936c5d))
+
+
+### Bug Fixes
+
+* dev banner z-index and font size ([099c455](https://github.com/LeKangouroo/jinni/commit/099c4552c8a17e1a24622e70e6e7de0d185cca4a))
+* html not being updated on section / component HTML modification ([37241c0](https://github.com/LeKangouroo/jinni/commit/37241c08b9826d3656a56044220ee1d3f8af4853))
+* refactor webpack and browsersync config ([0511362](https://github.com/LeKangouroo/jinni/commit/05113627447a53bffeb918cab33bf2c16cdfc015))
+* remove _includes folder from the build output ([a451c49](https://github.com/LeKangouroo/jinni/commit/a451c49ca00878bde12fead261797b0b65dbb4b6))
+* remove livereload task global variable ([841d193](https://github.com/LeKangouroo/jinni/commit/841d19393c0a36a47fe852f5f094224cfb624358))
+
 ## [4.0.0](https://github.com/LeKangouroo/jinni/compare/v3.6.1...v4.0.0) (2020-09-06)
 
 

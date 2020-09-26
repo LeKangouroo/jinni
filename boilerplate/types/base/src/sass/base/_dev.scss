@@ -18,6 +18,7 @@ body[data-mode="development"] .dev
   position: fixed;
     left: 0;
     top: 0;
+  z-index: 9999;
 }
 .dev.is-hidden
 {
@@ -40,6 +41,7 @@ body[data-mode="development"] .dev
   border-top: 3px solid var(--dev-color-warning-dark);
   box-shadow: #000A 0 0 10px;
   display: flex;
+  font-size: 18px;
   height: 40px;
   justify-content: center;
   position: relative;
@@ -56,7 +58,6 @@ body[data-mode="development"] .dev
 .dev-banner-message
 {
   color: black;
-  font-size: 1.2rem;
   font-weight: bold;
   text-shadow: var(--dev-color-warning-shadow) 0 0.1ch 0.1ch;
 }
@@ -84,6 +85,7 @@ body[data-mode="development"] .dev
 .dev-footer
 {
   background: #000C;
+  font-size: 14px;
   padding: 5px 10px;
   transition: transform var(--dev-transition-duration) var(--dev-transition-easing);
   width: 100%;

@@ -2,28 +2,25 @@ export default {
   sources: {
     html: {
       default: [
-        "!src/html/_includes{,/**}",
-        "src/html/**/*.html"
+        "src/html/**/*.html",
+        "!src/html/_includes/**"
       ],
       directory: "src/html",
-      watch: "src/html/**/*.html"
+      watch: "src/**/*.html"
     },
     images: "src/**/*.{jpg,png,gif}",
     js: {
       default: "src/js/*.js",
-      watch: [
-        "!src/{sections,components}/**/*.scss",
-        "src/{js,sections,components}/**/*"
-      ]
+      watch: "src/**/*.js"
     },
     sass: {
-        default: "src/sass/*.scss",
-        watch: "src/**/*.scss"
+      default: "src/sass/*.scss",
+      watch: "src/**/*.scss"
     },
     svg: "src/assets/images/icons/svg/*.svg",
     todos: [
+      "src/**/*.{js,jsx,html,scss,sass}",
       "!src/vendors/**",
-      "src/**/*.{js,jsx,html,scss,sass}"
     ]
   },
   builds: {
@@ -55,9 +52,9 @@ export default {
   staticFiles: {
     base: "src",
     source: [
-      "!src/**/*.{jpg,png,gif}",
       "src/assets/**",
-      "src/vendors/**"
+      "src/vendors/**",
+      "!src/**/*.{jpg,png,gif}"
     ],
     destination: "dist"
   }

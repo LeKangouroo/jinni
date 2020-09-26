@@ -1,10 +1,13 @@
-export default {
-  open: false,
-  server: {
-    baseDir: [
-      "tmp",
-      "src"
-    ],
-    directory: false
-  }
+export function getConfig()
+{
+  return {
+    open: false,
+    server: {
+      directory: false,
+      baseDir: [
+        "tmp",
+        "src"
+      ]
+    }
+  };
 }

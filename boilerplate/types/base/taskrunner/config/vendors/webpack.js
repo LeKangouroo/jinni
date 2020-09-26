@@ -7,14 +7,15 @@ import webpack from "webpack";
 
 import { getEntries, getMode, isVendorModule } from "../../modules/webpack-utils.js";
 
-export default () => {
-
+export function getConfig()
+{
   const MODE = getMode(argv);
   const PROJECT_DIR = pathsModule.relocate("./");
+  const ENTRIES = getEntries(`${PROJECT_DIR}/${paths.sources.js.default}`);
   const COMMON_CONFIG = {
     devtool: "source-map",
     mode: MODE,
-    entry: getEntries(`${PROJECT_DIR}/${paths.sources.js.default}`),
+    entry: ENTRIES,
     output: {
       filename: "[name].js"
     },
@@ -50,10 +51,12 @@ export default () => {
     }
   };
 
+  let config = COMMON_CONFIG;
+
   if (MODE === "production")
   {
     // NOTE: this merges the common config with production config, and concatenates array values (i.e. plugins)
-    return Object.freeze(mergeDeepWith(concat, COMMON_CONFIG, {
+    config = mergeDeepWith(concat, COMMON_CONFIG, {
       plugins: [
         new webpack.DefinePlugin({
           "process.env": {
@@ -61,7 +64,7 @@ export default () => {
           }
         })
       ]
-    }));
+    });
   }
-  return Object.freeze(COMMON_CONFIG);
-};
+  return config;
+}
